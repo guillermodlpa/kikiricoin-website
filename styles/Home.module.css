@@ -50,10 +50,9 @@
   width: 100%;
   margin: 2rem 2rem;
   padding: 2rem 2rem;
+  display: 'flex';
 }
 
-.coverBlock {
-  background-image: url('/benjamin-davies-Zm2n2O7Fph4-unsplash.jpeg'); /* https://unsplash.com/photos/Zm2n2O7Fph4 */
-  background-size: cover;
-  background-position: center;
+.coverBlockLogoContainer {
+  flex-shrink: 0;
 }

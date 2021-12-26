@@ -15,20 +15,19 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <div className={`${styles.blockOuterWrapper} ${styles.coverBlock}`}>
           <div className={styles.blockContent}>
-            <h1 className={styles.title}>KikiriCoin</h1>
+            <div className={styles.coverBlockInfo}>
+              <h1 className={styles.title}>KikiriCoin</h1>
+              <p>
+                Jamón ipsum pinchito horchata atún orujo ligar borrachos como cubas. Un como motos turrón Quijote pero
+                la salir de descafeinado cogió prestado una resacón, tiburón de la noche ronda hecho polvo botellón.
+                Pero calimocho ancha es Castilla. Las abanica maruja caradura, los tomatito sangre fría quillo mi
+                musculitos aquí no hay tomate.
+              </p>
+            </div>
 
-            <p>
-              Jamón ipsum pinchito horchata atún orujo ligar borrachos como cubas. Un como motos turrón Quijote pero la
-              salir de descafeinado cogió prestado una resacón, tiburón de la noche ronda hecho polvo botellón. Pero
-              calimocho ancha es Castilla. Las abanica maruja caradura, los tomatito sangre fría quillo mi musculitos
-              aquí no hay tomate.
-            </p>
-            <p>
-              Jamón ipsum pinchito horchata atún orujo ligar borrachos como cubas. Un como motos turrón Quijote pero la
-              salir de descafeinado cogió prestado una resacón, tiburón de la noche ronda hecho polvo botellón. Pero
-              calimocho ancha es Castilla. Las abanica maruja caradura, los tomatito sangre fría quillo mi musculitos
-              aquí no hay tomate.
-            </p>
+            <div className={styles.coverBlockLogoContainer}>
+              <Image src="/1f413.png" alt="Logo" width="250" height="250" />
+            </div>
           </div>
         </div>
 
