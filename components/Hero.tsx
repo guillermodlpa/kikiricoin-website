@@ -19,7 +19,7 @@ const Hero = () => (
         px={8}
       >
         <Stack w={{ base: '80%', md: '55%' }} mr={6} flexShrink={0}>
-          <Heading as="h1" size="xl" fontWeight="bold" color="primary.800" mb={4}>
+          <Heading as="h1" size="2xl" fontWeight="bold" color="primary.800" mb={4}>
             KikiriCoin
           </Heading>
 
