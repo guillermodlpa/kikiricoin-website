@@ -24,6 +24,10 @@ const theme = extendTheme({
       },
     },
   },
+  fonts: {
+    heading: 'Hammersmith One',
+    body: 'Roboto',
+  },
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
