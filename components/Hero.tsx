@@ -7,7 +7,7 @@ const Hero = () => (
   <Box as="section" py={24} position="relative">
     <Box position="absolute" top={0} bottom={0} left={0} right={0} zIndex={-1} overflow="hidden" display="flex">
       <Box opacity={0.2} position="relative" width="100vw" backgroundColor="brand.50">
-        <NextImage src={CoinLogo} alt="Logo" layout="fill" objectFit="cover" objectPosition={'40vw center'} />
+        <NextImage priority src={CoinLogo} alt="Logo" layout="fill" objectFit="cover" objectPosition={'40vw center'} />
       </Box>
     </Box>
     <Container maxW="container.md">
