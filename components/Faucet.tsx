@@ -11,6 +11,8 @@ import {
   StatNumber,
   StatLabel,
   Link,
+  ListItem,
+  UnorderedList,
 } from '@chakra-ui/react';
 import NextImage from 'next/image';
 
@@ -46,7 +48,7 @@ const Faucet = () => (
             </Link>
           </Text>
 
-          <HStack pt={8} spacing={8}>
+          <HStack py={8} spacing={8}>
             <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} mb={[8, 0]} bg="white">
               <StatNumber fontSize="4xl">100</StatNumber>
               <StatLabel>KIKI in pool</StatLabel>
@@ -56,6 +58,23 @@ const Faucet = () => (
               <StatLabel>Times used</StatLabel>
             </Stat>
           </HStack>
+
+          <UnorderedList pl={6}>
+            <ListItem fontSize="sm">
+              To claim KIKI tokens, you need to connect a wallet to this website. I recommend using MetaMask, a crypto
+              wallet available as a broswer extension.
+            </ListItem>
+
+            <ListItem fontSize="sm">
+              How can I trust your smart contracts? You can see their source code in Polygonscan
+            </ListItem>
+
+            <ListItem fontSize="sm">
+              When you set it up, be sure to keep your private key safe. The private key is a code that allows you to
+              access your wallet from anywhere. If anybody else, like a hacker, discovers your private key, they&apos;d
+              have full control to take your tokens.
+            </ListItem>
+          </UnorderedList>
 
           <HStack pt={8}>
             <Button borderRadius="8px" py="4" px="4" lineHeight="1" size="md" variant={'solid'} colorScheme="brand">
