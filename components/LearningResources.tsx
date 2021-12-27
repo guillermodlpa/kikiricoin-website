@@ -24,7 +24,7 @@ const learningResources = [
     description: 'Pefecto para aprender los primeros pasos',
   },
   {
-    link: 'https://example',
+    link: 'https://example2',
     title: 'Aprender a desarrollar ERC20 tokens',
     description: 'Pefecto para aprender los primeros pasos',
   },
@@ -39,7 +39,7 @@ const LearningResources = () => (
 
       <Stack>
         {learningResources.map((props) => (
-          <ResourceCard key={props.title} {...props} />
+          <ResourceCard key={props.link} {...props} />
         ))}
       </Stack>
     </Container>
