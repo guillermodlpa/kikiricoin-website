@@ -11,7 +11,6 @@ const useConnectedAccount = (account: string | undefined): UseConnectedAccountRe
 
   useEffect(() => {
     if (account) {
-      console.info(account);
       const networkUrl = process.env.NEXT_PUBLIC_BLOCKCHAIN_NETWORK_URL;
       const tokenAdress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS;
       if (!networkUrl) {
