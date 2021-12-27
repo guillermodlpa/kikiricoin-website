@@ -1,5 +1,8 @@
 import { Flex, Container, Stat, StatNumber, StatLabel, Box } from '@chakra-ui/react';
 
+import useTotalSupply from './hooks/useTotalSupply';
+import { fromWei } from '../util/conversions';
+
 type StatBoxProps = {
   title: string;
   data: string;
@@ -12,21 +15,25 @@ const StatBox = ({ title, data }: StatBoxProps) => (
   </Stat>
 );
 
-const Stats = () => (
-  <Box as="section" bg="gray.100" py={24} id="stats">
-    <Container maxW="container.md">
-      <Flex
-        align="center"
-        direction={{ base: 'column', sm: 'row' }}
-        justify={{ base: 'stretch', sm: 'space-between' }}
-        alignItems={{ base: 'stretch' }}
-        px={8}
-      >
-        <StatBox title="Total Supply" data="25 KIKI" />
-        <StatBox title="Last Transaction" data="6d ago" />
-      </Flex>
-    </Container>
-  </Box>
-);
+const Stats = () => {
+  const totalSupply = useTotalSupply();
+
+  return (
+    <Box as="section" bg="gray.100" py={24} id="stats">
+      <Container maxW="container.md">
+        <Flex
+          align="center"
+          direction={{ base: 'column', sm: 'row' }}
+          justify={{ base: 'stretch', sm: 'space-between' }}
+          alignItems={{ base: 'stretch' }}
+          px={8}
+        >
+          <StatBox title="Total Supply" data={totalSupply ? fromWei(totalSupply) : '-'} />
+          <StatBox title="Last Transaction" data="6d ago" />
+        </Flex>
+      </Container>
+    </Box>
+  );
+};
 
 export default Stats;
