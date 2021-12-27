@@ -24,9 +24,9 @@ const useFaucetBalance = () => {
       return;
     }
 
-    const customHttpProvider = new ethers.providers.JsonRpcProvider(networkUrl);
-    const contract = new ethers.Contract(tokenAdress, KikiriCoinABI, customHttpProvider);
-    contract.balanceOf(faucetAddress).then((result: BigNumber) => {
+    const provider = new ethers.providers.JsonRpcProvider(networkUrl);
+    const readOnlyContract = new ethers.Contract(tokenAdress, KikiriCoinABI, provider);
+    readOnlyContract.balanceOf(faucetAddress).then((result: BigNumber) => {
       setBalance(result.toString());
     });
   }, []);

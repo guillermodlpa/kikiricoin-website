@@ -19,9 +19,9 @@ const useTotalSupply = () => {
       return;
     }
 
-    const customHttpProvider = new ethers.providers.JsonRpcProvider(networkUrl);
-    const contract = new ethers.Contract(tokenAdress, KikiriCoinABI, customHttpProvider);
-    contract.totalSupply().then((result: BigNumber) => {
+    const provider = new ethers.providers.JsonRpcProvider(networkUrl);
+    const readOnlyContract = new ethers.Contract(tokenAdress, KikiriCoinABI, provider);
+    readOnlyContract.totalSupply().then((result: BigNumber) => {
       setTotalSpply(result.toString());
     });
   }, []);

@@ -22,9 +22,9 @@ const useConnectedAccount = (account: string | undefined): UseConnectedAccountRe
         console.warn('No tokenAdress');
         return;
       }
-      const customHttpProvider = new ethers.providers.JsonRpcProvider(networkUrl);
-      const contract = new ethers.Contract(tokenAdress, KikiriCoinABI, customHttpProvider);
-      contract
+      const provider = new ethers.providers.JsonRpcProvider(networkUrl);
+      const readOnlyContract = new ethers.Contract(tokenAdress, KikiriCoinABI, provider);
+      readOnlyContract
         .balanceOf(account)
         .then((result: BigNumber) => {
           setBalance(result.toString());
@@ -51,13 +51,17 @@ const useConnectedAccount = (account: string | undefined): UseConnectedAccountRe
       console.warn('No faucetAddress');
       return;
     }
+    if (!account) {
+      console.warn('No account');
+      return;
+    }
     const customHttpProvider = new ethers.providers.JsonRpcProvider(networkUrl);
     const signer = customHttpProvider.getSigner(account);
     const contract = new ethers.Contract(faucetAddress, KikiriFaucetABI, signer);
     contract.claim().then(() => {
       console.log('Claimed!');
     });
-  }, []);
+  }, [account]);
 
   return [balance, claim];
 };
