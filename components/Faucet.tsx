@@ -65,15 +65,6 @@ const Faucet = () => {
               Note you can&apos;t dispense more than 10 times per day.
             </Text>
 
-            {metaState.account[0] && (
-              <Text>
-                Connected&nbsp;
-                <Link href={`https://polygonscan.com/address/${metaState.account[0]}`} color="brand" isExternal>
-                  {metaState.account[0].substring(0, 6)}...
-                </Link>
-              </Text>
-            )}
-
             <HStack pt={8}>
               {!metaState.isConnected && (
                 <Button
@@ -120,7 +111,15 @@ const Faucet = () => {
             <StatNumber fontSize="4xl">
               {connectedAccountBalance !== undefined ? fromWei(connectedAccountBalance) : '-'}
             </StatNumber>
-            <StatLabel>KIKI in your wallet</StatLabel>
+            <StatLabel>
+              KIKI in your wallet{' '}
+              {metaState.account[0] && (
+                <Link href={`https://polygonscan.com/address/${metaState.account[0]}`} color="brand" isExternal>
+                  {metaState.account[0].substring(0, 4)}...
+                  {metaState.account[0].substring(metaState.account[0].length - 4)}
+                </Link>
+              )}
+            </StatLabel>
           </Stat>
         </Stack>
 
