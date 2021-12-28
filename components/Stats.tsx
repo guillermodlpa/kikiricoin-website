@@ -1,5 +1,6 @@
 import { Flex, Container, Stat, StatNumber, StatLabel, Box } from '@chakra-ui/react';
 
+import useTransactionHistory from './hooks/useTransactionHistory';
 import useTotalSupply from './hooks/useTotalSupply';
 import { fromWei } from '../util/conversions';
 
@@ -17,6 +18,7 @@ const StatBox = ({ title, data }: StatBoxProps) => (
 
 const Stats = () => {
   const totalSupply = useTotalSupply();
+  const lastTransaction = useTransactionHistory()[0];
 
   return (
     <Box as="section" bg="gray.100" py={24} id="stats">
@@ -29,7 +31,7 @@ const Stats = () => {
           px={8}
         >
           <StatBox title="Total Supply" data={totalSupply ? fromWei(totalSupply) : '-'} />
-          <StatBox title="Last Transaction" data="6d ago" />
+          <StatBox title="Last Transaction" data={lastTransaction?.formattedDateDiff || '-'} />
         </Flex>
       </Container>
     </Box>

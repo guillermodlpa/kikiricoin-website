@@ -10,6 +10,7 @@ import TransactionHistory from '../components/TransactionHistory';
 import LearningResources from '../components/LearningResources';
 import Footer from '../components/Footer';
 import NoSsr from '../components/NoSsr';
+import { TransactionHistoryProvider } from '../components/hooks/useTransactionHistory';
 
 const Home: NextPage = () => {
   return (
@@ -19,16 +20,18 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <Hero />
-        <Stats />
-        <FeaturesSplit />
-        <NoSsr>
-          <MetamaskStateProvider>
-            <Faucet />
-          </MetamaskStateProvider>
-        </NoSsr>
-        <TransactionHistory />
-        <LearningResources />
+        <TransactionHistoryProvider>
+          <Hero />
+          <Stats />
+          <FeaturesSplit />
+          <NoSsr>
+            <MetamaskStateProvider>
+              <Faucet />
+            </MetamaskStateProvider>
+          </NoSsr>
+          <TransactionHistory />
+          <LearningResources />
+        </TransactionHistoryProvider>
       </main>
 
       <Footer />

@@ -100,3 +100,16 @@ export const getTokenTotalSupply = (): Promise<string> => {
     return value;
   });
 };
+
+export const getTransactionHistory = async (tokenAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS) => {
+  if (!tokenAddress) {
+    return Promise.reject(new Error('No env var for token smart contract address'));
+  }
+
+  const provider = new ethers.providers.EtherscanProvider();
+  const history = await provider.getHistory(tokenAddress);
+  if (process.env.NODE_ENV === 'development') {
+    console.log('%cWeb3', 'background: orange; color: white', `history`, history);
+  }
+  return history;
+};
