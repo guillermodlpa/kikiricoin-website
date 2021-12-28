@@ -9,9 +9,12 @@ const useConnectedAccount = (account: string | undefined): UseConnectedAccountRe
 
   useEffect(() => {
     if (account) {
-      onTokenTransfer(account, () => {
-        getTokenBalance(account).then((balance) => setBalance(balance));
-      });
+      getTokenBalance(account).then((balance) => setBalance(balance));
+      // Staying subscribed to events uses request quota on Alchemy because the client is polling
+      // @TODO: make subscribing to changes something that happens only after claiming, and unsubscribe after it's updated and some time has passed
+      // onTokenTransfer(account, () => {
+      //   getTokenBalance(account).then((balance) => setBalance(balance));
+      // });
     } else {
       setBalance(undefined);
     }
