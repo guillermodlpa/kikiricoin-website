@@ -91,14 +91,22 @@ export const onTokenTransfer = (account: string, callback: Function) => {
 
   const filterFrom = readOnlyContract.filters.Transfer(account);
   readOnlyContract.on(filterFrom, (from, to, value) => {
-    console.log('%cWeb3', 'background: orange; color: white', `Transfer event (from)`, { from, to, value });
+    if (process.env.NODE_ENV === 'development') {
+      console.log('%cWeb3', 'background: orange; color: white', `Transfer event (from)`, { from, to, value });
+    }
     callback(from, to, value);
   });
   const filterTo = readOnlyContract.filters.Transfer(null, account);
   readOnlyContract.on(filterTo, (from, to, value) => {
-    console.log('%cWeb3', 'background: orange; color: white', `Transfer event (to)`, { from, to, value });
+    if (process.env.NODE_ENV === 'development') {
+      console.log('%cWeb3', 'background: orange; color: white', `Transfer event (to)`, { from, to, value });
+    }
     callback(from, to, value);
   });
+
+  if (process.env.NODE_ENV === 'development') {
+    console.log('%cWeb3', 'background: orange; color: white', `Listening to Transfer events for ${account}`);
+  }
 };
 
 export const getTokenTotalSupply = (): Promise<string> => {

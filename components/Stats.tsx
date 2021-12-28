@@ -28,9 +28,16 @@ const Stats = () => {
   }, []);
 
   const [transactionCount, setTransactionCount] = useState<number>();
+  const [lastTransactionDiff, setLastTransactionDiff] = useState<string>();
   useEffect(() => {
     getTokenTransactionHistory().then((history) => {
-      setTransactionCount(history?.length);
+      setTransactionCount(history.length);
+      const lastTransaction = history[history.length - 1];
+      if (lastTransaction?.timestamp) {
+        const diffTime = Math.abs(new Date().getTime() - new Date(lastTransaction.timestamp * 1000).getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        setLastTransactionDiff(diffDays === 0 ? 'today' : `${diffDays}d ago`);
+      }
     });
   }, []);
 
@@ -45,8 +52,8 @@ const Stats = () => {
             alignItems={{ base: 'stretch' }}
             px={8}
           >
-            <StatBox title="Total Supply" data={totalSupply ? fromWei(totalSupply) : '-'} />
-            <StatBox title="Last Transaction Date" data={lastTransaction?.formattedDateDiff || '-'} />
+            <StatBox title="Total Supply Currently" data={totalSupply ? fromWei(totalSupply) : '-'} />
+            <StatBox title="Last Transaction Date" data={lastTransactionDiff || '-'} />
           </Flex>
           <Flex
             align="center"
@@ -56,7 +63,7 @@ const Stats = () => {
             px={8}
           >
             <StatBox title="Maximum Cap" data={maxCap ? fromWei(maxCap) : '-'} />
-            <StatBox title="Transactions" data={`${transactionCount}` || '-'} />
+            <StatBox title="Transactions" data={transactionCount ? `${transactionCount}` : '-'} />
           </Flex>
         </Stack>
       </Container>
