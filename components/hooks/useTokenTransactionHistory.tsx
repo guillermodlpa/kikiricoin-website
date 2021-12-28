@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react';
-import { getTransactionHistory } from '../../util/web3api';
+import { getTokenTransactionHistory } from '../../util/web3api';
 import { fromWei } from '../../util/conversions';
 
 type FormattedTransaction = {
@@ -25,12 +25,13 @@ const getDifference = (date1: Date, date2: Date) => {
 
 const TransactionHistoryContext = createContext<Array<FormattedTransaction>>([]);
 
-export const TransactionHistoryProvider = ({ children }: { children: React.ReactNode }) => {
+export const TokenTransactionHistoryProvider = ({ children }: { children: React.ReactNode }) => {
   const [transactions, setTransactions] = useState<Array<FormattedTransaction>>([]);
 
   useEffect(() => {
     (async () => {
-      const history = await getTransactionHistory();
+      const history = await getTokenTransactionHistory();
+
       const rawTransactions = history.reverse().slice(0, TRANSACTION_DISPLAY_LIMIT);
       const formattedTransactions = rawTransactions.map((result) => {
         const transactionDate = result.timestamp ? new Date(result.timestamp * 1000) : undefined;
@@ -54,9 +55,9 @@ export const TransactionHistoryProvider = ({ children }: { children: React.React
   return <TransactionHistoryContext.Provider value={transactions}>{children}</TransactionHistoryContext.Provider>;
 };
 
-const useTransactionHistory = () => {
+const useTokenTransactionHistory = () => {
   const transactions = useContext(TransactionHistoryContext);
   return transactions;
 };
 
-export default useTransactionHistory;
+export default useTokenTransactionHistory;

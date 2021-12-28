@@ -3,7 +3,7 @@ import { BigNumber, ethers } from 'ethers';
 import KikiriCoinABI from './ABI/KikiriCoinABI.json';
 import KikiriFaucetABI from './ABI/KikiriFaucetABI.json';
 
-export const claimTokensFromFaucet = (account: string) => {
+export const claimTokensFromFaucet = async (account: string) => {
   const networkUrl = process.env.NEXT_PUBLIC_BLOCKCHAIN_NETWORK_URL;
   const tokenAdress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS;
   const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS;
@@ -26,7 +26,7 @@ export const claimTokensFromFaucet = (account: string) => {
   const customHttpProvider = new ethers.providers.JsonRpcProvider(networkUrl);
   const signer = customHttpProvider.getSigner(account);
   const contract = new ethers.Contract(faucetAddress, KikiriFaucetABI, signer);
-  contract.claim().then(() => {
+  await contract.claim().then(() => {
     console.log('%cWeb3', 'background: orange; color: white', `claim`);
   });
 };
@@ -48,6 +48,28 @@ export const getTokenBalance = (account: string): Promise<string> => {
     const value = result.toString();
     if (process.env.NODE_ENV === 'development') {
       console.log('%cWeb3', 'background: orange; color: white', `balanceOf ${account} is ${value}`);
+    }
+    return value;
+  });
+};
+
+export const getTokenMaxCap = (): Promise<string> => {
+  const networkUrl = process.env.NEXT_PUBLIC_BLOCKCHAIN_NETWORK_URL;
+  const tokenAdress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS;
+
+  if (!networkUrl) {
+    return Promise.reject(new Error('No env var for network url'));
+  }
+  if (!tokenAdress) {
+    return Promise.reject(new Error('No env var for token smart contract address'));
+  }
+
+  const provider = new ethers.providers.JsonRpcProvider(networkUrl);
+  const readOnlyContract = new ethers.Contract(tokenAdress, KikiriCoinABI, provider);
+  return readOnlyContract.cap().then((result: BigNumber) => {
+    const value = result.toString();
+    if (process.env.NODE_ENV === 'development') {
+      console.log('%cWeb3', 'background: orange; color: white', `maxCap is ${value}`);
     }
     return value;
   });
@@ -101,7 +123,7 @@ export const getTokenTotalSupply = (): Promise<string> => {
   });
 };
 
-export const getTransactionHistory = async (tokenAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS) => {
+export const getTokenTransactionHistory = async (tokenAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS) => {
   if (!tokenAddress) {
     return Promise.reject(new Error('No env var for token smart contract address'));
   }
@@ -109,7 +131,32 @@ export const getTransactionHistory = async (tokenAddress = process.env.NEXT_PUBL
   const provider = new ethers.providers.EtherscanProvider();
   const history = await provider.getHistory(tokenAddress);
   if (process.env.NODE_ENV === 'development') {
-    console.log('%cWeb3', 'background: orange; color: white', `history of ${tokenAddress}`, history);
+    console.log('%cWeb3', 'background: orange; color: white', `history of token (${tokenAddress})`, history);
+  }
+  return history;
+};
+
+export const getFaucetTransactionHistory = async () => {
+  const networkUrl = process.env.NEXT_PUBLIC_BLOCKCHAIN_NETWORK_URL;
+  const tokenAdress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS;
+  const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS;
+  if (!networkUrl) {
+    console.warn('No networkUrl');
+    return;
+  }
+  if (!tokenAdress) {
+    console.warn('No tokenAdress');
+    return;
+  }
+  if (!faucetAddress) {
+    console.warn('No faucetAddress');
+    return;
+  }
+
+  const provider = new ethers.providers.EtherscanProvider();
+  const history = await provider.getHistory(faucetAddress);
+  if (process.env.NODE_ENV === 'development') {
+    console.log('%cWeb3', 'background: orange; color: white', `history of faucet (${faucetAddress})`, history);
   }
   return history;
 };

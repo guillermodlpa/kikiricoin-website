@@ -1,9 +1,9 @@
 import { Box, Container, Heading, Table, TableCaption, Thead, Tr, Th, Tbody, Td, Link } from '@chakra-ui/react';
 
-import useTransactionHistory, { TRANSACTION_DISPLAY_LIMIT } from './hooks/useTransactionHistory';
+import useTokenTransactionHistory, { TRANSACTION_DISPLAY_LIMIT } from './hooks/useTokenTransactionHistory';
 
 const TransactionHistory = () => {
-  const transactions = useTransactionHistory();
+  const transactions = useTokenTransactionHistory();
   return (
     <Box as="section" py={24}>
       <Container maxW="container.md" px={8}>
