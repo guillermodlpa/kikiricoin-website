@@ -131,17 +131,28 @@ export const getTokenTotalSupply = (): Promise<string> => {
   });
 };
 
-export const getTokenTransactionHistory = async (tokenAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS) => {
-  if (!tokenAddress) {
+export const getTokenTransactionCount = async () => {
+  const networkUrl = process.env.NEXT_PUBLIC_BLOCKCHAIN_NETWORK_URL;
+  const tokenAdress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS;
+
+  if (!networkUrl) {
+    return Promise.reject(new Error('No env var for network url'));
+  }
+  if (!tokenAdress) {
     return Promise.reject(new Error('No env var for token smart contract address'));
   }
 
-  const provider = new ethers.providers.EtherscanProvider();
-  const history = await provider.getHistory(tokenAddress);
-  if (process.env.NODE_ENV === 'development') {
-    console.log('%cWeb3', 'background: orange; color: white', `history of token (${tokenAddress})`, history);
-  }
-  return history;
+  const blockSince = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_BLOCK
+    ? parseInt(process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_BLOCK, 10)
+    : undefined;
+
+  const provider = new ethers.providers.JsonRpcProvider(networkUrl);
+  return provider.getTransactionCount(tokenAdress, 'latest').then((count) => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('%cWeb3', 'background: orange; color: white', `token transaction count ${count} since ${blockSince}`);
+    }
+    return count;
+  });
 };
 
 export const getFaucetTransactionHistory = async () => {

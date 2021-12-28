@@ -14,6 +14,7 @@ const useFaucetBalance = () => {
     getTokenBalance(faucetAddress).then((balance) => {
       setBalance(balance);
     });
+
     // @TODO: make subscribing to changes something that happens only after claiming, and unsubscribe after it's updated and some time has passed
     // Staying subscribed to events uses request quota on Alchemy because the client is polling
     // onTokenTransfer(faucetAddress, () => {

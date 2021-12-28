@@ -1,10 +1,9 @@
 import { Flex, Container, Stack, Stat, StatNumber, StatLabel, Box } from '@chakra-ui/react';
 
-import useTokenTransactionHistory from './hooks/useTokenTransactionHistory';
 import useTotalSupply from './hooks/useTotalSupply';
 import { fromWei } from '../util/conversions';
 import { useEffect, useState } from 'react';
-import { getTokenMaxCap, getTokenTransactionHistory } from '../util/web3api';
+import { getTokenMaxCap, getTokenTransactionCount } from '../util/web3api';
 
 type StatBoxProps = {
   title: string;
@@ -20,7 +19,6 @@ const StatBox = ({ title, data }: StatBoxProps) => (
 
 const Stats = () => {
   const totalSupply = useTotalSupply();
-  const lastTransaction = useTokenTransactionHistory()[0];
 
   const [maxCap, setMaxCap] = useState<string>();
   useEffect(() => {
@@ -28,17 +26,8 @@ const Stats = () => {
   }, []);
 
   const [transactionCount, setTransactionCount] = useState<number>();
-  const [lastTransactionDiff, setLastTransactionDiff] = useState<string>();
   useEffect(() => {
-    getTokenTransactionHistory().then((history) => {
-      setTransactionCount(history.length);
-      const lastTransaction = history[history.length - 1];
-      if (lastTransaction?.timestamp) {
-        const diffTime = Math.abs(new Date().getTime() - new Date(lastTransaction.timestamp * 1000).getTime());
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        setLastTransactionDiff(diffDays === 0 ? 'today' : `${diffDays}d ago`);
-      }
-    });
+    getTokenTransactionCount().then((count) => setTransactionCount(count));
   }, []);
 
   return (
@@ -53,7 +42,7 @@ const Stats = () => {
             px={8}
           >
             <StatBox title="Total Supply Currently" data={totalSupply ? fromWei(totalSupply) : '-'} />
-            <StatBox title="Last Transaction Date" data={lastTransactionDiff || '-'} />
+            <StatBox title="Last Transaction Date" data={'-' /* @todo */} />
           </Flex>
           <Flex
             align="center"
@@ -63,7 +52,7 @@ const Stats = () => {
             px={8}
           >
             <StatBox title="Maximum Cap" data={maxCap ? fromWei(maxCap) : '-'} />
-            <StatBox title="Transactions" data={transactionCount ? `${transactionCount}` : '-'} />
+            <StatBox title="Transactions" data={transactionCount != null ? `${transactionCount}` : '-'} />
           </Flex>
         </Stack>
       </Container>

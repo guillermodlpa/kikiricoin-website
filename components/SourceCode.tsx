@@ -14,7 +14,7 @@ const Card = ({ title, description, link }: { title: string; description: string
   </Stat>
 );
 
-const TransactionHistory = () => {
+const SourceCode = () => {
   return (
     <Box as="section" py={24} id="source-code">
       <Container maxW="container.md" px={8}>
@@ -49,4 +49,4 @@ const TransactionHistory = () => {
   );
 };
 
-export default TransactionHistory;
+export default SourceCode;
