@@ -59,7 +59,7 @@ const FeaturesSplit = () => (
         />
         <Feature
           title="Polygon Network"
-          text="A scaling solution for Ethereum that provides faster and cheaper transactions on Ethereum"
+          text="A scaling solution for Ethereum that provides faster and cheaper transactions on Ethereum."
           link={
             <Link href="https://polygon.technology/" color="brand" isExternal>
               Polygon Official Site
