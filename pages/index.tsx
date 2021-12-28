@@ -6,11 +6,10 @@ import Hero from '../components/Hero';
 import Stats from '../components/Stats';
 import FeaturesSplit from '../components/FeaturesSplit';
 import Faucet from '../components/Faucet';
-import TransactionHistory from '../components/TransactionHistory';
+import SourceCode from '../components/SourceCode';
 import LearningResources from '../components/LearningResources';
 import Footer from '../components/Footer';
 import NoSsr from '../components/NoSsr';
-import { TokenTransactionHistoryProvider } from '../components/hooks/useTokenTransactionHistory';
 
 const Home: NextPage = () => {
   return (
@@ -20,18 +19,16 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <TokenTransactionHistoryProvider>
-          <Hero />
-          <Stats />
-          <FeaturesSplit />
-          <NoSsr>
-            <MetamaskStateProvider>
-              <Faucet />
-            </MetamaskStateProvider>
-          </NoSsr>
-          <TransactionHistory />
-          <LearningResources />
-        </TokenTransactionHistoryProvider>
+        <Hero />
+        <Stats />
+        <FeaturesSplit />
+        <NoSsr>
+          <MetamaskStateProvider>
+            <Faucet />
+          </MetamaskStateProvider>
+        </NoSsr>
+        <SourceCode />
+        <LearningResources />
       </main>
 
       <Footer />
