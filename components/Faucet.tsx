@@ -22,18 +22,20 @@ import useFaucetBalance from './hooks/useFaucetBalance';
 import useConnectedAccount from './hooks/useConnectedAccount';
 import { fromWei } from '../util/conversions';
 import { ethers } from 'ethers';
+import importToken from './wallet/importToken';
+import { claimTokensFromFaucet } from '../util/web3api';
 
 const Faucet = () => {
   const { connect, metaState } = useMetamask();
   const faucetBalance = useFaucetBalance();
-  const [connectedAccountBalance, claim] = useConnectedAccount(metaState?.account[0]);
+  const connectedAccountBalance = useConnectedAccount(metaState?.account[0]);
 
   const handleConnect = () => {
     connect(ethers.providers.Web3Provider).catch((error) => console.error(error));
   };
 
   const handleClaim = () => {
-    claim();
+    claimTokensFromFaucet(metaState?.account[0]);
   };
 
   return (
@@ -46,13 +48,7 @@ const Faucet = () => {
           pb={16}
         >
           <Stack w={{ base: '40%', md: '30%' }} mb={{ base: 12, md: 0 }}>
-            <Box
-              opacity={metaState.isConnected ? 1 : 0.5}
-              cursor={metaState.isConnected ? 'pointer' : 'not-allowed'}
-              onClick={metaState.isConnected ? handleClaim : undefined}
-            >
-              <NextImage src={RoosterOriginal} alt="Logo" />
-            </Box>
+            <NextImage src={RoosterOriginal} alt="Logo" />
           </Stack>
 
           <Stack w={{ base: '80%', md: '70%' }} ml={[0, 0, 8]}>
@@ -65,21 +61,7 @@ const Faucet = () => {
               Note you can&apos;t dispense more than 10 times per day.
             </Text>
 
-            <HStack pt={8}>
-              {!metaState.isConnected && (
-                <Button
-                  borderRadius="8px"
-                  py="4"
-                  px="4"
-                  lineHeight="1"
-                  size="md"
-                  variant={'solid'}
-                  colorScheme="brand"
-                  onClick={handleConnect}
-                >
-                  Connect Wallet
-                </Button>
-              )}
+            <HStack pt={4}>
               <Button
                 borderRadius="8px"
                 py="4"
@@ -88,9 +70,49 @@ const Faucet = () => {
                 size="md"
                 variant={'solid'}
                 colorScheme="blackAlpha"
+                onClick={() => {
+                  importToken().catch((error: Error) => console.error(error));
+                }}
+                disabled={!metaState.isAvailable}
               >
-                Import KIKI token to MetaMask
+                1. Import KIKI token to MetaMask
               </Button>
+            </HStack>
+
+            <HStack pt={4}>
+              <Button
+                borderRadius="8px"
+                py="4"
+                px="4"
+                lineHeight="1"
+                size="md"
+                variant={'solid'}
+                colorScheme="brand"
+                onClick={handleConnect}
+                disabled={metaState.isConnected}
+              >
+                2. Connect Wallet
+              </Button>
+
+              {metaState.isConnected && <Text as="i">Already connected</Text>}
+            </HStack>
+
+            <HStack pt={4}>
+              <Button
+                borderRadius="8px"
+                py="4"
+                px="4"
+                lineHeight="1"
+                size="md"
+                variant={'solid'}
+                colorScheme="brand"
+                onClick={handleClaim}
+                disabled={!metaState.isConnected}
+              >
+                3. Claim KIKI
+              </Button>
+
+              {!metaState.isConnected && <Text as="i">First connect</Text>}
             </HStack>
           </Stack>
         </Flex>
@@ -105,7 +127,7 @@ const Faucet = () => {
         >
           <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} mb={[8, 0]} bg="white">
             <StatNumber fontSize="4xl">{faucetBalance !== undefined ? fromWei(faucetBalance) : '-'}</StatNumber>
-            <StatLabel>KIKI in pool</StatLabel>
+            <StatLabel>Unclaimed KIKI</StatLabel>
           </Stat>
           <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} mb={[8, 0]} bg="white">
             <StatNumber fontSize="4xl">
@@ -124,7 +146,7 @@ const Faucet = () => {
         </Stack>
 
         <Heading as="h3" size="md" mb={4}>
-          Instructions
+          Detailed Instructions
         </Heading>
         <UnorderedList pl={6}>
           <ListItem fontSize="sm" mb={2}>

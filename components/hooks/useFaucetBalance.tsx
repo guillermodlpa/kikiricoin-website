@@ -1,33 +1,20 @@
 import { useState, useEffect } from 'react';
-import { BigNumber, ethers } from 'ethers';
 
-import KikiriCoinABI from '../../abis/KikiriCoinABI.json';
+import { getTokenBalance, onTokenTransfer } from '../../util/web3api';
 
 const useFaucetBalance = () => {
   const [balance, setBalance] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    const networkUrl = process.env.NEXT_PUBLIC_BLOCKCHAIN_NETWORK_URL;
-    const tokenAdress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS;
     const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS;
-
-    if (!networkUrl) {
-      console.warn('No networkUrl');
-      return;
-    }
-    if (!tokenAdress) {
-      console.warn('No tokenAdress');
-      return;
-    }
     if (!faucetAddress) {
       console.warn('No faucetAddress');
       return;
     }
-
-    const provider = new ethers.providers.JsonRpcProvider(networkUrl);
-    const readOnlyContract = new ethers.Contract(tokenAdress, KikiriCoinABI, provider);
-    readOnlyContract.balanceOf(faucetAddress).then((result: BigNumber) => {
-      setBalance(result.toString());
+    onTokenTransfer(faucetAddress, () => {
+      getTokenBalance(faucetAddress).then((balance) => {
+        setBalance(balance);
+      });
     });
   }, []);
 
