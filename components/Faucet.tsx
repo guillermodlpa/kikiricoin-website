@@ -106,7 +106,15 @@ const Faucet = () => {
                 2. Connect Wallet
               </Button>
 
-              {metaState.isConnected && <Text as="i">Already connected</Text>}
+              {metaState.isConnected && (
+                <Text as="i">
+                  Already connected to{' '}
+                  <Link href={`https://polygonscan.com/address/${metaState.account[0]}`} color="brand" isExternal>
+                    {metaState.account[0].substring(0, 4)}...
+                    {metaState.account[0].substring(metaState.account[0].length - 4)}
+                  </Link>
+                </Text>
+              )}
             </HStack>
 
             <HStack pt={4}>
@@ -123,8 +131,6 @@ const Faucet = () => {
               >
                 3. Claim KIKI
               </Button>
-
-              {!metaState.isConnected && <Text as="i">First connect</Text>}
             </HStack>
           </Stack>
         </Flex>
