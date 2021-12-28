@@ -28,19 +28,19 @@ const TransactionHistory = () => {
               {transactions.map((transaction) => (
                 <Tr key={transaction.hash} fontSize="xs">
                   <Td>
-                    <Link color="brand" href="https://example.com" isExternal>
+                    <Link color="brand" href="https://example.com" isExternal title={transaction.hash}>
                       {`${transaction.hash.substring(0, 6)}...`}
                     </Link>
                   </Td>
-                  <Td>-</Td>
+                  <Td>{transaction.method || '-'}</Td>
                   <Td>{transaction.formattedDate || '-'}</Td>
                   <Td>
-                    <Link color="brand" href="https://example.com" isExternal>
+                    <Link color="brand" href="https://example.com" isExternal title={transaction.from}>
                       {`${transaction.from.substring(0, 6)}...`}
                     </Link>
                   </Td>
                   <Td>
-                    <Link color="brand" href="https://example.com" isExternal>
+                    <Link color="brand" href="https://example.com" isExternal title={transaction.to || ''}>
                       {transaction.to ? `${transaction.to.substring(0, 6)}...` : '-'}
                     </Link>
                   </Td>

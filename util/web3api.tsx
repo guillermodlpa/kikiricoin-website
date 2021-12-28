@@ -109,7 +109,7 @@ export const getTransactionHistory = async (tokenAddress = process.env.NEXT_PUBL
   const provider = new ethers.providers.EtherscanProvider();
   const history = await provider.getHistory(tokenAddress);
   if (process.env.NODE_ENV === 'development') {
-    console.log('%cWeb3', 'background: orange; color: white', `history`, history);
+    console.log('%cWeb3', 'background: orange; color: white', `history of ${tokenAddress}`, history);
   }
   return history;
 };

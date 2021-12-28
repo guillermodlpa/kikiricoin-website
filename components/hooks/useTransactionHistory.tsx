@@ -7,10 +7,15 @@ type FormattedTransaction = {
   from: string;
   to: string | undefined;
   value: string;
+  method: string;
   formattedDate: string | undefined;
   formattedDateDiff: string | undefined;
 };
 export const TRANSACTION_DISPLAY_LIMIT = 10;
+
+const typeToLabel: { [key: string]: string } = {
+  0: 'Transfer',
+};
 
 const getDifference = (date1: Date, date2: Date) => {
   const diffTime = Math.abs(date2.getTime() - date1.getTime());
@@ -35,6 +40,7 @@ export const TransactionHistoryProvider = ({ children }: { children: React.React
           hash: result.hash,
           from: result.from,
           to: result.to,
+          method: result.type != null ? typeToLabel[result.type] || `${result.type}` : undefined,
           value: fromWei(result.value.toString()),
           formattedDate: transactionDate?.toLocaleString(),
           formattedDateDiff: (dateDiff && (dateDiff > 0 ? `${dateDiff}d ago` : 'today')) || undefined,
