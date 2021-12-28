@@ -1,9 +1,8 @@
 import { Flex, Container, Stack, Stat, StatNumber, StatLabel, Box } from '@chakra-ui/react';
 
-import useTotalSupply from './hooks/useTotalSupply';
 import { fromWei } from '../util/conversions';
 import { useEffect, useState } from 'react';
-import { getTokenMaxCap, getTokenTransactionCount } from '../util/web3api';
+import { getTokenMaxCap, getTokenTransferCount, getTokenTotalSupply } from '../util/web3api';
 
 type StatBoxProps = {
   title: string;
@@ -18,7 +17,10 @@ const StatBox = ({ title, data }: StatBoxProps) => (
 );
 
 const Stats = () => {
-  const totalSupply = useTotalSupply();
+  const [totalSupply, setTotalSupply] = useState<string>('0');
+  useEffect(() => {
+    getTokenTotalSupply().then((value) => setTotalSupply(value));
+  }, []);
 
   const [maxCap, setMaxCap] = useState<string>();
   useEffect(() => {
@@ -27,7 +29,7 @@ const Stats = () => {
 
   const [transactionCount, setTransactionCount] = useState<number>();
   useEffect(() => {
-    getTokenTransactionCount().then((count) => setTransactionCount(count));
+    getTokenTransferCount().then((count) => setTransactionCount(count));
   }, []);
 
   return (
@@ -52,7 +54,10 @@ const Stats = () => {
             px={8}
           >
             <StatBox title="Maximum Cap" data={maxCap ? fromWei(maxCap) : '-'} />
-            <StatBox title="Transactions" data={transactionCount != null ? `${transactionCount}` : '-'} />
+            <StatBox
+              title="Total KIKI Transfers Until Now"
+              data={transactionCount != null ? `${transactionCount}` : '-'}
+            />
           </Flex>
         </Stack>
       </Container>

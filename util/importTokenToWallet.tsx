@@ -1,4 +1,4 @@
-import { DECIMAL_COUNT } from '../../util/conversions';
+import { DECIMAL_COUNT } from './conversions';
 
 declare global {
   interface Window {
@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-const importKikiToken = ({
+const importTokenToWallet = ({
   address = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS,
   symbol = 'KIKI',
   decimals = DECIMAL_COUNT,
@@ -28,4 +28,4 @@ const importKikiToken = ({
   });
 };
 
-export default importKikiToken;
+export default importTokenToWallet;
