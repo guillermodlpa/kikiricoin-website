@@ -7,7 +7,7 @@ type FormattedTransaction = {
   from: string;
   to: string | undefined;
   value: string;
-  method: string;
+  method: string | undefined;
   formattedDate: string | undefined;
   formattedDateDiff: string | undefined;
 };
