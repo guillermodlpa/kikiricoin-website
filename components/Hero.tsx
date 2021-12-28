@@ -37,7 +37,16 @@ const Hero = () => (
               Learn More
             </Button>
 
-            <Button borderRadius="8px" py="4" px="4" lineHeight="1" size="md" colorScheme="blackAlpha">
+            <Button
+              borderRadius="8px"
+              py="4"
+              px="4"
+              lineHeight="1"
+              size="md"
+              colorScheme="blackAlpha"
+              href="#source-code"
+              as="a"
+            >
               View Source Code
             </Button>
           </HStack>
