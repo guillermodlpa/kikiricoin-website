@@ -1,5 +1,6 @@
 {
   "name": "kikiricoin-website",
+  "description": "Website for presenting the KikiriCoin token and interact with its faucet smart contract",
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -2,7 +2,7 @@
 
 🚧 Work in progress 🚧
 
-Website for the KikiriCoin smart contracts.
+Website for presenting the KikiriCoin token and interact with its faucet smart contract.
 
 ---
 
