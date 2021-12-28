@@ -4,6 +4,9 @@
 
 Website for presenting the KikiriCoin token and interact with its faucet smart contract.
 
+- [KikiriCoin smart contracts repository](https://github.com/guillermodlpa/kikiricoin)
+- _Live website (to do)_
+
 ---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
