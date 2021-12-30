@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { SlideFade, Box } from '@chakra-ui/react';
+import { SlideFade, Box, usePrefersReducedMotion } from '@chakra-ui/react';
 
 import { useOnScreenPersistent } from './useOnScreen';
 
@@ -24,14 +24,15 @@ const FadeAnimation = ({
   origin: 'right' | 'left' | 'bottom' | 'top';
 }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
   const onScreen = useOnScreenPersistent(ref);
   return (
     <Box ref={ref} w={'100%'}>
       <SlideFade
-        in={onScreen}
+        in={prefersReducedMotion ? true : onScreen}
         offsetX={offsetX[origin] || 0}
         offsetY={offsetY[origin] || 0}
-        transition={{ enter: { duration: 0.5 } }}
+        transition={{ enter: { duration: prefersReducedMotion ? 0 : 0.5 } }}
       >
         {children}
       </SlideFade>
