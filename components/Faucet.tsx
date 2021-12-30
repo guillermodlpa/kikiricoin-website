@@ -87,8 +87,13 @@ const Faucet = () => {
             </Heading>
 
             <Text>
-              Free dispenser of token here. Connect your wallet, and click on the rooster for it to give you 1 KIKI.
-              Note you can&apos;t dispense more than 10 times per day.
+              A faucet is a dispenser of token. You&apos;ll need to connect your wallet and initiate a transaction to
+              claim the KIKI tokens by clicking the Claim button below.
+            </Text>
+
+            <Text>
+              The transaction in the Polygon network will require a small amount of MATIC token, like any other
+              transaction executed on the Polygon blockchain.
             </Text>
 
             <HStack pt={4}>

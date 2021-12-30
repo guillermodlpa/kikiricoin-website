@@ -28,7 +28,7 @@ const Hero = () => (
           </Text>
 
           <Text pb={4}>
-            The KikiriCoin is an ERC-20 token deployed on the Polygon blockchain network. Its implementation is open
+            KikiriCoin (KIKI) is an ERC-20 token deployed on the Polygon blockchain network. Its implementation is open
             source and meant to be educational and fun.
           </Text>
 
