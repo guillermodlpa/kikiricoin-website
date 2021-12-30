@@ -13,12 +13,13 @@ import {
   Link,
   ListItem,
   UnorderedList,
+  OrderedList,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import NextImage from 'next/image';
 import { useMetamask } from 'use-metamask';
 
-import RoosterOriginal from './images/1f413-original.png';
+import coinImage from './images/1f413-coin-color-adjusted.png';
 import { fromWei } from '../util/conversions';
 import importTokenToWallet from '../util/importTokenToWallet';
 import { web3, claimTokensFromFaucet, getTokenBalance, getFaucetClaimEventsCount } from '../util/web3api';
@@ -78,7 +79,20 @@ const Faucet = () => {
           pb={16}
         >
           <Stack w={{ base: '40%', md: '30%' }} mb={{ base: 12, md: 0 }}>
-            <NextImage src={RoosterOriginal} alt="Logo" />
+            <Flex direction="column" justifyItems="stretch">
+              <Box alignSelf="flex-start">
+                <NextImage width="75px" height="75px" src={coinImage} alt="KikiriCoin logo" />
+              </Box>
+              <Box alignSelf="flex-end">
+                <NextImage width="75px" height="75px" src={coinImage} alt="KikiriCoin logo" />
+              </Box>
+              <Box alignSelf="flex-start">
+                <NextImage width="75px" height="75px" src={coinImage} alt="KikiriCoin logo" />
+              </Box>
+              <Box alignSelf="flex-end">
+                <NextImage width="75px" height="75px" src={coinImage} alt="KikiriCoin logo" />
+              </Box>
+            </Flex>
           </Stack>
 
           <Stack w={{ base: '80%', md: '70%' }} ml={[0, 0, 8]}>
@@ -86,14 +100,16 @@ const Faucet = () => {
               Faucet
             </Heading>
 
+            <Text>A faucet is a dispenser of token. It&apos;s a common approach to distribute new tokens.</Text>
+
             <Text>
-              A faucet is a dispenser of token. You&apos;ll need to connect your wallet and initiate a transaction to
-              claim the KIKI tokens by clicking the Claim button below.
+              In order to use it, you&apos;ll need to connect your wallet and initiate a transaction to claim the
+              tokens. This will happen automatically when you press the Claim button below.
             </Text>
 
             <Text>
-              The transaction in the Polygon network will require a small amount of MATIC token, like any other
-              transaction executed on the Polygon blockchain.
+              Like any other transaction in the Polygon network, it will require a small amount of MATIC token. When you
+              press Claim, MetaMask will display the estimated transaction cost and ask for confirmation.
             </Text>
 
             <HStack pt={4}>
@@ -193,9 +209,12 @@ const Faucet = () => {
         <Heading as="h3" size="md" mb={4}>
           Detailed Instructions
         </Heading>
-        <UnorderedList pl={6}>
+        <OrderedList pl={6}>
           <ListItem fontSize="sm" mb={2}>
-            If you do not have a crypto wallet, download and install MetaMask.
+            If you do not have a crypto wallet, download and install MetaMask.{' '}
+            <Link href="https://metamask.io/" color="brand" isExternal>
+              MetaMask Official Site
+            </Link>
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
@@ -205,19 +224,24 @@ const Faucet = () => {
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
-            Once you have MetaMask installed and configured with an account, import KIKI token to it.
+            {`Once you have MetaMask installed and configured with an account, you'll need to fund it with MATIC token. @TODO`}
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
-            Then click Connect to enable this website to send requests to MetaMask.
+            {`Import KIKI token to it by clicking "1. Import KIKI token to MetaMask". This will display your KIKI balance in MetaMask. It should be 0 at the beginning.`}
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
-            TODO
+            {`Click "2. Connect Wallet" to enable this website to interact with MetaMask.`}
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
-            How can I trust your smart contracts? You can inspect their verified source code in Polygonscan.
+            {`Click "3. Claim KIKI", review the transaction that MetaMask displays, and confirm it.`}
+          </ListItem>
+        </OrderedList>
+        <UnorderedList pl={6}>
+          <ListItem fontSize="sm" mb={2}>
+            How can I trust your smart contracts? You can inspect their verified source code in Polygonscan. @TODO
           </ListItem>
         </UnorderedList>
       </Container>

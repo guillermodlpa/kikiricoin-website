@@ -1,9 +1,13 @@
 import { Box, Flex, Container, Stack, Heading, Text, VStack, Link } from '@chakra-ui/react';
 import NextImage from 'next/image';
 
+import RoosterOriginal from './images/1f413-original.png';
 import ethereumLogo from './images/ethereum-logo-2014-sq.png';
-import solidityLogo from './images/Solidity_logo.svg';
+import solidityLogo from './images/Solidity_logo_uncropped.svg';
+import metamaskLogo from './images/MetaMask_Fox.svg';
+import alchemyLogo from './images/alchemy_logo.svg';
 import maticTokenLogo from './images/matic-token-icon.webp';
+import web3jsLogo from './images/web3js.svg';
 
 enum Position {
   Right = 'right',
@@ -53,8 +57,8 @@ const FeaturesSplit = () => (
           text="KikiriCoin is a virtual token that can be created (minted) and transfered between crypto accounts. KikiriCoin's allowed operations and balances are managed by a smart contract."
           link={undefined}
           imagePosition={Position.Right}
-          image={ethereumLogo}
-          imageDescription="Ethereum logo"
+          image={RoosterOriginal}
+          imageDescription="KikiriCoin logo"
         />
 
         <Feature
@@ -68,7 +72,7 @@ const FeaturesSplit = () => (
 
         <Feature
           title="How is it implemented?"
-          text="The token is implemented using the ERC-20 interface, a standard used for creating and issuing smart contracts on the Ethereum blockchain. This enables KikiriCoin to work seamlessly with any system that supports Ethereum tokens."
+          text="The token is implemented using the ERC-20 interface, a standard used for creating and issuing smart contracts on the Ethereum blockchain. This makes KikiriCoin compatible with any system that supports Ethereum tokens."
           link={
             <Link href="https://ethereum.org/en/developers/docs/standards/tokens/erc-20/" color="brand" isExternal>
               ERC-20 documentation
@@ -99,8 +103,34 @@ const FeaturesSplit = () => (
             </Link>
           }
           imagePosition={Position.Right}
-          image={maticTokenLogo}
-          imageDescription="MATIC logo"
+          image={alchemyLogo}
+          imageDescription="Alchemy logo"
+        />
+
+        <Feature
+          title="How does this website interact with KikiriCoin?"
+          text="This website uses Web3.js, a JavaScript client to interact with blockchain via Alchemy. It also interacts with browser wallets like MetaMask because they expose functions that enable websites to interact with it."
+          link={
+            <Link href="https://github.com/ChainSafe/web3.js" color="brand" isExternal>
+              Web3.js library
+            </Link>
+          }
+          imagePosition={Position.Left}
+          image={web3jsLogo}
+          imageDescription="Web 3 logo"
+        />
+
+        <Feature
+          title="What is MetaMask?"
+          text="MetaMask is a software cryptocurrency wallet used to interact with the Ethereum blockchain. It allows users to access their Ethereum wallet through a browser extension or mobile app, which can then be used to interact with decentralized applications like this website."
+          link={
+            <Link href="https://metamask.io/" color="brand" isExternal>
+              MetaMask Official Site
+            </Link>
+          }
+          imagePosition={Position.Right}
+          image={metamaskLogo}
+          imageDescription="MetaMask logo"
         />
       </VStack>
     </Container>

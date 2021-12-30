@@ -44,7 +44,7 @@ const Stats = () => {
             px={8}
           >
             <StatBox title="Total Supply Currently" data={totalSupply ? fromWei(totalSupply) : '-'} />
-            <StatBox title="Last Transaction Date" data={'-' /* @todo */} />
+            <StatBox title="Deployed On Date" data={'To do'} />
           </Flex>
           <Flex
             align="center"
