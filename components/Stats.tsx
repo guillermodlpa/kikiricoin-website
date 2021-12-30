@@ -3,6 +3,7 @@ import { Flex, Container, Stack, Stat, StatNumber, StatLabel, Box } from '@chakr
 import { fromWei } from '../util/conversions';
 import { useEffect, useState } from 'react';
 import { getTokenMaxCap, getTokenTransferCount, getTokenTotalSupply } from '../util/web3api';
+import FadeAnimation from './FadeAnimation';
 
 type StatBoxProps = {
   title: string;
@@ -43,8 +44,12 @@ const Stats = () => {
             alignItems={{ base: 'stretch' }}
             px={8}
           >
-            <StatBox title="Total Supply Currently" data={totalSupply ? fromWei(totalSupply) : '-'} />
-            <StatBox title="Deployed On Date" data={'To do'} />
+            <FadeAnimation origin="left">
+              <StatBox title="Total Supply Currently" data={totalSupply ? fromWei(totalSupply) : '-'} />
+            </FadeAnimation>
+            <FadeAnimation origin="right">
+              <StatBox title="Deployed On Date" data={'To do'} />
+            </FadeAnimation>
           </Flex>
           <Flex
             align="center"
@@ -53,11 +58,15 @@ const Stats = () => {
             alignItems={{ base: 'stretch' }}
             px={8}
           >
-            <StatBox title="Maximum Cap" data={maxCap ? fromWei(maxCap) : '-'} />
-            <StatBox
-              title="Total KIKI Transfers Until Now"
-              data={transactionCount != null ? `${transactionCount}` : '-'}
-            />
+            <FadeAnimation origin="left">
+              <StatBox title="Maximum Cap" data={maxCap ? fromWei(maxCap) : '-'} />
+            </FadeAnimation>
+            <FadeAnimation origin="right">
+              <StatBox
+                title="Total KIKI Transfers Until Now"
+                data={transactionCount != null ? `${transactionCount}` : '-'}
+              />
+            </FadeAnimation>
           </Flex>
         </Stack>
       </Container>

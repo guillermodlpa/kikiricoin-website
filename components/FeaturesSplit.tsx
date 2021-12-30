@@ -8,6 +8,7 @@ import metamaskLogo from './images/MetaMask_Fox.svg';
 import alchemyLogo from './images/alchemy_logo.svg';
 import maticTokenLogo from './images/matic-token-icon.webp';
 import web3jsLogo from './images/web3js.svg';
+import FadeAnimation from './FadeAnimation';
 
 enum Position {
   Right = 'right',
@@ -24,28 +25,30 @@ type StatBoxProps = {
 };
 
 const Feature = ({ title, text, image, imagePosition, imageDescription, link }: StatBoxProps) => (
-  <Flex
-    direction={{ base: 'column', sm: imagePosition === Position.Right ? 'row' : 'row-reverse' }}
-    alignItems={{ base: 'center' }}
-  >
-    <Stack
-      w={{ base: '80%', md: '70%' }}
-      textAlign={['center', imagePosition === Position.Right ? 'left' : 'right']}
-      justifyContent={'center'}
-      ml={imagePosition === Position.Right ? 0 : 4}
-      mr={imagePosition === Position.Right ? 4 : 0}
+  <FadeAnimation origin={imagePosition}>
+    <Flex
+      direction={{ base: 'column', sm: imagePosition === Position.Right ? 'row' : 'row-reverse' }}
+      alignItems={{ base: 'center' }}
     >
-      <Heading as="h2" size="lg" fontWeight="bold" color="primary.800" mb={4}>
-        {title}
-      </Heading>
-      <Text>{text}</Text>
-      {link && <Text>{link}</Text>}
-    </Stack>
+      <Stack
+        w={{ base: '80%', md: '70%' }}
+        textAlign={['center', imagePosition === Position.Right ? 'left' : 'right']}
+        justifyContent={'center'}
+        ml={imagePosition === Position.Right ? 0 : 4}
+        mr={imagePosition === Position.Right ? 4 : 0}
+      >
+        <Heading as="h2" size="lg" fontWeight="bold" color="primary.800" mb={4}>
+          {title}
+        </Heading>
+        <Text>{text}</Text>
+        {link && <Text>{link}</Text>}
+      </Stack>
 
-    <Box w={{ base: '40%', md: '30%' }} mb={{ base: 12, md: 0 }} p={4}>
-      <NextImage src={image} alt={imageDescription} title={imageDescription} />
-    </Box>
-  </Flex>
+      <Box w={{ base: '40%', md: '30%' }} mb={{ base: 12, md: 0 }} p={4}>
+        <NextImage src={image} alt={imageDescription} title={imageDescription} />
+      </Box>
+    </Flex>
+  </FadeAnimation>
 );
 
 const FeaturesSplit = () => (

@@ -2,6 +2,7 @@ import { Flex, Container, Stack, HStack, Heading, Box, Button, Text } from '@cha
 import NextImage from 'next/image';
 
 import CoinLogo from './images/1f413-coin-color-adjusted.png';
+import FadeAnimation from './FadeAnimation';
 
 const Hero = () => (
   <Box as="section" py={24} position="relative">
@@ -19,41 +20,58 @@ const Hero = () => (
         px={8}
       >
         <Stack w={{ base: '80%', md: '55%' }} mr={6} flexShrink={0}>
-          <Heading as="h1" size="2xl" fontWeight="bold" color="primary.800" mb={4}>
-            KikiriCoin
-          </Heading>
+          <FadeAnimation origin="left">
+            <Heading as="h1" size="2xl" fontWeight="bold" color="primary.800" mb={4}>
+              KikiriCoin
+            </Heading>
 
-          <Text pb={4}>
-            <i>Kikirikí</i> said the rooster, and the KIKI token was born.
-          </Text>
+            <Text pb={4}>
+              <i>Kikirikí</i> said the rooster, and the KIKI token was born.
+            </Text>
 
-          <Text pb={4}>
-            KikiriCoin (KIKI) is an ERC-20 token deployed on the Polygon blockchain network. Its implementation is open
-            source and meant to be educational and fun.
-          </Text>
+            <Text pb={4}>
+              KikiriCoin (KIKI) is an ERC-20 token deployed on the Polygon blockchain network. Its implementation is
+              open source and meant to be educational and fun.
+            </Text>
+          </FadeAnimation>
 
-          <HStack>
-            <Button borderRadius="8px" py="4" px="4" lineHeight="1" size="md" colorScheme="brand" href="#stats" as="a">
-              Learn More
-            </Button>
+          <FadeAnimation origin="bottom">
+            <HStack>
+              <Button
+                borderRadius="8px"
+                py="4"
+                px="4"
+                lineHeight="1"
+                size="md"
+                colorScheme="brand"
+                href="#stats"
+                as="a"
+              >
+                Learn More
+              </Button>
 
-            <Button
-              borderRadius="8px"
-              py="4"
-              px="4"
-              lineHeight="1"
-              size="md"
-              colorScheme="blackAlpha"
-              href="#source-code"
-              as="a"
-            >
-              View Source Code
-            </Button>
-          </HStack>
+              <Button
+                borderRadius="8px"
+                py="4"
+                px="4"
+                lineHeight="1"
+                size="md"
+                colorScheme="blackAlpha"
+                href="#source-code"
+                as="a"
+              >
+                View Source Code
+              </Button>
+            </HStack>
+          </FadeAnimation>
         </Stack>
 
-        <Box w={{ base: '40%', md: '40%' }} mb={{ base: 12, md: 0 }} rounded="100%" shadow="lg" display="flex">
-          <NextImage src={CoinLogo} alt="Logo" />
+        <Box w={{ base: '40%', md: '40%' }} mb={{ base: 12, md: 0 }}>
+          <FadeAnimation origin="bottom">
+            <Box rounded="100%" shadow="lg" display="flex">
+              <NextImage src={CoinLogo} alt="Logo" />
+            </Box>
+          </FadeAnimation>
         </Box>
       </Flex>
     </Container>

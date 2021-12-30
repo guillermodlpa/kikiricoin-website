@@ -23,6 +23,7 @@ import coinImage from './images/1f413-coin-color-adjusted.png';
 import { fromWei } from '../util/conversions';
 import importTokenToWallet from '../util/importTokenToWallet';
 import { web3, claimTokensFromFaucet, getTokenBalance, getFaucetClaimEventsCount } from '../util/web3api';
+import FadeAnimation from './FadeAnimation';
 
 function Web3Wrapper() {
   return web3;
@@ -80,18 +81,15 @@ const Faucet = () => {
         >
           <Stack w={{ base: '40%', md: '30%' }} mb={{ base: 12, md: 0 }}>
             <Flex direction="column" justifyItems="stretch">
-              <Box alignSelf="flex-start">
-                <NextImage width="75px" height="75px" src={coinImage} alt="KikiriCoin logo" />
-              </Box>
-              <Box alignSelf="flex-end">
-                <NextImage width="75px" height="75px" src={coinImage} alt="KikiriCoin logo" />
-              </Box>
-              <Box alignSelf="flex-start">
-                <NextImage width="75px" height="75px" src={coinImage} alt="KikiriCoin logo" />
-              </Box>
-              <Box alignSelf="flex-end">
-                <NextImage width="75px" height="75px" src={coinImage} alt="KikiriCoin logo" />
-              </Box>
+              {Array(4)
+                .fill('')
+                .map((_, i) => (
+                  <Box alignSelf={i % 2 ? 'flex-end' : 'flex-start'} key={i}>
+                    <FadeAnimation origin={i % 2 ? 'left' : 'right'}>
+                      <NextImage width="75px" height="75px" src={coinImage} alt="KikiriCoin logo" />
+                    </FadeAnimation>
+                  </Box>
+                ))}
             </Flex>
           </Stack>
 
@@ -174,37 +172,39 @@ const Faucet = () => {
           </Stack>
         </Flex>
 
-        <Stack
-          align="center"
-          justify={{ base: 'center', md: 'space-around', xl: 'space-between' }}
-          direction={{ base: 'column', md: 'row' }}
-          alignItems={{ base: 'stretch' }}
-          spacing={8}
-          mb={16}
-        >
-          <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
-            <StatNumber fontSize="4xl">{faucetClaimCount || '-'}</StatNumber>
-            <StatLabel>Total Times Used</StatLabel>
-          </Stat>
-          <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
-            <StatNumber fontSize="4xl">{faucetBalance !== undefined ? fromWei(faucetBalance) : '-'}</StatNumber>
-            <StatLabel>Unclaimed KIKI Tokens</StatLabel>
-          </Stat>
-          <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
-            <StatNumber fontSize="4xl">
-              {connectedAccountBalance !== undefined ? fromWei(connectedAccountBalance) : '-'}
-            </StatNumber>
-            <StatLabel>
-              KIKI in Your Wallet{' '}
-              {metaState.account[0] && (
-                <Link href={`https://polygonscan.com/address/${metaState.account[0]}`} color="brand" isExternal>
-                  {metaState.account[0].substring(0, 4)}...
-                  {metaState.account[0].substring(metaState.account[0].length - 4)}
-                </Link>
-              )}
-            </StatLabel>
-          </Stat>
-        </Stack>
+        <FadeAnimation origin="bottom">
+          <Stack
+            align="center"
+            justify={{ base: 'center', md: 'space-around', xl: 'space-between' }}
+            direction={{ base: 'column', md: 'row' }}
+            alignItems={{ base: 'stretch' }}
+            spacing={8}
+            mb={16}
+          >
+            <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
+              <StatNumber fontSize="4xl">{faucetClaimCount || '-'}</StatNumber>
+              <StatLabel>Total Times Used</StatLabel>
+            </Stat>
+            <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
+              <StatNumber fontSize="4xl">{faucetBalance !== undefined ? fromWei(faucetBalance) : '-'}</StatNumber>
+              <StatLabel>Unclaimed KIKI Tokens</StatLabel>
+            </Stat>
+            <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
+              <StatNumber fontSize="4xl">
+                {connectedAccountBalance !== undefined ? fromWei(connectedAccountBalance) : '-'}
+              </StatNumber>
+              <StatLabel>
+                KIKI in Your Wallet{' '}
+                {metaState.account[0] && (
+                  <Link href={`https://polygonscan.com/address/${metaState.account[0]}`} color="brand" isExternal>
+                    {metaState.account[0].substring(0, 4)}...
+                    {metaState.account[0].substring(metaState.account[0].length - 4)}
+                  </Link>
+                )}
+              </StatLabel>
+            </Stat>
+          </Stack>
+        </FadeAnimation>
 
         <Heading as="h3" size="md" mb={4}>
           Detailed Instructions

@@ -1,4 +1,5 @@
 import { Container, Stack, Heading, Box, Text, Link } from '@chakra-ui/react';
+import FadeAnimation from './FadeAnimation';
 
 type ResourceCardProps = {
   title: string;
@@ -54,7 +55,9 @@ const LearningResources = () => (
 
       <Stack>
         {learningResources.map((props) => (
-          <ResourceCard key={props.link} {...props} />
+          <FadeAnimation key={props.link} origin="bottom">
+            <ResourceCard {...props} />
+          </FadeAnimation>
         ))}
       </Stack>
     </Container>
