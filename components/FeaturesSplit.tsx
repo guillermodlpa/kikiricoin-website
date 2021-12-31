@@ -1,4 +1,5 @@
-import { Box, Flex, Container, Stack, Heading, Text, VStack, Link } from '@chakra-ui/react';
+import { isValidElement } from 'react';
+import { Box, Flex, Container, Stack, Heading, Text, VStack, Link, AlertDescription } from '@chakra-ui/react';
 import NextImage from 'next/image';
 
 import RoosterOriginal from './images/1f413-original.png';
@@ -17,14 +18,14 @@ enum Position {
 
 type StatBoxProps = {
   title: string;
-  text: string;
+  description: React.ReactNode;
   image: StaticImageData;
   imagePosition: Position;
   imageDescription: string;
-  link?: JSX.Element;
+  links: Array<{ href: string; label: string }> | undefined;
 };
 
-const Feature = ({ title, text, image, imagePosition, imageDescription, link }: StatBoxProps) => (
+const Feature = ({ title, description, image, imagePosition, imageDescription, links }: StatBoxProps) => (
   <FadeAnimation origin={imagePosition}>
     <Flex
       direction={{ base: 'column', sm: imagePosition === Position.Right ? 'row' : 'row-reverse' }}
@@ -40,8 +41,14 @@ const Feature = ({ title, text, image, imagePosition, imageDescription, link }: 
         <Heading as="h2" size="lg" fontWeight="bold" color="primary.800" mb={4}>
           {title}
         </Heading>
-        <Text>{text}</Text>
-        {link && <Text>{link}</Text>}
+        {isValidElement(description) && description}
+        {(links || []).map(({ href, label }) => (
+          <Text key={href}>
+            <Link href={href} color="brand" isExternal>
+              {label}
+            </Link>
+          </Text>
+        ))}
       </Stack>
 
       <Box w={{ base: '40%', md: '30%' }} mb={{ base: 12, md: 0 }} p={4}>
@@ -51,90 +58,137 @@ const Feature = ({ title, text, image, imagePosition, imageDescription, link }: 
   </FadeAnimation>
 );
 
+const content = [
+  {
+    title: 'What is KikiriCoin?',
+    description: (
+      <>
+        <Text>KikiriCoin is a virtual token that can be created (minted) and transfered between crypto accounts.</Text>
+        <Text>
+          KikiriCoin's allowed operations and balances are managed by a <b>smart contract</b>.
+        </Text>
+      </>
+    ),
+    links: undefined,
+    image: RoosterOriginal,
+    imageDescription: 'KikiriCoin logo',
+  },
+  {
+    title: 'What is a smart contract?',
+    description: (
+      <>
+        <Text>
+          A short computer program that is executed a blockchain network. Smart contracts deployed on Ethereum, Polygon,
+          and many other networks are developed with the programming language Solidity.
+        </Text>
+        <Text>
+          The token is implemented using the ERC-20 interface, a standard used for creating and issuing smart contracts
+          on the Ethereum blockchain. This makes KikiriCoin compatible with any system that supports Ethereum tokens.
+        </Text>
+      </>
+    ),
+
+    links: undefined,
+    image: ethereumLogo,
+    imageDescription: 'Ethereum logo',
+  },
+  {
+    title: `How does this website interact with KikiriCoin?`,
+    description: (
+      <>
+        <Text>This website uses Web3.js, a JavaScript client to interact with blockchain via Alchemy.</Text>
+        <Text>
+          It also interacts with browser wallets like <b>MetaMask</b> because they expose functions that enable websites
+          to interact with it.
+        </Text>
+      </>
+    ),
+    links: [{ href: 'https://github.com/ChainSafe/web3.js', label: 'Web3.js library' }],
+    image: web3jsLogo,
+    imageDescription: 'Web3.js logo',
+  },
+  {
+    title: `What is MetaMask?`,
+    description: (
+      <>
+        <Text>
+          MetaMask is a software cryptocurrency wallet used to interact with the Ethereum blockchain. It allows users to
+          access their Ethereum wallet through a browser extension or mobile app, which can then be used to interact
+          with decentralized applications like this website.
+        </Text>
+      </>
+    ),
+    links: [{ href: 'https://metamask.io/', label: 'MetaMask Official Site' }],
+    image: metamaskLogo,
+    imageDescription: 'MetaMask logo',
+  },
+  {
+    title: 'Where is it deployed?',
+    description: (
+      <>
+        <Text>
+          KikiriCoin's smart contract is deployed on the Polygon Network. Polygon is a scaling solution for Ethereum
+          that provides faster and cheaper transactions on Ethereum.
+        </Text>
+        <Text>
+          Polygon uses the cryptocurrency <b>MATIC</b> to charge users for executing transactions and reward transaction
+          validators around the world.
+        </Text>
+        <Text>
+          MetaMask can also connect to the Polygon network, and be used to view balances and sign transactions on it.
+        </Text>
+      </>
+    ),
+    links: [
+      { href: 'https://polygon.technology/', label: 'Polygon Official Site' },
+      {
+        href: 'https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/',
+        label: 'Add Polygon Network to MetaMask',
+      },
+    ],
+    image: maticTokenLogo,
+    imageDescription: 'MATIC logo',
+  },
+  {
+    title: `What is MATIC and how do I get it?`,
+    description: (
+      <>
+        <Text>
+          MATIC is the native cryptocurrency to the Polygon network. If you want to execute a transaction on Polygon,
+          like to get some KikiriCoins, you need to have some MATIC token in your account.
+        </Text>
+        <Text>
+          <b>In order to claim KIKI tokens, a user first needs to fund their crypto account with MATIC.</b> The claim
+          operation should require less than 0.001 MATIC (~0.02€).
+        </Text>
+      </>
+    ),
+    links: [
+      {
+        href: 'https://medium.com/@nifty.pixels/getting-matic-on-the-polygon-network-with-crypto-com-48374d4d78d5',
+        label: 'Medium: Getting MATIC on the Polygon network with Crypto.com',
+      },
+    ],
+    image: maticTokenLogo,
+    imageDescription: 'MATIC logo',
+  },
+];
+
 const FeaturesSplit = () => (
   <Box as="section" py={24}>
     <Container maxW="container.sm">
       <VStack px={8} alignItems="stretch" spacing={16}>
-        <Feature
-          title="What is KikiriCoin?"
-          text="KikiriCoin is a virtual token that can be created (minted) and transfered between crypto accounts. KikiriCoin's allowed operations and balances are managed by a smart contract."
-          link={undefined}
-          imagePosition={Position.Right}
-          image={RoosterOriginal}
-          imageDescription="KikiriCoin logo"
-        />
-
-        <Feature
-          title="What is a smart contract?"
-          text="A short computer program that is executed a blockchain network. Smart contracts deployed on Ethereum, Polygon, and many other networks are developed with the programming language Solidity."
-          link={undefined}
-          imagePosition={Position.Left}
-          image={solidityLogo}
-          imageDescription="Solidity logo"
-        />
-
-        <Feature
-          title="How is it implemented?"
-          text="The token is implemented using the ERC-20 interface, a standard used for creating and issuing smart contracts on the Ethereum blockchain. This makes KikiriCoin compatible with any system that supports Ethereum tokens."
-          link={
-            <Link href="https://ethereum.org/en/developers/docs/standards/tokens/erc-20/" color="brand" isExternal>
-              ERC-20 documentation
-            </Link>
-          }
-          imagePosition={Position.Right}
-          image={ethereumLogo}
-          imageDescription="aaa logo"
-        />
-        <Feature
-          title="Where is it deployed?"
-          text="In the Polygon Network. Polygon is a scaling solution for Ethereum that provides faster and cheaper transactions on Ethereum. Polygon uses the cryptocurrency MATIC to charge users for executing transactions and reward transaction validators around the world."
-          link={
-            <Link href="https://polygon.technology/" color="brand" isExternal>
-              Polygon Official Site
-            </Link>
-          }
-          imagePosition={Position.Left}
-          image={maticTokenLogo}
-          imageDescription="MATIC logo"
-        />
-        <Feature
-          title="How can one interact with KikiriCoin's smart contract?"
-          text="To interact with KikiriCoin, one needs to connect directly with a Polygon node or using a provider like Infura or Alchemy. Read operations, like checking your balance, are free. Transactions that modify the state in the blockchain, like claiming tokens or transferring them, require paying for computing resources with a bit of MATIC token."
-          link={
-            <Link href="https://www.alchemy.com/" color="brand" isExternal>
-              Alchemy Official Site
-            </Link>
-          }
-          imagePosition={Position.Right}
-          image={alchemyLogo}
-          imageDescription="Alchemy logo"
-        />
-
-        <Feature
-          title="How does this website interact with KikiriCoin?"
-          text="This website uses Web3.js, a JavaScript client to interact with blockchain via Alchemy. It also interacts with browser wallets like MetaMask because they expose functions that enable websites to interact with it."
-          link={
-            <Link href="https://github.com/ChainSafe/web3.js" color="brand" isExternal>
-              Web3.js library
-            </Link>
-          }
-          imagePosition={Position.Left}
-          image={web3jsLogo}
-          imageDescription="Web 3 logo"
-        />
-
-        <Feature
-          title="What is MetaMask?"
-          text="MetaMask is a software cryptocurrency wallet used to interact with the Ethereum blockchain. It allows users to access their Ethereum wallet through a browser extension or mobile app, which can then be used to interact with decentralized applications like this website."
-          link={
-            <Link href="https://metamask.io/" color="brand" isExternal>
-              MetaMask Official Site
-            </Link>
-          }
-          imagePosition={Position.Right}
-          image={metamaskLogo}
-          imageDescription="MetaMask logo"
-        />
+        {content.map((row, index) => (
+          <Feature
+            key={row.title}
+            title={row.title}
+            description={row.description}
+            links={row.links}
+            image={row.image}
+            imageDescription={row.imageDescription}
+            imagePosition={index % 2 ? Position.Left : Position.Right}
+          />
+        ))}
       </VStack>
     </Container>
   </Box>

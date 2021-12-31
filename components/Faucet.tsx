@@ -20,6 +20,7 @@ import NextImage from 'next/image';
 import { useMetamask } from 'use-metamask';
 
 import coinImage from './images/1f413-coin-color-adjusted.png';
+import metaMaskResultScreenshot from './images/metamask-kiki-screenshot-mumbai.png';
 import { fromWei } from '../util/conversions';
 import importTokenToWallet from '../util/importTokenToWallet';
 import { web3, claimTokensFromFaucet, getTokenBalance, getFaucetClaimEventsCount } from '../util/web3api';
@@ -224,7 +225,14 @@ const Faucet = () => {
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
-            {`Once you have MetaMask installed and configured with an account, you'll need to fund it with MATIC token. @TODO`}
+            {`Once you have MetaMask installed and configured with an account, you'll need to fund it with MATIC token. The claim operation should require less than 0.001 MATIC (~0.02€). `}
+            <Link
+              href="https://medium.com/@nifty.pixels/getting-matic-on-the-polygon-network-with-crypto-com-48374d4d78d5"
+              color="brand"
+              isExternal
+            >
+              Medium: Getting MATIC on the Polygon network with Crypto.com
+            </Link>
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
@@ -236,14 +244,10 @@ const Faucet = () => {
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
-            {`Click "3. Claim KIKI", review the transaction that MetaMask displays, and confirm it.`}
+            {`Click "3. Claim KIKI", review the transaction that MetaMask displays, and confirm it. If you have sufficient MATIC to trigger the transaction, you'll be able to sign it and shortly after you'll see a confirmation.`}
+            <NextImage src={metaMaskResultScreenshot} />
           </ListItem>
         </OrderedList>
-        <UnorderedList pl={6}>
-          <ListItem fontSize="sm" mb={2}>
-            How can I trust your smart contracts? You can inspect their verified source code in Polygonscan. @TODO
-          </ListItem>
-        </UnorderedList>
       </Container>
     </Box>
   );

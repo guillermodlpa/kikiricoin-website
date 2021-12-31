@@ -1,14 +1,31 @@
-import { Box, Container, Heading, Text, Link, Wrap, Stat } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, Link, Stat, Stack, UnorderedList, ListItem } from '@chakra-ui/react';
 
-const Card = ({ title, description, link }: { title: string; description: string; link: string }) => (
+const scanUrl = process.env.NEXT_PUBLIC_SCAN_URL || '';
+const tokenAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS || '';
+const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
+
+const formatAddress = (address: string, start = 4, end = 2) =>
+  `${address.substring(0, start)}...${address.substring(address.length - end)}`;
+
+const Card = ({
+  title,
+  description,
+  linkHref,
+  linkLabel,
+}: {
+  title: string;
+  description: string;
+  linkHref: string;
+  linkLabel: string;
+}) => (
   <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
     <Heading as="h4" size="md" mb={2}>
       {title}
     </Heading>
     <Text mb={2}>{description}</Text>
     <Text>
-      <Link href={link} isExternal color="branded">
-        {link}
+      <Link href={linkHref} isExternal color="branded">
+        {linkLabel}
       </Link>
     </Text>
   </Stat>
@@ -22,28 +39,39 @@ const SourceCode = () => {
           Source Code
         </Heading>
 
-        <Wrap mb={16}>
-          <Card
-            title="KikiriCoin Smart Contracts"
-            description="Smart contract implementation of the KIKI ERC-20 token, using OpenZeppelin. You'll find also the faucet's smart contract and unit tests."
-            link="https://example.com"
-          />
-
-          <Card
-            title="Website"
-            description="Implementation of this website, using NextJS."
-            link="https://example.com"
-          />
-        </Wrap>
+        <UnorderedList mb={16}>
+          <ListItem>
+            {`KikiriCoin Smart Contracts: `}
+            <Link href={`https://github.com/guillermodlpa/kikiricoin`} isExternal color="branded">
+              https://github.com/guillermodlpa/kikiricoin
+            </Link>
+          </ListItem>
+          <ListItem>
+            {`KikiriCoin Website (this page): `}
+            <Link href={`https://github.com/guillermodlpa/kikiricoin-website`} isExternal color="branded">
+              https://github.com/guillermodlpa/kikiricoin-website
+            </Link>
+          </ListItem>
+        </UnorderedList>
 
         <Heading as="h2" size="lg" fontWeight="bold" color="primary.800" mb={4}>
           Deployed Contracts
         </Heading>
 
-        <Wrap>
-          <Card title="Token Smart Contract" description="" link="https://example.com" />
-          <Card title="Faucet Smart Contract" description="" link="https://example.com" />
-        </Wrap>
+        <UnorderedList>
+          <ListItem>
+            {`Token Smart Contract: `}
+            <Link href={`${scanUrl}/${tokenAddress}`} isExternal color="branded">
+              {tokenAddress}
+            </Link>
+          </ListItem>
+          <ListItem>
+            {`Faucet Smart Contract: `}
+            <Link href={`${scanUrl}/${faucetAddress}`} isExternal color="branded">
+              {faucetAddress}
+            </Link>
+          </ListItem>
+        </UnorderedList>
       </Container>
     </Box>
   );
