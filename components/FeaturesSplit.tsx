@@ -65,7 +65,7 @@ const content = [
       <>
         <Text>KikiriCoin is a virtual token that can be created (minted) and transfered between crypto accounts.</Text>
         <Text>
-          KikiriCoin's allowed operations and balances are managed by a <b>smart contract</b>.
+          KikiriCoin&apos;s allowed operations and balances are managed by a <b>smart contract</b>.
         </Text>
       </>
     ),
@@ -127,8 +127,8 @@ const content = [
     description: (
       <>
         <Text>
-          KikiriCoin's smart contract is deployed on the Polygon Network. Polygon is a scaling solution for Ethereum
-          that provides faster and cheaper transactions on Ethereum.
+          KikiriCoin&apos;s smart contract is deployed on the Polygon Network. Polygon is a scaling solution for
+          Ethereum that provides faster and cheaper transactions on Ethereum.
         </Text>
         <Text>
           Polygon uses the cryptocurrency <b>MATIC</b> to charge users for executing transactions and reward transaction
