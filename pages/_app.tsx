@@ -3,7 +3,7 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 const theme = extendTheme({
   colors: {
-    brand: {
+    primary: {
       50: '#edd9d6',
       100: '#d9b4ae',
       200: '#c48f88',
@@ -15,6 +15,22 @@ const theme = extendTheme({
       800: '#4e0000',
       900: '#400000',
       // for convenience: https://colordesigner.io/gradient-generator
+    },
+    secondary: {
+      50: '#ffead8',
+      100: '#ffd5b2',
+      200: '#ffc08d',
+      300: '#ffab67',
+      400: '#ff9640',
+      500: '#fd8108',
+      600: '#d25e00',
+      700: '#a83c00',
+      800: '#801600',
+      900: '#5d0000',
+    },
+    gray: {
+      50: '#f6f6f6',
+      200: '#CCCCCC',
     },
   },
   styles: {

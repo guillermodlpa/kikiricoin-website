@@ -10,7 +10,7 @@ type ResourceCardProps = {
 const ResourceCard = ({ title, description }: ResourceCardProps) => (
   <Box shadow="md" borderWidth="1px" borderRadius="md" px={6} py={4} bg="white">
     <Text fontWeight="medium">
-      <Link color="brand" href="https://example.com" isExternal>
+      <Link color="primary" href="https://example.com" isExternal>
         {title}
       </Link>
     </Text>
@@ -47,9 +47,9 @@ const learningResources = [
 ];
 
 const LearningResources = () => (
-  <Box as="section" py={24} bg="gray.100">
+  <Box as="section" py={24} bg="gray.50">
     <Container maxW="container.md" px={8}>
-      <Heading as="h1" size="xl" fontWeight="bold" color="primary.800" mb={4}>
+      <Heading as="h1" size="xl" fontWeight="bold" mb={4}>
         Learning Resources
       </Heading>
 

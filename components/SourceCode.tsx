@@ -35,7 +35,7 @@ const SourceCode = () => {
   return (
     <Box as="section" py={24} id="source-code">
       <Container maxW="container.md" px={8}>
-        <Heading as="h2" size="lg" fontWeight="bold" color="primary.800" mb={4}>
+        <Heading as="h2" size="lg" fontWeight="bold" mb={4}>
           Source Code
         </Heading>
 
@@ -54,7 +54,7 @@ const SourceCode = () => {
           </ListItem>
         </UnorderedList>
 
-        <Heading as="h2" size="lg" fontWeight="bold" color="primary.800" mb={4}>
+        <Heading as="h2" size="lg" fontWeight="bold" mb={4}>
           Deployed Contracts
         </Heading>
 

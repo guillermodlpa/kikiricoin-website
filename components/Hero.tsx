@@ -7,7 +7,7 @@ import FadeAnimation from './FadeAnimation';
 const Hero = () => (
   <Box as="section" py={24} position="relative">
     <Box position="absolute" top={0} bottom={0} left={0} right={0} zIndex={-1} overflow="hidden" display="flex">
-      <Box opacity={0.2} position="relative" width="100vw" backgroundColor="brand.50">
+      <Box opacity={0.2} position="relative" width="100vw">
         <NextImage priority src={CoinLogo} alt="Logo" layout="fill" objectFit="cover" objectPosition={'40vw center'} />
       </Box>
     </Box>
@@ -21,7 +21,7 @@ const Hero = () => (
       >
         <Stack w={{ base: '80%', md: '55%' }} mr={6} flexShrink={0}>
           <FadeAnimation origin="left">
-            <Heading as="h1" size="2xl" fontWeight="bold" color="primary.800" mb={4}>
+            <Heading as="h1" size="2xl" fontWeight="bold" mb={4}>
               KikiriCoin
             </Heading>
 
@@ -43,7 +43,7 @@ const Hero = () => (
                 px="4"
                 lineHeight="1"
                 size="md"
-                colorScheme="brand"
+                colorScheme="primary"
                 href="#stats"
                 as="a"
               >
@@ -56,7 +56,7 @@ const Hero = () => (
                 px="4"
                 lineHeight="1"
                 size="md"
-                colorScheme="blackAlpha"
+                colorScheme="secondary"
                 href="#source-code"
                 as="a"
               >

@@ -34,7 +34,7 @@ const Stats = () => {
   }, []);
 
   return (
-    <Box as="section" bg="gray.100" py={24} id="stats">
+    <Box as="section" backgroundColor="gray.50" py={24} id="stats">
       <Container maxW="container.md">
         <Stack spacing={8}>
           <Flex

@@ -72,7 +72,7 @@ const Faucet = () => {
   };
 
   return (
-    <Box as="section" bg="gray.100" py={24}>
+    <Box as="section" backgroundColor="gray.50" py={24}>
       <Container maxW="container.md" px={8}>
         <Flex
           align="center"
@@ -95,7 +95,7 @@ const Faucet = () => {
           </Stack>
 
           <Stack w={{ base: '80%', md: '70%' }} ml={[0, 0, 8]}>
-            <Heading as="h2" size="xl" fontWeight="bold" color="primary.800" mb={4}>
+            <Heading as="h2" size="xl" fontWeight="bold" mb={4}>
               Faucet
             </Heading>
 
@@ -119,7 +119,7 @@ const Faucet = () => {
                 lineHeight="1"
                 size="md"
                 variant={'solid'}
-                colorScheme="blackAlpha"
+                colorScheme="secondary"
                 onClick={() => {
                   importTokenToWallet().catch((error: Error) => console.error(error));
                 }}
@@ -137,7 +137,7 @@ const Faucet = () => {
                 lineHeight="1"
                 size="md"
                 variant={'solid'}
-                colorScheme="brand"
+                colorScheme="primary"
                 onClick={handleConnect}
                 disabled={metaState.isConnected}
               >
@@ -147,7 +147,7 @@ const Faucet = () => {
               {metaState.isConnected && metaState.account?.[0] && (
                 <Text as="i">
                   Already connected to{' '}
-                  <Link href={`https://polygonscan.com/address/${metaState.account[0]}`} color="brand" isExternal>
+                  <Link href={`https://polygonscan.com/address/${metaState.account[0]}`} color="primary" isExternal>
                     {metaState.account[0].substring(0, 4)}...
                     {metaState.account[0].substring(metaState.account[0].length - 4)}
                   </Link>
@@ -163,7 +163,7 @@ const Faucet = () => {
                 lineHeight="1"
                 size="md"
                 variant={'solid'}
-                colorScheme="brand"
+                colorScheme="primary"
                 onClick={handleClaim}
                 disabled={!metaState.isConnected}
               >
@@ -197,7 +197,7 @@ const Faucet = () => {
               <StatLabel>
                 KIKI in Your Wallet{' '}
                 {metaState.account[0] && (
-                  <Link href={`https://polygonscan.com/address/${metaState.account[0]}`} color="brand" isExternal>
+                  <Link href={`https://polygonscan.com/address/${metaState.account[0]}`} color="primary" isExternal>
                     {metaState.account[0].substring(0, 4)}...
                     {metaState.account[0].substring(metaState.account[0].length - 4)}
                   </Link>
@@ -213,7 +213,7 @@ const Faucet = () => {
         <OrderedList pl={6}>
           <ListItem fontSize="sm" mb={2}>
             If you do not have a crypto wallet, download and install MetaMask.{' '}
-            <Link href="https://metamask.io/" color="brand" isExternal>
+            <Link href="https://metamask.io/" color="primary" isExternal>
               MetaMask Official Site
             </Link>
           </ListItem>
@@ -228,7 +228,7 @@ const Faucet = () => {
             {`Once you have MetaMask installed and configured with an account, you'll need to fund it with MATIC token. The claim operation should require less than 0.001 MATIC (~0.02€). `}
             <Link
               href="https://medium.com/@nifty.pixels/getting-matic-on-the-polygon-network-with-crypto-com-48374d4d78d5"
-              color="brand"
+              color="primary"
               isExternal
             >
               Medium: Getting MATIC on the Polygon network with Crypto.com

@@ -38,13 +38,13 @@ const Feature = ({ title, description, image, imagePosition, imageDescription, l
         ml={imagePosition === Position.Right ? 0 : 4}
         mr={imagePosition === Position.Right ? 4 : 0}
       >
-        <Heading as="h2" size="lg" fontWeight="bold" color="primary.800" mb={4}>
+        <Heading as="h2" size="lg" fontWeight="bold" mb={4}>
           {title}
         </Heading>
         {isValidElement(description) && description}
         {(links || []).map(({ href, label }) => (
           <Text key={href}>
-            <Link href={href} color="brand" isExternal>
+            <Link href={href} color="primary" isExternal>
               {label}
             </Link>
           </Text>
