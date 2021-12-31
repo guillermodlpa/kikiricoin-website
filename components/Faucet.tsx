@@ -30,6 +30,8 @@ function Web3Wrapper() {
   return web3;
 }
 
+const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
+
 const Faucet = () => {
   const { connect, metaState } = useMetamask();
   const connectedAccount = metaState?.account[0];
@@ -45,10 +47,7 @@ const Faucet = () => {
 
   const [faucetBalance, setFaucetBalance] = useState<string>();
   useEffect(() => {
-    const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS;
-    if (faucetAddress) {
-      getTokenBalance(faucetAddress).then((balance) => setFaucetBalance(balance));
-    }
+    getTokenBalance(faucetAddress).then((balance) => setFaucetBalance(balance));
   }, []);
 
   const [faucetClaimCount, setFaucetClaimCount] = useState<number>();
@@ -64,10 +63,13 @@ const Faucet = () => {
 
   const handleClaim = () => {
     claimTokensFromFaucet(connectedAccount).then(() => {
+      // Refresh all stats in this section
       getFaucetClaimEventsCount().then((count) => {
         setFaucetClaimCount(count);
       });
-      // @todo: refresh faucet balance and connected account balance
+      getTokenBalance(faucetAddress).then((balance) => setFaucetBalance(balance));
+      getTokenBalance(connectedAccount).then((balance) => setConnectedAccountBalance(balance));
+      // @todo: show animation
     });
   };
 
@@ -188,7 +190,7 @@ const Faucet = () => {
             </Stat>
             <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
               <StatNumber fontSize="4xl">{faucetBalance !== undefined ? fromWei(faucetBalance) : '-'}</StatNumber>
-              <StatLabel>Unclaimed KIKI Tokens</StatLabel>
+              <StatLabel>KIKI Tokens Available</StatLabel>
             </Stat>
             <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
               <StatNumber fontSize="4xl">
