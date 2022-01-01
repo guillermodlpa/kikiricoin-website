@@ -46,6 +46,10 @@ const theme = extendTheme({
   },
 });
 
+if (process.env.NODE_ENV === 'development') {
+  console.log('%cChakra UI theme', 'background: aquamarine; color: black', theme);
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>

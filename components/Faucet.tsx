@@ -25,6 +25,7 @@ import { fromWei } from '../util/conversions';
 import importTokenToWallet from '../util/importTokenToWallet';
 import { web3, claimTokensFromFaucet, getTokenBalance, getFaucetClaimEventsCount } from '../util/web3api';
 import FadeAnimation from './FadeAnimation';
+import ClaimSuccessModal from './ClaimSuccessModal';
 
 function Web3Wrapper() {
   return web3;
@@ -61,15 +62,15 @@ const Faucet = () => {
     connect(Web3Wrapper).catch((error) => console.error(error));
   };
 
+  const [claimSuccessModalIsOpen, setClaimSuccessModalIsOpen] = useState(false);
   const handleClaim = () => {
     claimTokensFromFaucet(connectedAccount).then(() => {
-      // Refresh all stats in this section
       getFaucetClaimEventsCount().then((count) => {
         setFaucetClaimCount(count);
       });
       getTokenBalance(faucetAddress).then((balance) => setFaucetBalance(balance));
       getTokenBalance(connectedAccount).then((balance) => setConnectedAccountBalance(balance));
-      // @todo: show animation
+      setClaimSuccessModalIsOpen(true);
     });
   };
 
@@ -251,6 +252,8 @@ const Faucet = () => {
           </ListItem>
         </OrderedList>
       </Container>
+
+      <ClaimSuccessModal isOpen={claimSuccessModalIsOpen} onClose={() => setClaimSuccessModalIsOpen(false)} />
     </Box>
   );
 };
