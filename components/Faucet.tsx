@@ -12,8 +12,8 @@ import {
   StatLabel,
   Link,
   ListItem,
-  UnorderedList,
   OrderedList,
+  keyframes,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import NextImage from 'next/image';
@@ -74,6 +74,10 @@ const Faucet = () => {
     });
   };
 
+  // useEffect(() => {
+  //   window.setClaimSuccessModalIsOpen = setClaimSuccessModalIsOpen;
+  // }, []);
+
   return (
     <Box as="section" backgroundColor="gray.50" py={24}>
       <Container maxW="container.md" px={8}>
@@ -83,21 +87,19 @@ const Faucet = () => {
           direction={{ base: 'column', md: 'row' }}
           pb={16}
         >
-          <Stack w={{ base: '40%', md: '30%' }} mb={{ base: 12, md: 0 }}>
-            <Flex direction="column" justifyItems="stretch">
+          <Stack flexGrow={1}>
+            <Stack direction="row" justifyContent="center" w="100%" flexShrink={0} mb={12}>
               {Array(4)
                 .fill('')
                 .map((_, i) => (
                   <Box alignSelf={i % 2 ? 'flex-end' : 'flex-start'} key={i}>
-                    <FadeAnimation origin={i % 2 ? 'left' : 'right'}>
-                      <NextImage width="75px" height="75px" src={coinImage} alt="KikiriCoin logo" />
+                    <FadeAnimation origin="bottom">
+                      <NextImage width={`75px`} height={`75px`} src={coinImage} alt="KikiriCoin logo" />
                     </FadeAnimation>
                   </Box>
                 ))}
-            </Flex>
-          </Stack>
+            </Stack>
 
-          <Stack w={{ base: '80%', md: '70%' }} ml={[0, 0, 8]}>
             <Heading as="h2" size="xl" fontWeight="bold" mb={4}>
               Faucet
             </Heading>
