@@ -13,7 +13,6 @@ import {
   Link,
   ListItem,
   OrderedList,
-  keyframes,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import NextImage from 'next/image';
@@ -26,6 +25,7 @@ import importTokenToWallet from '../util/importTokenToWallet';
 import { web3, claimTokensFromFaucet, getTokenBalance, getFaucetClaimEventsCount } from '../util/web3api';
 import FadeAnimation from './FadeAnimation';
 import ClaimSuccessModal from './ClaimSuccessModal';
+import useErrorToast from './useErrorToast';
 
 function Web3Wrapper() {
   return web3;
@@ -34,44 +34,73 @@ function Web3Wrapper() {
 const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
 
 const Faucet = () => {
+  const showErrorToast = useErrorToast();
   const { connect, metaState } = useMetamask();
   const connectedAccount = metaState?.account[0];
 
   const [connectedAccountBalance, setConnectedAccountBalance] = useState<string>();
   useEffect(() => {
     if (connectedAccount) {
-      getTokenBalance(connectedAccount).then((balance) => setConnectedAccountBalance(balance));
+      getTokenBalance(connectedAccount)
+        .then((balance) => setConnectedAccountBalance(balance))
+        .catch((error) => {
+          showErrorToast({ id: 'connectedAccountError', title: 'Error fetching connected account balance' }, error);
+        });
     } else {
       setConnectedAccountBalance(undefined);
     }
-  }, [connectedAccount]);
+  }, [connectedAccount, showErrorToast]);
 
   const [faucetBalance, setFaucetBalance] = useState<string>();
   useEffect(() => {
-    getTokenBalance(faucetAddress).then((balance) => setFaucetBalance(balance));
-  }, []);
+    getTokenBalance(faucetAddress)
+      .then((balance) => setFaucetBalance(balance))
+      .catch((error) => {
+        showErrorToast({ id: 'faucetBalanceError', title: 'Error fetching faucet account balance' }, error);
+      });
+  }, [showErrorToast]);
 
   const [faucetClaimCount, setFaucetClaimCount] = useState<number>();
   useEffect(() => {
-    getFaucetClaimEventsCount().then((count) => {
-      setFaucetClaimCount(count);
+    getFaucetClaimEventsCount()
+      .then((count) => {
+        setFaucetClaimCount(count);
+      })
+      .catch((error) => {
+        showErrorToast({ id: 'faucetClaimCount', title: 'Error fetching faucet claim count' }, error);
+      });
+  }, [showErrorToast]);
+
+  const handleImportToken = () => {
+    importTokenToWallet().catch((error) => {
+      showErrorToast({ id: 'importTokenError', title: `Error importing token to account` }, error);
     });
-  }, []);
+  };
 
   const handleConnect = () => {
-    connect(Web3Wrapper).catch((error) => console.error(error));
+    connect(Web3Wrapper).catch((error) => {
+      showErrorToast({ id: 'connectError', title: `Error connecting to account` }, error);
+    });
   };
 
   const [claimSuccessModalIsOpen, setClaimSuccessModalIsOpen] = useState(false);
   const handleClaim = () => {
-    claimTokensFromFaucet(connectedAccount).then(() => {
-      getFaucetClaimEventsCount().then((count) => {
-        setFaucetClaimCount(count);
+    claimTokensFromFaucet(connectedAccount)
+      .then(() => {
+        Promise.all([
+          getFaucetClaimEventsCount().then((count) => {
+            setFaucetClaimCount(count);
+          }),
+          getTokenBalance(faucetAddress).then((balance) => setFaucetBalance(balance)),
+          getTokenBalance(connectedAccount).then((balance) => setConnectedAccountBalance(balance)),
+        ]).catch((error) => {
+          showErrorToast({ id: 'refreshStatsError', title: 'Error fetching updates' }, error);
+        });
+        setClaimSuccessModalIsOpen(true);
+      })
+      .catch((error) => {
+        showErrorToast({ id: 'claimError', title: `Error claiming` }, error);
       });
-      getTokenBalance(faucetAddress).then((balance) => setFaucetBalance(balance));
-      getTokenBalance(connectedAccount).then((balance) => setConnectedAccountBalance(balance));
-      setClaimSuccessModalIsOpen(true);
-    });
   };
 
   // useEffect(() => {
@@ -125,9 +154,7 @@ const Faucet = () => {
                 size="md"
                 variant={'solid'}
                 colorScheme="secondary"
-                onClick={() => {
-                  importTokenToWallet().catch((error: Error) => console.error(error));
-                }}
+                onClick={handleImportToken}
                 disabled={!metaState.isAvailable}
               >
                 1. Import KIKI token to MetaMask

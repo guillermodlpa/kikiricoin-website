@@ -4,6 +4,7 @@ import { fromWei } from '../util/conversions';
 import { useEffect, useState } from 'react';
 import { getTokenMaxCap, getTokenTransferCount, getTokenTotalSupply } from '../util/web3api';
 import FadeAnimation from './FadeAnimation';
+import useErrorToast from './useErrorToast';
 
 type StatBoxProps = {
   title: string;
@@ -18,20 +19,34 @@ const StatBox = ({ title, data }: StatBoxProps) => (
 );
 
 const Stats = () => {
-  const [totalSupply, setTotalSupply] = useState<string>('0');
+  const showErrorToast = useErrorToast();
+
+  const [totalSupply, setTotalSupply] = useState<string>();
   useEffect(() => {
-    getTokenTotalSupply().then((value) => setTotalSupply(value));
-  }, []);
+    getTokenTotalSupply()
+      .then((value) => setTotalSupply(value))
+      .catch((error) => {
+        showErrorToast({ id: 'totalSupplyError', title: `Error fetching total supply` }, error);
+      });
+  }, [showErrorToast]);
 
   const [maxCap, setMaxCap] = useState<string>();
   useEffect(() => {
-    getTokenMaxCap().then((maxCap) => setMaxCap(maxCap));
-  }, []);
+    getTokenMaxCap()
+      .then((maxCap) => setMaxCap(maxCap))
+      .catch((error) => {
+        showErrorToast({ id: 'maxCapError', title: `Error fetching max cap` }, error);
+      });
+  }, [showErrorToast]);
 
   const [transactionCount, setTransactionCount] = useState<number>();
   useEffect(() => {
-    getTokenTransferCount().then((count) => setTransactionCount(count));
-  }, []);
+    getTokenTransferCount()
+      .then((count) => setTransactionCount(count))
+      .catch((error) => {
+        showErrorToast({ id: 'transactionCountError', title: `Error fetching transaction count` }, error);
+      });
+  }, [showErrorToast]);
 
   return (
     <Box as="section" backgroundColor="gray.50" py={24} id="stats">
