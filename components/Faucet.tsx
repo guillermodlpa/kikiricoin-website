@@ -16,40 +16,35 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import NextImage from 'next/image';
-import { useMetamask } from 'use-metamask';
+import { useMetaMask } from 'metamask-react';
 
 import coinImage from './images/1f413-coin-color-adjusted.png';
 import metaMaskResultScreenshot from './images/metamask-kiki-screenshot-mumbai.png';
 import { fromWei } from '../util/conversions';
 import importTokenToWallet from '../util/importTokenToWallet';
-import { web3, claimTokensFromFaucet, getTokenBalance, getFaucetClaimEventsCount } from '../util/web3api';
+import { claimTokensFromFaucet, getTokenBalance, getFaucetClaimEventsCount } from '../util/web3api';
 import FadeAnimation from './FadeAnimation';
 import ClaimSuccessModal from './ClaimSuccessModal';
 import useErrorToast from './useErrorToast';
-
-function Web3Wrapper() {
-  return web3;
-}
 
 const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
 
 const Faucet = () => {
   const showErrorToast = useErrorToast();
-  const { connect, metaState } = useMetamask();
-  const connectedAccount = metaState?.account[0];
+  const { connect, status, account } = useMetaMask();
 
-  const [connectedAccountBalance, setConnectedAccountBalance] = useState<string>();
+  const [accountBalance, setAccountBalance] = useState<string>();
   useEffect(() => {
-    if (connectedAccount) {
-      getTokenBalance(connectedAccount)
-        .then((balance) => setConnectedAccountBalance(balance))
+    if (account) {
+      getTokenBalance(account)
+        .then((balance) => setAccountBalance(balance))
         .catch((error) => {
-          showErrorToast({ id: 'connectedAccountError', title: 'Error fetching connected account balance' }, error);
+          showErrorToast({ id: 'accountError', title: 'Error fetching connected account balance' }, error);
         });
     } else {
-      setConnectedAccountBalance(undefined);
+      setAccountBalance(undefined);
     }
-  }, [connectedAccount, showErrorToast]);
+  }, [account, showErrorToast]);
 
   const [faucetBalance, setFaucetBalance] = useState<string>();
   useEffect(() => {
@@ -78,21 +73,25 @@ const Faucet = () => {
   };
 
   const handleConnect = () => {
-    connect(Web3Wrapper).catch((error) => {
+    connect().catch((error) => {
       showErrorToast({ id: 'connectError', title: `Error connecting to account` }, error);
     });
   };
 
   const [claimSuccessModalIsOpen, setClaimSuccessModalIsOpen] = useState(false);
   const handleClaim = () => {
-    claimTokensFromFaucet(connectedAccount)
+    if (!account) {
+      showErrorToast({ id: 'claimError', title: `Error claiming` }, new Error('No account connected'));
+      return;
+    }
+    claimTokensFromFaucet(account)
       .then(() => {
         Promise.all([
           getFaucetClaimEventsCount().then((count) => {
             setFaucetClaimCount(count);
           }),
           getTokenBalance(faucetAddress).then((balance) => setFaucetBalance(balance)),
-          getTokenBalance(connectedAccount).then((balance) => setConnectedAccountBalance(balance)),
+          getTokenBalance(account).then((balance) => setAccountBalance(balance)),
         ]).catch((error) => {
           showErrorToast({ id: 'refreshStatsError', title: 'Error fetching updates' }, error);
         });
@@ -155,7 +154,7 @@ const Faucet = () => {
                 variant={'solid'}
                 colorScheme="secondary"
                 onClick={handleImportToken}
-                disabled={!metaState.isAvailable}
+                disabled={status !== 'connected'}
               >
                 1. Import KIKI token to MetaMask
               </Button>
@@ -171,17 +170,17 @@ const Faucet = () => {
                 variant={'solid'}
                 colorScheme="primary"
                 onClick={handleConnect}
-                disabled={metaState.isConnected}
+                disabled={status === 'connected'}
               >
                 2. Connect Wallet
               </Button>
 
-              {metaState.isConnected && metaState.account?.[0] && (
+              {account && status === 'connected' && (
                 <Text as="i">
                   Already connected to{' '}
-                  <Link href={`https://polygonscan.com/address/${metaState.account[0]}`} color="primary" isExternal>
-                    {metaState.account[0].substring(0, 4)}...
-                    {metaState.account[0].substring(metaState.account[0].length - 4)}
+                  <Link href={`https://polygonscan.com/address/${account}`} color="primary" isExternal>
+                    {account.substring(0, 4)}...
+                    {account.substring(account.length - 4)}
                   </Link>
                 </Text>
               )}
@@ -197,7 +196,7 @@ const Faucet = () => {
                 variant={'solid'}
                 colorScheme="primary"
                 onClick={handleClaim}
-                disabled={!metaState.isConnected}
+                disabled={status !== 'connected'}
               >
                 3. Claim KIKI
               </Button>
@@ -223,15 +222,13 @@ const Faucet = () => {
               <StatLabel>KIKI Tokens Available</StatLabel>
             </Stat>
             <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
-              <StatNumber fontSize="4xl">
-                {connectedAccountBalance !== undefined ? fromWei(connectedAccountBalance) : '-'}
-              </StatNumber>
+              <StatNumber fontSize="4xl">{accountBalance !== undefined ? fromWei(accountBalance) : '-'}</StatNumber>
               <StatLabel>
                 KIKI in Your Wallet{' '}
-                {metaState.account[0] && (
-                  <Link href={`https://polygonscan.com/address/${metaState.account[0]}`} color="primary" isExternal>
-                    {metaState.account[0].substring(0, 4)}...
-                    {metaState.account[0].substring(metaState.account[0].length - 4)}
+                {account && (
+                  <Link href={`https://polygonscan.com/address/${account}`} color="primary" isExternal>
+                    {account.substring(0, 4)}...
+                    {account.substring(account.length - 4)}
                   </Link>
                 )}
               </StatLabel>
