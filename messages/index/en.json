@@ -1,0 +1,176 @@
+{
+  "LanguagesMenu": {
+    "buttonLabel": "Language"
+  },
+  "Hero": {
+    "logoAlt": "Logo",
+    "funnySubtitle": "<i>Kikirikí</i> said the rooster, and the KIKI token was born.",
+    "subtitle": "KikiriCoin (KIKI) is an ERC-20 token deployed on the Polygon blockchain network. Its implementation is open source and meant to be educational and fun.",
+    "learnMoreButton": "Learn More",
+    "viewSourceCodeButton": "View Source Code"
+  },
+  "Stats": {
+    "totalSupply": "Current Total Supply",
+    "deploymentDate": "Deployment Date",
+    "maxCap": "Maximum Supply Cap",
+    "transferCount": "KikiriCoin Transfers"
+  },
+  "FeaturesSplit": {
+    "KikiriCoin": {
+      "title": "What is KikiriCoin?",
+      "description": {
+        "0": "KikiriCoin is a virtual token that can be created (minted) and transfered between crypto accounts.",
+        "1": "KikiriCoin's allowed operations and balances are managed by a <b>smart contract</b>."
+      },
+      "imageDescription": "KikiriCoin logo"
+    },
+    "SmartContract": {
+      "title": "What is a smart contract?",
+      "description": {
+        "0": "A short computer program that is executed a blockchain network. Smart contracts deployed on Ethereum, Polygon, and many other networks are developed with the programming language Solidity.",
+        "1": "The token is implemented using the ERC-20 interface. This standard makes KikiriCoin compatible with any system that supports Ethereum tokens."
+      },
+      "imageDescription": "Ethereum logo"
+    },
+    "Web3js": {
+      "title": "How does this website interact with KikiriCoin?",
+      "description": {
+        "0": "This website uses Web3.js, a JavaScript client to interact with blockchain via Alchemy.",
+        "1": "Alchemy is a service that enables connecting with nodes of the blockchain network. Thanks to that, we don't have to maintain our own infrastructure of blockchain nodes."
+      },
+      "imageDescription": "Web3.js logo",
+      "links": {
+        "0": "Web3.js library"
+      }
+    },
+    "MetaMask": {
+      "title": "What is MetaMask?",
+      "description": {
+        "0": "MetaMask is a software cryptocurrency wallet used to interact with the Ethereum blockchain. It allows users to access their Ethereum accounts through a browser extension or mobile app, which can then be used to interact with decentralized applications like this website.",
+        "1": "MetaMask and websites like this one can connect to offer friendly interfaces for users to interact with smart contracts."
+      },
+      "imageDescription": "MetaMask logo",
+      "links": {
+        "0": "MetaMask Official Site"
+      }
+    },
+    "PolygonNetwork": {
+      "title": "Where is KikiriCoin deployed?",
+      "description": {
+        "0": "KikiriCoin's smart contract is deployed on the Polygon Network. Polygon is a scaling solution for Ethereum that provides faster and cheaper transactions on Ethereum.",
+        "1": "Polygon uses the cryptocurrency <b>MATIC</b> to charge users for executing transactions and reward transaction validators around the world.",
+        "2": "MetaMask can also connect to the Polygon network, and therefore show account balances and sign transactions."
+      },
+      "imageDescription": "MATIC logo",
+      "links": {
+        "0": "Polygon Official Site",
+        "1": "Add Polygon Network to MetaMask"
+      }
+    },
+    "MATIC": {
+      "title": "What is MATIC and how do I get it?",
+      "description": {
+        "0": "MATIC is the native cryptocurrency to the Polygon network. If a user wants to execute a transaction on Polygon, like to get some KikiriCoins, they'll need to have some MATIC token in their account.",
+        "1": "<b>In order to claim KIKI tokens, a user first needs to fund their crypto account with MATIC.</b> The claim operation should require less than 0.001 MATIC (~0.02€)."
+      },
+      "imageDescription": "MATIC logo",
+      "links": {
+        "0": "Tutorial: Getting MATIC on the Polygon network with Crypto.com"
+      }
+    }
+  },
+  "Error": {
+    "errorMessage": "Error message",
+    "totalSupplyError": "Error fetching total supply",
+    "maxCapError": "Error fetching max cap",
+    "transactionCountError": "Error fetching transaction count",
+    "accountError": "Error fetching connected account balance",
+    "faucetBalanceError": "Error fetching faucet account balance",
+    "faucetClaimCount": "Error fetching faucet claim count",
+    "importTokenError": "Error importing token to account",
+    "connectError": "Error connecting to account",
+    "claimError": "Error claiming",
+    "refreshStatsError": "Error refreshing counts"
+  },
+  "Faucet": {
+    "title": "Faucet",
+    "description": {
+      "0": "A faucet is a dispenser of token. It's a common approach to distribute new tokens.",
+      "1": "In order to use it, you'll need to connect your wallet and initiate a transaction to claim the tokens. The buttons below will handle it.",
+      "2": "Like any other transaction in the Polygon network, it will require a small amount of MATIC token. When you press Claim, MetaMask will display the estimated transaction cost and ask for confirmation."
+    },
+    "connectButton": "Connect Wallet",
+    "connecting": "Connecting",
+    "alreadyConnected": "Already connected to",
+    "importTokenButton": "Import KikiriCoin token to MetaMask",
+    "claimButton": "Claim KikiriCoin",
+    "totalTimesUsed": "Total Times Used",
+    "tokensAvailable": "KikiriCoin Tokens Available",
+    "tokensInWallet": "KikiriCoin Tokens in your Wallet",
+    "detailedInstructionsTitle": "Detailed Instructions",
+    "detailedInstructionsList": {
+      "0": {
+        "text": "If you do not have a crypto wallet, download and install MetaMask.",
+        "link": "MetaMask Official Site"
+      },
+      "1": {
+        "text": "When you set up your crypto wallet, be sure to keep your private key safe. The private key is a code that allows you to access your wallet from anywhere. If anybody else, like a hacker, discovers your private key, they'd have full control to take your tokens."
+      },
+      "2": {
+        "text": "Once you have MetaMask installed and configured with an account, you'll need to fund it with MATIC token. The claim operation should require less than 0.001 MATIC (~0.02€).",
+        "link": "Tutorial: Getting MATIC on the Polygon network with Crypto.com"
+      },
+      "3": {
+        "text": "Click \"1. Connect Wallet\" to enable this website to interact with MetaMask."
+      },
+      "4": {
+        "text": "Import the custom token to it by clicking \"2. Import KikiriCoin token to MetaMask\". After confirming it, MetaMask should display your KikiriCoin token. It should be 0 at the beginning."
+      },
+      "5": {
+        "text": "Click \"3. Claim KikiriCoin\", review the transaction that MetaMask displays, and confirm it. If you have sufficient MATIC to trigger the transaction, you'll be able to sign it and shortly after you'll see a confirmation."
+      }
+    }
+  },
+  "SourceCode": {
+    "sourceCodeTitle": "Source Code",
+    "smartContractsRepo": "Smart Contracts",
+    "websiteRepo": "Website (this page)",
+    "deployedContractsTitle": "Deployed Contracts",
+    "tokenSmartContract": "Token Smart Contract",
+    "faucetSmartContract": "Faucet Smart Contract"
+  },
+  "LearningResources": {
+    "title": "Learning Resources",
+    "CryptoZombies": {
+      "title": "CryptoZombies Courses",
+      "description": "This is how I got started in blockchain development. The lessons are clear, very educational, and fun. The Solidity version used is a bit out of date (0.5), but most of the content is still accurate with Solidity 0.8",
+      "imageDescription": "Crypto Zombie"
+    },
+    "TokenDevelopmentGuide": {
+      "title": "How To Develop A Cryptocurrency - The Complete Guide (2022)",
+      "description": "Vittorio explains how to make an ERC-20 token leveraging implementations from OpenZeppelin, and deploy it to Polygon Network. This is pretty much the main resource that guided me while developing KikiriCoin.",
+      "imageDescription": "Tutorial thumbnail"
+    },
+    "AyusoCoin": {
+      "title": "A¥USOCoin - Una iniciativa para que nuestros políticos aprendan qué son las criptomonedas y los contratos inteligentes (Spanish)",
+      "description": "Íñigo developed an ERC-20 token without leveraging OpenZeppelin, which makes the implementation very explicit and a great learning resource. The smart contracts have plenty of comments (in Spanish) that helped me learn new concepts.",
+      "imageDescription": "AyusoCoin icon"
+    },
+    "WhiteboardCrypto": {
+      "title": "Whiteboard Crypto - YouTube channel for crypto education using analogies, stories, and examples",
+      "description": "When I need to learn about a concept, before diving into technical articles, I start with WhiteBoard Crypto. This channel has helped me a lot to understand complex crypto concepts.",
+      "imageDescription": "Whiteboard Crypto icon"
+    }
+  },
+  "Footer": {
+    "authorWebsiteLink": "Author's website, Guillermo de la Puente"
+  },
+  "ClaimSuccessModal": {
+    "title": "Claimed!",
+    "description": {
+      "0": "10 KikiriCoins will be added to your account. The transaction can take 1-2 minutes.",
+      "1": "Thank you!"
+    },
+    "imageDescription": "Logo"
+  }
+}

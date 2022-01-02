@@ -1,5 +1,6 @@
 import { useToast, UseToastOptions } from '@chakra-ui/react';
 import { useCallback } from 'react';
+import { useTranslations } from 'next-intl';
 
 const errorToastDefaultProps: UseToastOptions = {
   title: 'Error',
@@ -16,19 +17,20 @@ const errorToastDefaultProps: UseToastOptions = {
  */
 export default function useErrorToast() {
   const toast = useToast();
+  const t = useTranslations('Error');
   const showErrorToast = useCallback(
-    (props: UseToastOptions, error: Error) => {
+    (id: string, error: Error) => {
       console.error(error);
-      if (!props.id || !toast.isActive(props.id)) {
+      if (!id || !toast.isActive(id)) {
         toast({
           ...errorToastDefaultProps,
-          id: props.id,
-          title: props.title,
-          description: props.description || `Error message: "${error.message}"`,
+          id,
+          title: t(id),
+          description: `${t('errorMessage')}: "${error.message}"`,
         });
       }
     },
-    [toast]
+    [toast, t]
   );
   return showErrorToast;
 }

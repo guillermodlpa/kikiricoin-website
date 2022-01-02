@@ -1,7 +1,8 @@
-import type { NextPage } from 'next';
+import type { GetStaticPropsContext, NextPage } from 'next';
 import Head from 'next/head';
 import { MetaMaskProvider } from 'metamask-react';
 
+import LanguageMenu from '../components/LanguageMenu';
 import Hero from '../components/Hero';
 import Stats from '../components/Stats';
 import FeaturesSplit from '../components/FeaturesSplit';
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
+        <LanguageMenu />
         <Hero />
         <Stats />
         <FeaturesSplit />
@@ -34,3 +36,12 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  return {
+    props: {
+      // @see {@link https://next-intl-docs.vercel.app/docs/installation}
+      messages: (await import(`../messages/index/${locale}.json`)).default,
+    },
+  };
+}

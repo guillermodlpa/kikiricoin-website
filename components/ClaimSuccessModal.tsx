@@ -16,6 +16,7 @@ import NextImage from 'next/image';
 import debounce from 'lodash.debounce';
 
 import CoinLogo from './images/1f413-coin-color-adjusted.png';
+import { useTranslations } from 'next-intl';
 
 const getWindowDimensions = () => {
   const { innerWidth: width, innerHeight: height } = window;
@@ -82,32 +83,35 @@ const DroppingCoinsOverlay = memo(function DroppingCoinsOverlayRoot() {
   );
 });
 
-const ClaimSuccessModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => (
-  <Modal isOpen={isOpen} onClose={onClose} isCentered>
-    <ModalOverlay />
+const ClaimSuccessModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  const t = useTranslations('ClaimSuccessModal');
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <ModalOverlay />
 
-    <DroppingCoinsOverlay />
+      <DroppingCoinsOverlay />
 
-    <ModalContent backgroundColor="secondary.500" shadow="none">
-      <ModalCloseButton size="lg" />
-      <ModalBody px={8} py={12}>
-        <Container w="65%" mb={12}>
-          <Box rounded="100%" shadow="lg" display="flex">
-            <NextImage src={CoinLogo} alt="KikiriCoin Logo" />
-          </Box>
-        </Container>
-        <Heading as="h2" size="3xl" textAlign="center" mb={4}>
-          Claimed!
-        </Heading>
-        <Text textAlign="center" fontSize="lg" mb={4}>
-          10 KIKI have been added to your account.
-        </Text>
-        <Text textAlign="center" fontSize="lg">
-          Thank you!
-        </Text>
-      </ModalBody>
-    </ModalContent>
-  </Modal>
-);
+      <ModalContent backgroundColor="secondary.500" shadow="none">
+        <ModalCloseButton size="lg" />
+        <ModalBody px={8} py={12}>
+          <Container w="65%" mb={12}>
+            <Box rounded="100%" shadow="lg" display="flex">
+              <NextImage src={CoinLogo} alt={t('imageDescription')} />
+            </Box>
+          </Container>
+          <Heading as="h2" size="3xl" textAlign="center" mb={4}>
+            {t('title')}
+          </Heading>
+          <Text textAlign="center" fontSize="lg" mb={4}>
+            {t('description.0')}
+          </Text>
+          <Text textAlign="center" fontSize="lg">
+            {t('description.1')}
+          </Text>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+  );
+};
 
 export default ClaimSuccessModal;

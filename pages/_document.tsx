@@ -11,7 +11,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="en">
+      <Html /* Next.js adds the appropriate lang attribute */>
         <Head>
           <link
             href={'https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Roboto:wght@400&display=swap'}
