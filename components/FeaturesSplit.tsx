@@ -1,15 +1,14 @@
 import { isValidElement } from 'react';
-import { Box, Flex, Container, Stack, Heading, Text, VStack, Link, AlertDescription } from '@chakra-ui/react';
+import { Box, Flex, Container, Stack, Heading, Text, VStack } from '@chakra-ui/react';
 import NextImage from 'next/image';
 
 import RoosterOriginal from './images/1f413-original.png';
 import ethereumLogo from './images/ethereum-logo-2014-sq.png';
-import solidityLogo from './images/Solidity_logo_uncropped.svg';
 import metamaskLogo from './images/MetaMask_Fox.svg';
-import alchemyLogo from './images/alchemy_logo.svg';
 import maticTokenLogo from './images/matic-token-icon.webp';
 import web3jsLogo from './images/web3js.svg';
 import FadeAnimation from './FadeAnimation';
+import DecoratedLink from './DecoratedLink';
 
 enum Position {
   Right = 'right',
@@ -44,9 +43,9 @@ const Feature = ({ title, description, image, imagePosition, imageDescription, l
         {isValidElement(description) && description}
         {(links || []).map(({ href, label }) => (
           <Text key={href}>
-            <Link href={href} color="primary" isExternal>
+            <DecoratedLink href={href} color="primary" isExternal>
               {label}
-            </Link>
+            </DecoratedLink>
           </Text>
         ))}
       </Stack>

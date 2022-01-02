@@ -10,7 +10,6 @@ import {
   Stat,
   StatNumber,
   StatLabel,
-  Link,
   ListItem,
   OrderedList,
 } from '@chakra-ui/react';
@@ -25,6 +24,7 @@ import importTokenToWallet from '../util/importTokenToWallet';
 import { claimTokensFromFaucet, getTokenBalance, getFaucetClaimEventsCount } from '../util/web3api';
 import FadeAnimation from './FadeAnimation';
 import ClaimSuccessModal from './ClaimSuccessModal';
+import DecoratedLink from './DecoratedLink';
 import useErrorToast from './useErrorToast';
 
 const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
@@ -165,10 +165,10 @@ const Faucet = () => {
               {account && status === 'connected' && (
                 <Text as="i">
                   Already connected to{' '}
-                  <Link href={`https://polygonscan.com/address/${account}`} color="primary" isExternal>
+                  <DecoratedLink href={`https://polygonscan.com/address/${account}`} color="primary" isExternal>
                     {account.substring(0, 4)}...
                     {account.substring(account.length - 4)}
-                  </Link>
+                  </DecoratedLink>
                 </Text>
               )}
             </HStack>
@@ -185,7 +185,7 @@ const Faucet = () => {
                 onClick={handleImportToken}
                 disabled={status !== 'connected'}
               >
-                2. Import KIKI token to MetaMask
+                2. Import KikiriCoin token to MetaMask
               </Button>
             </HStack>
 
@@ -201,7 +201,7 @@ const Faucet = () => {
                 onClick={handleClaim}
                 disabled={status !== 'connected'}
               >
-                3. Claim KIKI
+                3. Claim KikiriCoin
               </Button>
             </HStack>
           </Stack>
@@ -229,10 +229,10 @@ const Faucet = () => {
               <StatLabel>
                 KIKI in Your Wallet{' '}
                 {account && (
-                  <Link href={`https://polygonscan.com/address/${account}`} color="primary" isExternal>
+                  <DecoratedLink href={`https://polygonscan.com/address/${account}`} color="primary" isExternal>
                     {account.substring(0, 4)}...
                     {account.substring(account.length - 4)}
-                  </Link>
+                  </DecoratedLink>
                 )}
               </StatLabel>
             </Stat>
@@ -245,9 +245,9 @@ const Faucet = () => {
         <OrderedList pl={6}>
           <ListItem fontSize="sm" mb={2}>
             If you do not have a crypto wallet, download and install MetaMask.{' '}
-            <Link href="https://metamask.io/" color="primary" isExternal>
+            <DecoratedLink href="https://metamask.io/" color="primary" isExternal>
               MetaMask Official Site
-            </Link>
+            </DecoratedLink>
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
@@ -258,13 +258,13 @@ const Faucet = () => {
 
           <ListItem fontSize="sm" mb={2}>
             {`Once you have MetaMask installed and configured with an account, you'll need to fund it with MATIC token. The claim operation should require less than 0.001 MATIC (~0.02€). `}
-            <Link
+            <DecoratedLink
               href="https://medium.com/@nifty.pixels/getting-matic-on-the-polygon-network-with-crypto-com-48374d4d78d5"
               color="primary"
               isExternal
             >
               Medium: Getting MATIC on the Polygon network with Crypto.com
-            </Link>
+            </DecoratedLink>
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
