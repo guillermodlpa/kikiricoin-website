@@ -152,27 +152,14 @@ const Faucet = () => {
                 lineHeight="1"
                 size="md"
                 variant={'solid'}
-                colorScheme="secondary"
-                onClick={handleImportToken}
-                disabled={status !== 'connected'}
-              >
-                1. Import KIKI token to MetaMask
-              </Button>
-            </HStack>
-
-            <HStack pt={4}>
-              <Button
-                borderRadius="8px"
-                py="4"
-                px="4"
-                lineHeight="1"
-                size="md"
-                variant={'solid'}
                 colorScheme="primary"
                 onClick={handleConnect}
                 disabled={status === 'connected'}
+                isLoading={status === 'connecting'}
+                spinnerPlacement="end"
+                loadingText="1. Connecting"
               >
-                2. Connect Wallet
+                1. Connect Wallet
               </Button>
 
               {account && status === 'connected' && (
@@ -184,6 +171,22 @@ const Faucet = () => {
                   </Link>
                 </Text>
               )}
+            </HStack>
+
+            <HStack pt={4}>
+              <Button
+                borderRadius="8px"
+                py="4"
+                px="4"
+                lineHeight="1"
+                size="md"
+                variant={'solid'}
+                colorScheme="secondary"
+                onClick={handleImportToken}
+                disabled={status !== 'connected'}
+              >
+                2. Import KIKI token to MetaMask
+              </Button>
             </HStack>
 
             <HStack pt={4}>
@@ -265,11 +268,11 @@ const Faucet = () => {
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
-            {`Import KIKI token to it by clicking "1. Import KIKI token to MetaMask". This will display your KIKI balance in MetaMask. It should be 0 at the beginning.`}
+            {`Click "1. Connect Wallet" to enable this website to interact with MetaMask.`}
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
-            {`Click "2. Connect Wallet" to enable this website to interact with MetaMask.`}
+            {`Import KIKI token to it by clicking "2. Import KIKI token to MetaMask". This will display your KIKI balance in MetaMask. It should be 0 at the beginning.`}
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
