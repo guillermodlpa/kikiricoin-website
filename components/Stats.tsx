@@ -1,7 +1,8 @@
+import { useEffect, useState } from 'react';
 import { Flex, Container, Stack, Stat, StatNumber, StatLabel, Box } from '@chakra-ui/react';
+import { useTranslations } from 'next-intl';
 
 import { fromWei } from '../util/conversions';
-import { useEffect, useState } from 'react';
 import { getTokenMaxCap, getTokenTransferCount, getTokenTotalSupply } from '../util/web3api';
 import FadeAnimation from './FadeAnimation';
 import useErrorToast from './useErrorToast';
@@ -26,7 +27,7 @@ const Stats = () => {
     getTokenTotalSupply()
       .then((value) => setTotalSupply(value))
       .catch((error) => {
-        showErrorToast({ id: 'totalSupplyError', title: `Error fetching total supply` }, error);
+        showErrorToast('totalSupplyError', error);
       });
   }, [showErrorToast]);
 
@@ -35,7 +36,7 @@ const Stats = () => {
     getTokenMaxCap()
       .then((maxCap) => setMaxCap(maxCap))
       .catch((error) => {
-        showErrorToast({ id: 'maxCapError', title: `Error fetching max cap` }, error);
+        showErrorToast('maxCapError', error);
       });
   }, [showErrorToast]);
 
@@ -44,9 +45,11 @@ const Stats = () => {
     getTokenTransferCount()
       .then((count) => setTransactionCount(count))
       .catch((error) => {
-        showErrorToast({ id: 'transactionCountError', title: `Error fetching transaction count` }, error);
+        showErrorToast('transactionCountError', error);
       });
   }, [showErrorToast]);
+
+  const t = useTranslations('Stats');
 
   return (
     <Box as="section" backgroundColor="gray.50" py={24} id="stats">
@@ -60,10 +63,10 @@ const Stats = () => {
             px={8}
           >
             <FadeAnimation origin="left">
-              <StatBox title="Total Supply Currently" data={totalSupply ? fromWei(totalSupply) : '-'} />
+              <StatBox title={t('totalSupply')} data={totalSupply ? fromWei(totalSupply) : '-'} />
             </FadeAnimation>
             <FadeAnimation origin="right">
-              <StatBox title="Deployed On Date" data={'To do'} />
+              <StatBox title={t('deploymentDate')} data={'To do'} />
             </FadeAnimation>
           </Flex>
           <Flex
@@ -74,13 +77,10 @@ const Stats = () => {
             px={8}
           >
             <FadeAnimation origin="left">
-              <StatBox title="Maximum Cap" data={maxCap ? fromWei(maxCap) : '-'} />
+              <StatBox title={t('maxCap')} data={maxCap ? fromWei(maxCap) : '-'} />
             </FadeAnimation>
             <FadeAnimation origin="right">
-              <StatBox
-                title="Total KIKI Transfers Until Now"
-                data={transactionCount != null ? `${transactionCount}` : '-'}
-              />
+              <StatBox title={t('transferCount')} data={transactionCount != null ? `${transactionCount}` : '-'} />
             </FadeAnimation>
           </Flex>
         </Stack>

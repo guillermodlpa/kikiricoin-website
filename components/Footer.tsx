@@ -1,17 +1,23 @@
-import { Box, Center, Link, UnorderedList, ListItem } from '@chakra-ui/react';
+import { Box, Center, UnorderedList, ListItem } from '@chakra-ui/react';
+import { useTranslations } from 'next-intl';
 
 import DecoratedLink from './DecoratedLink';
 
-const Footer = () => (
-  <Box as="footer" px={8} py={4}>
-    <Center>
-      <UnorderedList listStyleType="none">
-        <ListItem>
-          <DecoratedLink href="https://guillermodelapuente.com" isExternal>{`Author's website`}</DecoratedLink>
-        </ListItem>
-      </UnorderedList>
-    </Center>
-  </Box>
-);
+const Footer = () => {
+  const t = useTranslations('Footer');
+  return (
+    <Box as="footer" px={8} py={4}>
+      <Center>
+        <UnorderedList listStyleType="none">
+          <ListItem>
+            <DecoratedLink href="https://guillermodelapuente.com" isExternal>
+              {t('authorWebsiteLink')}
+            </DecoratedLink>
+          </ListItem>
+        </UnorderedList>
+      </Center>
+    </Box>
+  );
+};
 
 export default Footer;
