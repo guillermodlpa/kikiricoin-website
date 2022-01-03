@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 
 import DecoratedLink from './DecoratedLink';
 
-const scanUrl = process.env.NEXT_PUBLIC_SCAN_URL || '';
+const scanUrl = process.env.NEXT_PUBLIC_SCAN_ADDRESS_URL || '';
 const tokenAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS || '';
 const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
 
