@@ -1,44 +1,58 @@
-import { createAlchemyWeb3 } from '@alch/alchemy-web3';
+import { AlchemyWeb3, createAlchemyWeb3 } from '@alch/alchemy-web3';
+import { Contract } from 'web3-eth-contract';
 import { AbiItem } from 'web3-utils/types';
 
 import KikiriCoinABI from './ABI/KikiriCoinABI.json';
 import KikiriFaucetABI from './ABI/KikiriFaucetABI.json';
 
-if (!process.env.NEXT_PUBLIC_BLOCKCHAIN_NETWORK_URL) {
-  throw new Error('No process.env.NEXT_PUBLIC_BLOCKCHAIN_NETWORK_URL');
-}
-if (!process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS) {
-  throw new Error('No process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS');
-}
-if (!process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS) {
-  throw new Error('No process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS');
+function singleton<T>(factory: () => T) {
+  let instance: T;
+  return () => {
+    if (!instance) {
+      instance = factory();
+    }
+    return instance;
+  };
 }
 
-export const web3 = createAlchemyWeb3(process.env.NEXT_PUBLIC_BLOCKCHAIN_NETWORK_URL);
-const tokenContract = new web3.eth.Contract(
-  KikiriCoinABI as AbiItem[],
-  process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS
-);
-const faucetContract = new web3.eth.Contract(
-  KikiriFaucetABI as AbiItem[],
-  process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS
-);
+const getWeb3 = singleton<AlchemyWeb3>(() => {
+  if (!process.env.NEXT_PUBLIC_BLOCKCHAIN_NETWORK_URL) {
+    throw new Error('No process.env.NEXT_PUBLIC_BLOCKCHAIN_NETWORK_URL');
+  }
+  return createAlchemyWeb3(process.env.NEXT_PUBLIC_BLOCKCHAIN_NETWORK_URL);
+});
+
+const getTokenContract = singleton<Contract>(() => {
+  if (!process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS) {
+    throw new Error('No process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS');
+  }
+  const web3 = getWeb3();
+  return new web3.eth.Contract(KikiriCoinABI as AbiItem[], process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS);
+});
+
+const getFaucetContract = singleton<Contract>(() => {
+  if (!process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS) {
+    throw new Error('No process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS');
+  }
+  const web3 = getWeb3();
+  return new web3.eth.Contract(KikiriFaucetABI as AbiItem[], process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS);
+});
 
 export const claimTokensFromFaucet = async (address: string) => {
   if (!address) {
     return Promise.reject(new Error('No address'));
   }
-  return faucetContract.methods
-    .claim()
+  return getFaucetContract()
+    .methods.claim()
     .send({ from: address })
     .then(() => {
       console.log('%cWeb3', 'background: orange; color: white', `claim`);
     });
 };
 
-export const getTokenBalance = (account: string): Promise<string> =>
-  tokenContract.methods
-    .balanceOf(account)
+export const getTokenBalance = async (account: string): Promise<string> =>
+  getTokenContract()
+    .methods.balanceOf(account)
     .call()
     .then((result: number) => {
       const value = result.toString();
@@ -48,9 +62,9 @@ export const getTokenBalance = (account: string): Promise<string> =>
       return value;
     });
 
-export const getTokenMaxCap = (): Promise<string> =>
-  tokenContract.methods
-    .cap()
+export const getTokenMaxCap = async (): Promise<string> =>
+  getTokenContract()
+    .methods.cap()
     .call()
     .then((result: number) => {
       const value = result.toString();
@@ -60,9 +74,9 @@ export const getTokenMaxCap = (): Promise<string> =>
       return value;
     });
 
-export const getTokenTotalSupply = (): Promise<string> =>
-  tokenContract.methods
-    .totalSupply()
+export const getTokenTotalSupply = async (): Promise<string> =>
+  getTokenContract()
+    .methods.totalSupply()
     .call()
     .then((result: number) => {
       const value = result.toString();
@@ -72,8 +86,8 @@ export const getTokenTotalSupply = (): Promise<string> =>
       return value;
     });
 
-export const getFaucetClaimEventsCount = (): Promise<number> =>
-  faucetContract
+export const getFaucetClaimEventsCount = async (): Promise<number> =>
+  getFaucetContract()
     .getPastEvents('Claim', {
       fromBlock: 0 /* @todo: set block number of deployment for efficiency? */,
       toBlock: 'latest',
@@ -83,8 +97,8 @@ export const getFaucetClaimEventsCount = (): Promise<number> =>
       return pastEvents.length;
     });
 
-export const getTokenTransferCount = (): Promise<number> =>
-  tokenContract
+export const getTokenTransferCount = async (): Promise<number> =>
+  getTokenContract()
     .getPastEvents('Transfer', {
       fromBlock: 0 /* @todo: set block number of deployment for efficiency? */,
       toBlock: 'latest',
