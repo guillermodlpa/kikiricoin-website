@@ -13,7 +13,7 @@ module.exports = {
       // This config ensures we load React from this project, not the libraries. Avoid duplicate React error
       react: path.join(__dirname, 'node_modules/react'),
       // Testing the metamask-react project locally. Can't manage with `npm link`
-      'metamask-react': path.join(__dirname, '../guillermodlpa/metamask-react'),
+      'metamask-react': path.join(__dirname, '../VGLoic/metamask-react'),
     };
     return config;
   },
