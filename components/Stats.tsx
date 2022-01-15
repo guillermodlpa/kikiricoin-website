@@ -6,10 +6,11 @@ import { fromWei } from '../util/conversions';
 import { getTokenMaxCap, getTokenTransferCount, getTokenTotalSupply } from '../util/web3api';
 import FadeAnimation from './FadeAnimation';
 import useErrorToast from './useErrorToast';
+import IncreasingInteger from './IncreasingInteger';
 
 type StatBoxProps = {
   title: string;
-  data: string;
+  data: string | JSX.Element;
 };
 
 const StatBox = ({ title, data }: StatBoxProps) => (
@@ -63,7 +64,10 @@ const Stats = () => {
             px={8}
           >
             <FadeAnimation origin="left">
-              <StatBox title={t('totalSupply')} data={totalSupply ? fromWei(totalSupply) : '-'} />
+              <StatBox
+                title={t('totalSupply')}
+                data={totalSupply != null ? <IncreasingInteger value={parseInt(fromWei(totalSupply), 10)} /> : '-'}
+              />
             </FadeAnimation>
             <FadeAnimation origin="right">
               <StatBox title={t('deploymentDate')} data={'To do'} />
@@ -77,10 +81,16 @@ const Stats = () => {
             px={8}
           >
             <FadeAnimation origin="left">
-              <StatBox title={t('maxCap')} data={maxCap ? fromWei(maxCap) : '-'} />
+              <StatBox
+                title={t('maxCap')}
+                data={maxCap != null ? <IncreasingInteger value={parseInt(fromWei(maxCap), 10)} /> : '-'}
+              />
             </FadeAnimation>
             <FadeAnimation origin="right">
-              <StatBox title={t('transferCount')} data={transactionCount != null ? `${transactionCount}` : '-'} />
+              <StatBox
+                title={t('transferCount')}
+                data={transactionCount != null ? <IncreasingInteger value={transactionCount} /> : '-'}
+              />
             </FadeAnimation>
           </Flex>
         </Stack>

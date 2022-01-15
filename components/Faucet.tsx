@@ -26,6 +26,7 @@ import FadeAnimation from './FadeAnimation';
 import ClaimSuccessModal from './ClaimSuccessModal';
 import DecoratedLink from './DecoratedLink';
 import useErrorToast from './useErrorToast';
+import IncreasingInteger from './IncreasingInteger';
 
 const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
 
@@ -213,15 +214,25 @@ const Faucet = () => {
             mb={16}
           >
             <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
-              <StatNumber fontSize="4xl">{faucetClaimCount || '-'}</StatNumber>
+              <StatNumber fontSize="4xl">
+                {faucetClaimCount ? <IncreasingInteger value={faucetClaimCount} /> : '-'}
+              </StatNumber>
               <StatLabel>{t('totalTimesUsed')}</StatLabel>
             </Stat>
             <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
-              <StatNumber fontSize="4xl">{faucetBalance !== undefined ? fromWei(faucetBalance) : '-'}</StatNumber>
+              <StatNumber fontSize="4xl">
+                {faucetBalance !== undefined ? <IncreasingInteger value={parseInt(fromWei(faucetBalance), 10)} /> : '-'}
+              </StatNumber>
               <StatLabel>{t('tokensAvailable')}</StatLabel>
             </Stat>
             <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
-              <StatNumber fontSize="4xl">{accountBalance !== undefined ? fromWei(accountBalance) : '-'}</StatNumber>
+              <StatNumber fontSize="4xl">
+                {accountBalance !== undefined ? (
+                  <IncreasingInteger value={parseInt(fromWei(accountBalance), 10)} />
+                ) : (
+                  '-'
+                )}
+              </StatNumber>
               <StatLabel>
                 {t('tokensInWallet')}{' '}
                 {account && (

@@ -33,6 +33,7 @@ const FadeAnimation = ({
         offsetX={offsetX[origin] || 0}
         offsetY={offsetY[origin] || 0}
         transition={{ enter: { duration: prefersReducedMotion ? 0 : 0.5 } }}
+        unmountOnExit // this prop also makes it mount on appear, and not before
       >
         {children}
       </SlideFade>
