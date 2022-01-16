@@ -15,7 +15,7 @@ const Hero = () => {
           <NextImage
             priority
             src={CoinLogo}
-            alt={t('logoAlt')}
+            alt={t('logoBackgroundAlt')}
             layout="fill"
             objectFit="cover"
             objectPosition={'40vw center'}

@@ -4,6 +4,7 @@
   },
   "Hero": {
     "logoAlt": "Logo",
+    "logoBackgroundAlt": "Background Logo",
     "funnySubtitle": "<i>Kikirikí</i> said the rooster, and the KIKI token was born.",
     "subtitle": "KikiriCoin (KIKI) is an ERC-20 token deployed on the Polygon blockchain network. Its implementation is open source and meant to be educational and fun.",
     "learnMoreButton": "Learn More",
