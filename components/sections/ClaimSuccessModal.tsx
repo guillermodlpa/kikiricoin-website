@@ -15,7 +15,7 @@ import {
 import NextImage from 'next/image';
 import debounce from 'lodash.debounce';
 
-import CoinLogo from './images/1f413-coin-color-adjusted.png';
+import CoinLogo from '../images/1f413-coin-color-adjusted.png';
 import { useTranslations } from 'next-intl';
 
 const getWindowDimensions = () => {

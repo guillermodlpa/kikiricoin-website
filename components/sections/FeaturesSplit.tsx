@@ -3,14 +3,14 @@ import { Box, Flex, Container, Stack, Heading, Text, VStack } from '@chakra-ui/r
 import NextImage from 'next/image';
 import { useTranslations } from 'next-intl';
 
-import RoosterOriginal from './images/1f413-original.png';
-import ethereumLogo from './images/ethereum-logo-2014-sq.png';
-import metamaskLogo from './images/MetaMask_Fox.svg';
-import maticTokenLogo from './images/matic-token-icon.webp';
-import web3jsLogo from './images/web3js.svg';
-import FadeAnimation from './FadeAnimation';
-import DecoratedLink from './DecoratedLink';
-import richTextConfig from '../util/nextIntlRichTextConfig';
+import RoosterOriginal from '../images/1f413-original.png';
+import ethereumLogo from '../images/ethereum-logo-2014-sq.png';
+import metamaskLogo from '../images/MetaMask_Fox.svg';
+import maticTokenLogo from '../images/matic-token-icon.webp';
+import web3jsLogo from '../images/web3js.svg';
+import FadeAnimation from '../ui/FadeAnimation';
+import DecoratedLink from '../ui/DecoratedLink';
+import richTextConfig from '../../util/nextIntlRichTextConfig';
 
 enum Position {
   Right = 'right',

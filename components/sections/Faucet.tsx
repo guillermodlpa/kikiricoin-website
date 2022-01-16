@@ -18,16 +18,16 @@ import NextImage from 'next/image';
 import { useMetaMask } from 'metamask-react';
 import { useTranslations } from 'next-intl';
 
-import coinImage from './images/1f413-coin-color-adjusted.png';
-import { fromWei } from '../util/conversions';
-import importTokenToWallet from '../util/importTokenToWallet';
-import { claimTokensFromFaucet, getTokenBalance, getFaucetClaimEventsCount } from '../util/web3api';
-import FadeAnimation from './FadeAnimation';
+import coinImage from '../images/1f413-coin-color-adjusted.png';
+import { fromWei } from '../../util/conversions';
+import importTokenToWallet from '../../util/importTokenToWallet';
+import { claimTokensFromFaucet, getTokenBalance, getFaucetClaimEventsCount } from '../../util/web3api';
+import FadeAnimation from '../ui/FadeAnimation';
 import ClaimSuccessModal from './ClaimSuccessModal';
-import DecoratedLink from './DecoratedLink';
-import useErrorToast from './useErrorToast';
-import IncreasingInteger from './IncreasingInteger';
-import StyledStat from './StyledStat';
+import DecoratedLink from '../ui/DecoratedLink';
+import useErrorToast from '../ui/useErrorToast';
+import IncreasingInteger from '../ui/IncreasingInteger';
+import StyledStat from '../ui/StyledStat';
 
 const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
 

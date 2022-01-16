@@ -1,7 +1,7 @@
 import { Box, Container, Heading, UnorderedList, ListItem } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 
-import DecoratedLink from './DecoratedLink';
+import DecoratedLink from '../ui/DecoratedLink';
 
 const scanUrl = process.env.NEXT_PUBLIC_SCAN_ADDRESS_URL || '';
 const tokenAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS || '';

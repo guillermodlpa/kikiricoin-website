@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { Flex, Container, Stack, Stat, StatNumber, StatLabel, Box } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 
-import { fromWei } from '../util/conversions';
-import { getTokenMaxCap, getTokenTransferCount, getTokenTotalSupply } from '../util/web3api';
-import FadeAnimation from './FadeAnimation';
-import useErrorToast from './useErrorToast';
-import IncreasingInteger from './IncreasingInteger';
-import StyledStat from './StyledStat';
+import { fromWei } from '../../util/conversions';
+import { getTokenMaxCap, getTokenTransferCount, getTokenTotalSupply } from '../../util/web3api';
+import FadeAnimation from '../ui/FadeAnimation';
+import useErrorToast from '../ui/useErrorToast';
+import IncreasingInteger from '../ui/IncreasingInteger';
+import StyledStat from '../ui/StyledStat';
 
 type StatBoxProps = {
   title: string;

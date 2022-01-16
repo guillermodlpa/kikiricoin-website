@@ -2,9 +2,9 @@ import { Flex, Container, Stack, HStack, Heading, Box, Button, Text } from '@cha
 import NextImage from 'next/image';
 import { useTranslations } from 'next-intl';
 
-import CoinLogo from './images/1f413-coin-color-adjusted.png';
-import FadeAnimation from './FadeAnimation';
-import richTextConfig from '../util/nextIntlRichTextConfig';
+import CoinLogo from '../images/1f413-coin-color-adjusted.png';
+import FadeAnimation from '../ui/FadeAnimation';
+import richTextConfig from '../../util/nextIntlRichTextConfig';
 
 const Hero = () => {
   const t = useTranslations('Hero');

@@ -2,14 +2,14 @@ import type { GetStaticPropsContext, NextPage } from 'next';
 import Head from 'next/head';
 import { MetaMaskProvider } from 'metamask-react';
 
-import LanguageMenu from '../components/LanguageMenu';
-import Hero from '../components/Hero';
-import Stats from '../components/Stats';
-import FeaturesSplit from '../components/FeaturesSplit';
-import Faucet from '../components/Faucet';
-import SourceCode from '../components/SourceCode';
-import LearningResources from '../components/LearningResources';
-import Footer from '../components/Footer';
+import LanguageMenu from '../components/ui/LanguageMenu';
+import Hero from '../components/sections/Hero';
+import Stats from '../components/sections/Stats';
+import FeaturesSplit from '../components/sections/FeaturesSplit';
+import Faucet from '../components/sections/Faucet';
+import SourceCode from '../components/sections/SourceCode';
+import LearningResources from '../components/sections/LearningResources';
+import Footer from '../components/sections/Footer';
 
 const Home: NextPage = () => {
   return (

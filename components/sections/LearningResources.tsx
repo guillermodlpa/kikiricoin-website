@@ -1,12 +1,12 @@
 import { Container, Stack, Heading, Box, Flex, Text } from '@chakra-ui/react';
 import NextImage from 'next/image';
-import FadeAnimation from './FadeAnimation';
-import DecoratedLink from './DecoratedLink';
+import FadeAnimation from '../ui/FadeAnimation';
+import DecoratedLink from '../ui/DecoratedLink';
 
-import CryptoZombie from './images/preview-crypto-zombie.png';
-import DevelopCryptoGuideThumbnail from './images/Develop_a_cryptocurrency-500.png';
-import AyusoCoinIcon from './images/ayusocoin_icon.svg';
-import WhiteBoardCryptoIcon from './images/whiteboard-crypto.jpeg';
+import CryptoZombie from '../images/preview-crypto-zombie.png';
+import DevelopCryptoGuideThumbnail from '../images/Develop_a_cryptocurrency-500.png';
+import AyusoCoinIcon from '../images/ayusocoin_icon.svg';
+import WhiteBoardCryptoIcon from '../images/whiteboard-crypto.jpeg';
 import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
