@@ -7,6 +7,7 @@ import { getTokenMaxCap, getTokenTransferCount, getTokenTotalSupply } from '../u
 import FadeAnimation from './FadeAnimation';
 import useErrorToast from './useErrorToast';
 import IncreasingInteger from './IncreasingInteger';
+import StyledStat from './StyledStat';
 
 type StatBoxProps = {
   title: string;
@@ -14,10 +15,10 @@ type StatBoxProps = {
 };
 
 const StatBox = ({ title, data }: StatBoxProps) => (
-  <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} mx={[4, 4, 8]} mb={[8, 0]} bg="white">
-    <StatNumber fontSize="4xl">{data}</StatNumber>
+  <StyledStat mx={[4, 4, 8]} mb={[8, 0]}>
     <StatLabel>{title}</StatLabel>
-  </Stat>
+    <StatNumber fontSize="4xl">{data}</StatNumber>
+  </StyledStat>
 );
 
 const Stats = () => {

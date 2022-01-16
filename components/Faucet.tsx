@@ -27,6 +27,7 @@ import ClaimSuccessModal from './ClaimSuccessModal';
 import DecoratedLink from './DecoratedLink';
 import useErrorToast from './useErrorToast';
 import IncreasingInteger from './IncreasingInteger';
+import StyledStat from './StyledStat';
 
 const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
 
@@ -213,26 +214,19 @@ const Faucet = () => {
             spacing={8}
             mb={16}
           >
-            <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
+            <StyledStat>
+              <StatLabel>{t('totalTimesUsed')}</StatLabel>
               <StatNumber fontSize="4xl">
                 {faucetClaimCount ? <IncreasingInteger value={faucetClaimCount} /> : '-'}
               </StatNumber>
-              <StatLabel>{t('totalTimesUsed')}</StatLabel>
-            </Stat>
-            <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
+            </StyledStat>
+            <StyledStat>
+              <StatLabel>{t('tokensAvailable')}</StatLabel>
               <StatNumber fontSize="4xl">
                 {faucetBalance !== undefined ? <IncreasingInteger value={parseInt(fromWei(faucetBalance), 10)} /> : '-'}
               </StatNumber>
-              <StatLabel>{t('tokensAvailable')}</StatLabel>
-            </Stat>
-            <Stat shadow="md" borderWidth="1px" borderRadius="md" px={6} py={10} bg="white">
-              <StatNumber fontSize="4xl">
-                {accountBalance !== undefined ? (
-                  <IncreasingInteger value={parseInt(fromWei(accountBalance), 10)} />
-                ) : (
-                  '-'
-                )}
-              </StatNumber>
+            </StyledStat>
+            <StyledStat>
               <StatLabel>
                 {t('tokensInWallet')}{' '}
                 {account && (
@@ -242,7 +236,14 @@ const Faucet = () => {
                   </DecoratedLink>
                 )}
               </StatLabel>
-            </Stat>
+              <StatNumber fontSize="4xl">
+                {accountBalance !== undefined ? (
+                  <IncreasingInteger value={parseInt(fromWei(accountBalance), 10)} />
+                ) : (
+                  '-'
+                )}
+              </StatNumber>
+            </StyledStat>
           </Stack>
         </FadeAnimation>
 
