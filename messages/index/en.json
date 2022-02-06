@@ -101,6 +101,10 @@
       "2": "Like any other transaction in the Polygon network, it will require a small amount of MATIC token. When you press Claim, MetaMask will display the estimated transaction cost and ask for confirmation.",
       "3": "This faucet allows you to request tokens every 5 minutes. You'll receive an error if you try again without waiting."
     },
+    "metamaskMissing": {
+      "errorMessage": "Crypto wallet not found. Do you have MetaMask installed and enabled?",
+      "installLink": "Install MetaMask"
+    },
     "issues": {
       "questionText": "Having trouble?",
       "reportIssueLink": "Report issue on GitHub"

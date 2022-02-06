@@ -13,6 +13,9 @@ import {
   ListItem,
   OrderedList,
   useBreakpointValue,
+  Alert,
+  AlertIcon,
+  AlertDescription,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import NextImage from 'next/image';
@@ -152,6 +155,18 @@ const Faucet = () => {
 
             <Text>{t('description.3')}</Text>
 
+            {status === 'unavailable' && (
+              <Alert status="warning">
+                <AlertIcon />
+                <AlertDescription>
+                  {t('metamaskMissing.errorMessage')}{' '}
+                  <DecoratedLink isExternal href="https://metamask.io/">
+                    {t('metamaskMissing.installLink')}
+                  </DecoratedLink>
+                </AlertDescription>
+              </Alert>
+            )}
+
             <Stack direction="column" spacing={4} align="flex-start" pt={4}>
               <HStack>
                 <Button
@@ -159,7 +174,7 @@ const Faucet = () => {
                   size="md"
                   colorScheme="primary"
                   onClick={handleConnect}
-                  disabled={status === 'connected'}
+                  disabled={status !== 'notConnected'}
                   isLoading={status === 'connecting'}
                   spinnerPlacement="end"
                   loadingText={`1. ${t('connecting')}`}
