@@ -16,9 +16,9 @@ const Footer = () => {
           </ListItem>
 
           <ListItem>
-            The KikiriCoin logo is the{' '}
+            {t('logoAttributionText')}{' '}
             <DecoratedLink href="https://emojipedia.org/google/android-9.0/rooster/" isExternal>
-              Rooster emoji on Google Android 9.0
+              {t('logoAttributionLink')}
             </DecoratedLink>
           </ListItem>
         </UnorderedList>

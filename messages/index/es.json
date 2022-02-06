@@ -164,7 +164,9 @@
     }
   },
   "Footer": {
-    "authorWebsiteLink": "Página web del autor, Guillermo de la Puente"
+    "authorWebsiteLink": "Página web del autor, Guillermo de la Puente",
+    "logoAttributionText": "El logo de KikiriCoin es el",
+    "logoAttributionLink": "emoji de gallo en Google Android 9.0"
   },
   "ClaimSuccessModal": {
     "title": "¡Obtenidos!",

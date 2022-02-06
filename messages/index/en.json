@@ -164,7 +164,9 @@
     }
   },
   "Footer": {
-    "authorWebsiteLink": "Author's website, Guillermo de la Puente"
+    "authorWebsiteLink": "Author's website, Guillermo de la Puente",
+    "logoAttributionText": "The KikiriCoin logo is the",
+    "logoAttributionLink": "Rooster emoji on Google Android 9.0"
   },
   "ClaimSuccessModal": {
     "title": "Claimed!",
