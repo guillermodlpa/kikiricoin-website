@@ -43,7 +43,7 @@ const Hero = () => {
             </FadeAnimation>
 
             <FadeAnimation origin="bottom">
-              <HStack>
+              <Stack direction={['column', 'row']}>
                 <Button
                   borderRadius="8px"
                   py="4"
@@ -69,7 +69,7 @@ const Hero = () => {
                 >
                   {t('viewSourceCodeButton')}
                 </Button>
-              </HStack>
+              </Stack>
             </FadeAnimation>
           </Stack>
 
