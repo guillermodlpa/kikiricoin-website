@@ -18,8 +18,8 @@ type ResourceCardProps = {
   imageAlt?: string;
 };
 
-const MAX_TH_HEIGHT = 100;
-const MAX_TH_WIDTH = 75;
+const MAX_TH_HEIGHT = 144;
+const MAX_TH_WIDTH = 90;
 
 const ResourceCard = ({ title, description, link, Image, imageAlt }: ResourceCardProps) => (
   <Flex

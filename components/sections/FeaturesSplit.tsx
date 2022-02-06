@@ -48,7 +48,7 @@ const Feature = ({ title, description, image, imagePosition, imageDescription, l
         ))}
       </Stack>
 
-      <Box w={['50%', '30%']} mt={[2, 0]} p={4}>
+      <Box w={[112, null, 144]} maxW="100%" mt={[2, 0]} p={4} flexShrink={0}>
         <NextImage src={image} alt={imageDescription} title={imageDescription} />
       </Box>
     </Flex>
