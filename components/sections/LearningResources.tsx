@@ -96,7 +96,7 @@ const LearningResources = () => {
           {t('title')}
         </Heading>
 
-        <Stack>
+        <Stack spacing={8}>
           {learningResources.map((props) => (
             <FadeAnimation key={props.link} origin="bottom">
               <ResourceCard {...props} />

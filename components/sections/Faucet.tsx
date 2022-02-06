@@ -1,4 +1,5 @@
 import {
+  SimpleGrid,
   Flex,
   Container,
   Stack,
@@ -205,14 +206,7 @@ const Faucet = () => {
         </Flex>
 
         <FadeAnimation origin="bottom">
-          <Stack
-            align="center"
-            justify={{ base: 'center', md: 'space-around', xl: 'space-between' }}
-            direction={{ base: 'column', md: 'row' }}
-            alignItems={{ base: 'stretch' }}
-            spacing={8}
-            mb={16}
-          >
+          <SimpleGrid columns={[1, 2, 3]} spacing={8} mb={16}>
             <StyledStat>
               <StatLabel>{t('totalTimesUsed')}</StatLabel>
               <StatNumber fontSize="4xl">
@@ -243,7 +237,7 @@ const Faucet = () => {
                 )}
               </StatNumber>
             </StyledStat>
-          </Stack>
+          </SimpleGrid>
         </FadeAnimation>
 
         <Heading as="h3" size="md" mb={4}>

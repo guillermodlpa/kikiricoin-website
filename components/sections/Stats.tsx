@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Flex, Container, Stack, StatNumber, StatLabel, Box } from '@chakra-ui/react';
+import { SimpleGrid, Container, Stack, StatNumber, StatLabel, Box } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 
 import { fromWei } from '../../util/conversions';
@@ -15,7 +15,7 @@ type StatBoxProps = {
 };
 
 const StatBox = ({ title, data }: StatBoxProps) => (
-  <StyledStat mx={[4, 4, 8]} mb={[8, 0]}>
+  <StyledStat>
     <StatLabel>{title}</StatLabel>
     <StatNumber fontSize="4xl">{data}</StatNumber>
   </StyledStat>
@@ -57,13 +57,7 @@ const Stats = () => {
     <Box as="section" backgroundColor="gray.50" py={24} id="stats">
       <Container maxW="container.md">
         <Stack spacing={8}>
-          <Flex
-            align="center"
-            direction={{ base: 'column', sm: 'row' }}
-            justify={{ base: 'stretch', sm: 'space-between' }}
-            alignItems={{ base: 'stretch' }}
-            px={8}
-          >
+          <SimpleGrid columns={[1, 2]} spacing={8}>
             <FadeAnimation origin="left">
               <StatBox
                 title={t('totalSupply')}
@@ -73,14 +67,6 @@ const Stats = () => {
             <FadeAnimation origin="right">
               <StatBox title={t('deploymentDate')} data={'To do'} />
             </FadeAnimation>
-          </Flex>
-          <Flex
-            align="center"
-            direction={{ base: 'column', sm: 'row' }}
-            justify={{ base: 'stretch', sm: 'space-between' }}
-            alignItems={{ base: 'stretch' }}
-            px={8}
-          >
             <FadeAnimation origin="left">
               <StatBox
                 title={t('maxCap')}
@@ -93,7 +79,7 @@ const Stats = () => {
                 data={transactionCount != null ? <IncreasingInteger value={transactionCount} /> : '-'}
               />
             </FadeAnimation>
-          </Flex>
+          </SimpleGrid>
         </Stack>
       </Container>
     </Box>
