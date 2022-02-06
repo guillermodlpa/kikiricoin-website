@@ -1,4 +1,4 @@
-import { Flex, Container, Stack, HStack, Heading, Box, Button, Text } from '@chakra-ui/react';
+import { Flex, Container, Stack, Heading, Box, Button, Text } from '@chakra-ui/react';
 import NextImage from 'next/image';
 import { useTranslations } from 'next-intl';
 
@@ -23,15 +23,15 @@ const Hero = () => {
         </Box>
       </Box>
 
-      <Container maxW="container.md">
+      <Container maxW="container.sm" px={8}>
         <Flex
           align="center"
-          justify={{ base: 'center', md: 'space-around', xl: 'space-between' }}
-          direction={{ base: 'column-reverse', md: 'row' }}
+          justify={['center', 'space-around', null, 'space-between']}
+          direction={['column-reverse', 'row']}
           minH="60vh"
           px={[0, 8]}
         >
-          <Stack w={{ base: '80%', md: '55%' }} mr={6} flexShrink={0}>
+          <Stack w={['100%', '55%']} mr={[0, 6]} flexShrink={0}>
             <FadeAnimation origin="left">
               <Heading as="h1" size="2xl" fontWeight="bold" mb={4}>
                 KikiriCoin
@@ -43,7 +43,7 @@ const Hero = () => {
             </FadeAnimation>
 
             <FadeAnimation origin="bottom">
-              <Stack direction={['column', 'row']} align="flex-start">
+              <Stack direction={['column', null, 'row']} align="flex-start">
                 <Button
                   borderRadius="8px"
                   py="4"
@@ -73,7 +73,7 @@ const Hero = () => {
             </FadeAnimation>
           </Stack>
 
-          <Box w={{ base: '40%', md: '40%' }} mb={{ base: 12, md: 0 }}>
+          <Box w={'40%'} mb={[12, 0]}>
             <FadeAnimation origin="bottom">
               <Box rounded="100%" shadow="lg" display="flex">
                 <NextImage src={CoinLogo} alt={t('logoAlt')} />

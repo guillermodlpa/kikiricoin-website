@@ -55,7 +55,7 @@ const Stats = () => {
 
   return (
     <Box as="section" backgroundColor="gray.50" py={24} id="stats">
-      <Container maxW="container.md">
+      <Container maxW="container.sm" px={8}>
         <Stack spacing={8}>
           <SimpleGrid columns={[1, 2]} spacing={8}>
             <FadeAnimation origin="left">

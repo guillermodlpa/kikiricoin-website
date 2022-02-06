@@ -11,7 +11,7 @@ const SourceCode = () => {
   const t = useTranslations('SourceCode');
   return (
     <Box as="section" py={24} id="source-code">
-      <Container maxW="container.md" px={8}>
+      <Container maxW="container.sm" px={8}>
         <Heading as="h2" size="lg" fontWeight="bold" mb={4}>
           {t('sourceCodeTitle')}
         </Heading>

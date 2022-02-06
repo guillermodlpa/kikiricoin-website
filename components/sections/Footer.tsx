@@ -6,7 +6,7 @@ import DecoratedLink from '../ui/DecoratedLink';
 const Footer = () => {
   const t = useTranslations('Footer');
   return (
-    <Box as="footer" px={8} py={4}>
+    <Box as="footer" px={8} py={8}>
       <Center>
         <UnorderedList listStyleType="none">
           <ListItem>

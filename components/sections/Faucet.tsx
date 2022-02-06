@@ -12,6 +12,7 @@ import {
   StatLabel,
   ListItem,
   OrderedList,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import NextImage from 'next/image';
@@ -30,6 +31,23 @@ import IncreasingInteger from '../ui/IncreasingInteger';
 import StyledStat from '../ui/StyledStat';
 
 const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
+
+const FaucetCoinHeaderImages = () => {
+  const count = useBreakpointValue([2, 3, 4]);
+  return (
+    <Stack direction="row" justifyContent="center" w="100%" overflow={'hidden'} flexShrink={0} mb={12}>
+      {Array(count)
+        .fill('')
+        .map((_, i) => (
+          <Box key={i}>
+            <FadeAnimation origin="bottom">
+              <NextImage width={`75px`} height={`75px`} src={coinImage} alt="KikiriCoin logo" />
+            </FadeAnimation>
+          </Box>
+        ))}
+    </Stack>
+  );
+};
 
 const Faucet = () => {
   const showErrorToast = useErrorToast();
@@ -112,7 +130,7 @@ const Faucet = () => {
 
   return (
     <Box as="section" backgroundColor="gray.50" py={24}>
-      <Container maxW="container.md" px={8}>
+      <Container maxW="container.sm" px={8}>
         <Flex
           align="center"
           justify={{ base: 'center', md: 'space-around', xl: 'space-between' }}
@@ -120,17 +138,7 @@ const Faucet = () => {
           pb={16}
         >
           <Stack flexGrow={1}>
-            <Stack direction="row" justifyContent="center" w="100%" flexShrink={0} mb={12}>
-              {Array(4)
-                .fill('')
-                .map((_, i) => (
-                  <Box alignSelf={i % 2 ? 'flex-end' : 'flex-start'} key={i}>
-                    <FadeAnimation origin="bottom">
-                      <NextImage width={`75px`} height={`75px`} src={coinImage} alt="KikiriCoin logo" />
-                    </FadeAnimation>
-                  </Box>
-                ))}
-            </Stack>
+            <FaucetCoinHeaderImages />
 
             <Heading as="h2" size="xl" fontWeight="bold" mb={4}>
               {t('title')}
@@ -142,66 +150,65 @@ const Faucet = () => {
 
             <Text>{t('description.2')}</Text>
 
-            <HStack pt={4}>
-              <Button
-                borderRadius="8px"
-                py="4"
-                px="4"
-                lineHeight="1"
-                size="md"
-                variant={'solid'}
-                colorScheme="primary"
-                onClick={handleConnect}
-                disabled={status === 'connected'}
-                isLoading={status === 'connecting'}
-                spinnerPlacement="end"
-                loadingText={`1. ${t('connecting')}`}
-              >
-                {`1. ${t('connectButton')}`}
-              </Button>
+            <Stack direction="column" spacing={4} align="flex-start" pt={4}>
+              <HStack>
+                <Button
+                  variant="solid"
+                  size="md"
+                  colorScheme="primary"
+                  onClick={handleConnect}
+                  disabled={status === 'connected'}
+                  isLoading={status === 'connecting'}
+                  spinnerPlacement="end"
+                  loadingText={`1. ${t('connecting')}`}
+                  whiteSpace="normal"
+                  textAlign="left"
+                >
+                  {`1. ${t('connectButton')}`}
+                </Button>
 
-              {account && status === 'connected' && (
-                <Text as="i">
-                  {t('alreadyConnected')}{' '}
-                  <DecoratedLink href={`https://polygonscan.com/address/${account}`} color="primary" isExternal>
-                    {account.substring(0, 4)}...
-                    {account.substring(account.length - 4)}
-                  </DecoratedLink>
-                </Text>
-              )}
-            </HStack>
+                {account && status === 'connected' && (
+                  <Text as="i">
+                    {t('alreadyConnected')}{' '}
+                    <DecoratedLink href={`https://polygonscan.com/address/${account}`} color="primary" isExternal>
+                      {account.substring(0, 4)}...
+                      {account.substring(account.length - 4)}
+                    </DecoratedLink>
+                  </Text>
+                )}
+              </HStack>
 
-            <HStack pt={4}>
               <Button
-                borderRadius="8px"
-                py="4"
-                px="4"
-                lineHeight="1"
+                variant="solid"
                 size="md"
-                variant={'solid'}
                 colorScheme="secondary"
                 onClick={handleImportToken}
                 disabled={status !== 'connected'}
+                whiteSpace="normal"
+                textAlign="left"
               >
                 {`2. ${t('importTokenButton')}`}
               </Button>
-            </HStack>
 
-            <HStack pt={4}>
               <Button
-                borderRadius="8px"
-                py="4"
-                px="4"
-                lineHeight="1"
+                variant="solid"
                 size="md"
-                variant={'solid'}
                 colorScheme="primary"
                 onClick={handleClaim}
                 disabled={status !== 'connected'}
+                whiteSpace="normal"
+                textAlign="left"
               >
                 {`3. ${t('claimButton')}`}
               </Button>
-            </HStack>
+
+              <Text>
+                Having trouble?{' '}
+                <DecoratedLink isExternal href="https://github.com/guillermodlpa/kikiricoin-website/issues">
+                  Report issue in GitHub
+                </DecoratedLink>
+              </Text>
+            </Stack>
           </Stack>
         </Flex>
 

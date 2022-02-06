@@ -91,7 +91,7 @@ const LearningResources = () => {
 
   return (
     <Box as="section" py={24} bg="gray.50">
-      <Container maxW="container.md" px={8}>
+      <Container maxW="container.sm" px={8}>
         <Heading as="h2" size="xl" fontWeight="bold" mb={4}>
           {t('title')}
         </Heading>

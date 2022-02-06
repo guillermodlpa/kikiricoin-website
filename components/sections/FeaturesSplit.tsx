@@ -30,7 +30,6 @@ const Feature = ({ title, description, image, imagePosition, imageDescription, l
   <FadeAnimation origin={imagePosition}>
     <Flex direction={['column', imagePosition === Position.Right ? 'row' : 'row-reverse']} alignItems="center">
       <Stack
-        w={['80%', '70%']}
         textAlign={['left', imagePosition === Position.Right ? 'left' : 'right']}
         justifyContent={'center'}
         ml={[0, imagePosition === Position.Right ? 0 : 4]}
@@ -150,8 +149,8 @@ const FeaturesSplit = () => {
   );
   return (
     <Box as="section" py={24}>
-      <Container maxW="container.sm">
-        <VStack px={8} alignItems="stretch" spacing={16}>
+      <Container maxW="container.sm" px={8}>
+        <VStack alignItems="stretch" spacing={16}>
           {content.map((row, index) => (
             <Feature
               key={row.title}
