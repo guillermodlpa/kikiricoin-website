@@ -103,13 +103,16 @@ const Faucet = () => {
   };
 
   const [claimSuccessModalIsOpen, setClaimSuccessModalIsOpen] = useState(false);
+  const [isClaiming, setIsClaiming] = useState(false);
   const handleClaim = () => {
     if (!account) {
       showErrorToast('claimError', new Error('No account connected'));
       return;
     }
+    setIsClaiming(true);
     claimTokensFromFaucet(account)
       .then(() => {
+        setIsClaiming(false);
         Promise.all([
           getFaucetClaimEventsCount().then((count) => {
             setFaucetClaimCount(count);
@@ -122,6 +125,7 @@ const Faucet = () => {
         setClaimSuccessModalIsOpen(true);
       })
       .catch((error) => {
+        setIsClaiming(false);
         showErrorToast('claimError', error);
       });
   };
@@ -178,16 +182,16 @@ const Faucet = () => {
                   disabled={status !== 'notConnected' && status !== 'connecting'}
                   isLoading={status === 'connecting'}
                   spinnerPlacement="end"
-                  loadingText={`1. ${t('connecting')}`}
+                  loadingText={t('connecting')}
                   rightIcon={status === 'connected' ? <CheckIcon /> : undefined}
                   whiteSpace="normal"
                   textAlign="left"
                 >
-                  {`1. ${t('connectButton')}`}
+                  {t('connectButton')}
                 </Button>
 
                 {account && status === 'connected' && (
-                  <Text as="i">
+                  <Text>
                     {t('alreadyConnected')}{' '}
                     <DecoratedLink href={`https://polygonscan.com/address/${account}`} color="primary" isExternal>
                       {account.substring(0, 4)}...
@@ -206,7 +210,7 @@ const Faucet = () => {
                 whiteSpace="normal"
                 textAlign="left"
               >
-                {`2. ${t('importTokenButton')}`}
+                {t('importTokenButton')}
               </Button>
 
               <Button
@@ -215,10 +219,13 @@ const Faucet = () => {
                 colorScheme="primary"
                 onClick={handleClaim}
                 disabled={status !== 'connected'}
+                isLoading={isClaiming}
+                loadingText={t('claimButton')}
+                spinnerPlacement="end"
                 whiteSpace="normal"
                 textAlign="left"
               >
-                {`3. ${t('claimButton')}`}
+                {t('claimButton')}
               </Button>
 
               <Text>
