@@ -19,13 +19,15 @@ const maxTimeout = 75;
 const IncreasingInteger = ({
   value,
   initialValue = 0,
-  duration = 1500,
+  maxDuration = 1500,
 }: {
   value: number;
   initialValue?: number;
-  duration?: number;
+  maxDuration?: number;
 }) => {
-  const [displayValue, setDisplayValue] = useState(0);
+  const [displayValue, setDisplayValue] = useState(initialValue);
+  const [startingValue, setStartingValue] = useState(initialValue);
+
   const startTimestamp = useRef<number>(Date.now());
   const timeEllapsed = useRef(0);
   const timeout = useRef<NodeJS.Timer>();
@@ -33,19 +35,30 @@ const IncreasingInteger = ({
   const updateValue = useCallback(() => {
     timeEllapsed.current = Date.now() - startTimestamp.current;
 
-    if (timeEllapsed.current > duration) {
-      setDisplayValue(value);
-    } else {
-      const easedValue = easeOutExpo(timeEllapsed.current, initialValue, value - initialValue, duration);
-      setDisplayValue(Math.round(easedValue));
+    const newDisplayValue =
+      timeEllapsed.current > maxDuration
+        ? value
+        : Math.round(easeOutExpo(timeEllapsed.current, startingValue, value - startingValue, maxDuration));
 
-      // On every iteration, we set a new timeout with a longer delay
-      const easedTimeout = easeOutExpo(timeEllapsed.current, minTimeout, maxTimeout - minTimeout, duration);
-      setTimeout(updateValue, Math.round(easedTimeout));
+    setDisplayValue(newDisplayValue);
+
+    // if we didn't reach the end, continue another iteration with a longer delay
+    if (newDisplayValue !== value) {
+      const easedTimeout = easeOutExpo(timeEllapsed.current, minTimeout, maxTimeout - minTimeout, maxDuration);
+      timeout.current = setTimeout(updateValue, Math.round(easedTimeout));
     }
-  }, [duration, initialValue, value]);
+    // if we reached the end, the new starting number to animate will be the final one
+    else {
+      setStartingValue(value);
+    }
+  }, [maxDuration, startingValue, value]);
 
   useEffect(() => {
+    // stop ongoing animations when `value` changes
+    if (timeout.current) {
+      clearTimeout(timeout.current);
+    }
+
     startTimestamp.current = Date.now();
     timeout.current = setTimeout(updateValue, minTimeout);
     return () => {
@@ -53,7 +66,7 @@ const IncreasingInteger = ({
         clearTimeout(timeout.current);
       }
     };
-  }, [updateValue]);
+  }, [updateValue, value]);
 
   return <>{displayValue.toLocaleString()}</>;
 };
