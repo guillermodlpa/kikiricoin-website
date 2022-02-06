@@ -112,22 +112,29 @@ const Faucet = () => {
     setIsClaiming(true);
     claimTokensFromFaucet(account)
       .then(() => {
-        setIsClaiming(false);
-        Promise.all([
-          getFaucetClaimEventsCount().then((count) => {
-            setFaucetClaimCount(count);
-          }),
-          getTokenBalance(faucetAddress).then((balance) => setFaucetBalance(balance)),
-          getTokenBalance(account).then((balance) => setAccountBalance(balance)),
-        ]).catch((error) => {
-          showErrorToast('refreshStatsError', error);
-        });
         setClaimSuccessModalIsOpen(true);
       })
       .catch((error) => {
-        setIsClaiming(false);
         showErrorToast('claimError', error);
+      })
+      .then(() => {
+        setIsClaiming(false);
       });
+  };
+
+  const handleCloseClaimSuccessModalAndReloadCounts = () => {
+    setClaimSuccessModalIsOpen(false);
+    if (account) {
+      Promise.all([
+        getFaucetClaimEventsCount().then((count) => {
+          setFaucetClaimCount(count);
+        }),
+        getTokenBalance(faucetAddress).then((balance) => setFaucetBalance(balance)),
+        getTokenBalance(account).then((balance) => setAccountBalance(balance)),
+      ]).catch((error) => {
+        showErrorToast('refreshStatsError', error);
+      });
+    }
   };
 
   const t = useTranslations('Faucet');
@@ -313,7 +320,7 @@ const Faucet = () => {
         </OrderedList>
       </Container>
 
-      <ClaimSuccessModal isOpen={claimSuccessModalIsOpen} onClose={() => setClaimSuccessModalIsOpen(false)} />
+      <ClaimSuccessModal isOpen={claimSuccessModalIsOpen} onClose={handleCloseClaimSuccessModalAndReloadCounts} />
     </Box>
   );
 };
