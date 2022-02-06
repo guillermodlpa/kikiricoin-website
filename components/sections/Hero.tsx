@@ -29,7 +29,6 @@ const Hero = () => {
           justify={['center', 'space-around', null, 'space-between']}
           direction={['column-reverse', 'row']}
           minH="60vh"
-          px={[0, 8]}
         >
           <Stack w={['100%', '55%']} mr={[0, 6]} flexShrink={0}>
             <FadeAnimation origin="left">
