@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Flex, Container, Stack, Stat, StatNumber, StatLabel, Box } from '@chakra-ui/react';
+import { Flex, Container, Stack, StatNumber, StatLabel, Box } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 
 import { fromWei } from '../../util/conversions';

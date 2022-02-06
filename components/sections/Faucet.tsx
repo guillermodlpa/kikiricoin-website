@@ -7,7 +7,6 @@ import {
   Box,
   Button,
   Text,
-  Stat,
   StatNumber,
   StatLabel,
   ListItem,
