@@ -58,7 +58,7 @@
     "PolygonNetwork": {
       "title": "Where is KikiriCoin deployed?",
       "description": {
-        "0": "KikiriCoin's smart contract is deployed on the Polygon Network. Polygon is a scaling solution for Ethereum that provides faster and cheaper transactions on Ethereum.",
+        "0": "KikiriCoin's smart contract is deployed on the <b>Polygon blockain network</b>. Polygon is a scaling solution for Ethereum that provides faster and cheaper transactions on Ethereum.",
         "1": "Polygon uses the cryptocurrency <b>MATIC</b> to charge users for executing transactions and reward transaction validators around the world.",
         "2": "MetaMask can also connect to the Polygon network, and therefore show account balances and sign transactions."
       },

@@ -112,7 +112,7 @@ const FeaturesSplit = () => {
         title: t('PolygonNetwork.title'),
         description: (
           <>
-            <Text>{t('PolygonNetwork.description.0')}</Text>
+            <Text>{t.rich('PolygonNetwork.description.0', richTextConfig)}</Text>
             <Text>{t.rich('PolygonNetwork.description.1', richTextConfig)}</Text>
             <Text>{t('PolygonNetwork.description.2')}</Text>
           </>

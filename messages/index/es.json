@@ -58,7 +58,7 @@
     "PolygonNetwork": {
       "title": "¿Dónde está KikiriCoin desplegado?",
       "description": {
-        "0": "El smart contract de KikiriCoin está desplegado en la red blockchain Polygon. Polygon es una solución a los problemas de escalabilidad de Ethereum, permitiendo transacciones más rápidas y baratas que en Ethereum.",
+        "0": "El smart contract de KikiriCoin está desplegado en la <b>red blockchain Polygon</b>. Polygon es una solución a los problemas de escalabilidad de Ethereum, permitiendo transacciones más rápidas y baratas que en Ethereum.",
         "1": "Polygon utiliza la cryptomoneda <b>MATIC</b> para cobrar los costes de transacción y recompensar a los <i>transaction validators</i> en todo el mundo.",
         "2": "MetaMask también se puede conectar a la red Polygon, y así mostrar balances de cuenta y ejecutar transacciones."
       },
