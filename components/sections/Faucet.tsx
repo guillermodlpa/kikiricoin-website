@@ -32,6 +32,7 @@ import DecoratedLink from '../ui/DecoratedLink';
 import useErrorToast from '../ui/useErrorToast';
 import IncreasingInteger from '../ui/IncreasingInteger';
 import StyledStat from '../ui/StyledStat';
+import { CheckIcon } from '@chakra-ui/icons';
 
 const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
 
@@ -173,11 +174,12 @@ const Faucet = () => {
                   variant="solid"
                   size="md"
                   colorScheme="primary"
-                  onClick={handleConnect}
-                  disabled={status !== 'notConnected'}
+                  onClick={status !== 'connecting' ? handleConnect : () => {}}
+                  disabled={status !== 'notConnected' && status !== 'connecting'}
                   isLoading={status === 'connecting'}
                   spinnerPlacement="end"
                   loadingText={`1. ${t('connecting')}`}
+                  rightIcon={status === 'connected' ? <CheckIcon /> : undefined}
                   whiteSpace="normal"
                   textAlign="left"
                 >
