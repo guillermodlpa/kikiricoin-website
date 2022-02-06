@@ -29,7 +29,7 @@ const Hero = () => {
           justify={{ base: 'center', md: 'space-around', xl: 'space-between' }}
           direction={{ base: 'column-reverse', md: 'row' }}
           minH="60vh"
-          px={8}
+          px={[0, 8]}
         >
           <Stack w={{ base: '80%', md: '55%' }} mr={6} flexShrink={0}>
             <FadeAnimation origin="left">
@@ -43,7 +43,7 @@ const Hero = () => {
             </FadeAnimation>
 
             <FadeAnimation origin="bottom">
-              <Stack direction={['column', 'row']}>
+              <Stack direction={['column', 'row']} align="flex-start">
                 <Button
                   borderRadius="8px"
                   py="4"
