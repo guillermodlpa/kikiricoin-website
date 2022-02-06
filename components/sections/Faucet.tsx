@@ -150,6 +150,8 @@ const Faucet = () => {
 
             <Text>{t('description.2')}</Text>
 
+            <Text>{t('description.3')}</Text>
+
             <Stack direction="column" spacing={4} align="flex-start" pt={4}>
               <HStack>
                 <Button
@@ -203,9 +205,9 @@ const Faucet = () => {
               </Button>
 
               <Text>
-                Having trouble?{' '}
+                {t('issues.questionText')}{' '}
                 <DecoratedLink isExternal href="https://github.com/guillermodlpa/kikiricoin-website/issues">
-                  Report issue in GitHub
+                  {t('issues.reportIssueLink')}
                 </DecoratedLink>
               </Text>
             </Stack>
