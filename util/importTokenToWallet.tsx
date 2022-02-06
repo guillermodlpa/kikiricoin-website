@@ -1,4 +1,5 @@
 import { DECIMAL_COUNT } from './conversions';
+import walletTokenLogoBase64 from './wallet-token-logo-base64';
 
 declare global {
   interface Window {
@@ -23,7 +24,7 @@ const importTokenToWallet = ({
           address,
           symbol,
           decimals,
-          image: '', // @todo
+          image: walletTokenLogoBase64,
         },
       },
     })
