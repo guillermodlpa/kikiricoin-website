@@ -11,6 +11,14 @@ const errorToastDefaultProps: UseToastOptions = {
   position: 'top',
 };
 
+const simplifyErrorMessage = (errorMessage: string) => {
+  // this case normally includes all the transaction parameters, so we can simplify it for the user
+  if (errorMessage.includes('Transaction has been reverted by the EVM')) {
+    return 'Transaction has been reverted by the EVM';
+  }
+  return errorMessage;
+};
+
 /**
  * Wrap over Chakra UI's toast function to throw an error with some preset behaviors
  * @see {@link https://chakra-ui.com/docs/feedback/toast}
@@ -26,7 +34,7 @@ export default function useErrorToast() {
           ...errorToastDefaultProps,
           id,
           title: t(id),
-          description: `${t('errorMessage')}: "${error.message}"`,
+          description: `${t('errorMessage')}: "${simplifyErrorMessage(error.message)}"`,
         });
       }
     },
