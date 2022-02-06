@@ -74,7 +74,7 @@ const Hero = () => {
 
           <Box w={'40%'} mb={[12, 0]}>
             <FadeAnimation origin="bottom">
-              <Box rounded="100%" shadow="lg" display="flex">
+              <Box rounded="100%" shadow="lg" display="flex" border="solid 1px" borderColor="gray.300">
                 <NextImage src={CoinLogo} alt={t('logoAlt')} />
               </Box>
             </FadeAnimation>
