@@ -28,16 +28,13 @@ type StatBoxProps = {
 
 const Feature = ({ title, description, image, imagePosition, imageDescription, links }: StatBoxProps) => (
   <FadeAnimation origin={imagePosition}>
-    <Flex
-      direction={{ base: 'column', sm: imagePosition === Position.Right ? 'row' : 'row-reverse' }}
-      alignItems={{ base: 'center' }}
-    >
+    <Flex direction={['column', imagePosition === Position.Right ? 'row' : 'row-reverse']} alignItems="center">
       <Stack
-        w={{ base: '80%', md: '70%' }}
-        textAlign={['center', imagePosition === Position.Right ? 'left' : 'right']}
+        w={['80%', '70%']}
+        textAlign={['left', imagePosition === Position.Right ? 'left' : 'right']}
         justifyContent={'center'}
-        ml={imagePosition === Position.Right ? 0 : 4}
-        mr={imagePosition === Position.Right ? 4 : 0}
+        ml={[0, imagePosition === Position.Right ? 0 : 4]}
+        mr={[0, imagePosition === Position.Right ? 4 : 0]}
       >
         <Heading as="h3" size="lg" fontWeight="bold" mb={4}>
           {title}
@@ -52,7 +49,7 @@ const Feature = ({ title, description, image, imagePosition, imageDescription, l
         ))}
       </Stack>
 
-      <Box w={{ base: '40%', md: '30%' }} mb={{ base: 12, md: 0 }} p={4}>
+      <Box w={['50%', '30%']} mt={[2, 0]} p={4}>
         <NextImage src={image} alt={imageDescription} title={imageDescription} />
       </Box>
     </Flex>
