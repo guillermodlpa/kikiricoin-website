@@ -109,6 +109,7 @@
       "questionText": "Having trouble?",
       "reportIssueLink": "Report issue on GitHub"
     },
+    "emptyFaucetMessage": "The faucet is empty. Report an issue with the link below to ask the owner for minting new tokens.",
     "connectButton": "1. Connect Wallet",
     "connecting": "1. Connecting",
     "alreadyConnected": "Already connected to",

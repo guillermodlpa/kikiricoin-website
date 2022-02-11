@@ -139,6 +139,8 @@ const Faucet = () => {
 
   const t = useTranslations('Faucet');
 
+  const faucetIsEmpty = faucetBalance !== undefined && parseInt(faucetBalance, 10) === 0;
+
   // useEffect(() => {
   //   window.setClaimSuccessModalIsOpen = setClaimSuccessModalIsOpen;
   // }, []);
@@ -193,6 +195,7 @@ const Faucet = () => {
                   rightIcon={status === 'connected' ? <CheckIcon /> : undefined}
                   whiteSpace="normal"
                   textAlign="left"
+                  flexShrink={0}
                 >
                   {t('connectButton')}
                 </Button>
@@ -220,20 +223,24 @@ const Faucet = () => {
                 {t('importTokenButton')}
               </Button>
 
-              <Button
-                variant="solid"
-                size="md"
-                colorScheme="primary"
-                onClick={handleClaim}
-                disabled={status !== 'connected'}
-                isLoading={isClaiming}
-                loadingText={t('claimButton')}
-                spinnerPlacement="end"
-                whiteSpace="normal"
-                textAlign="left"
-              >
-                {t('claimButton')}
-              </Button>
+              <HStack>
+                <Button
+                  variant="solid"
+                  size="md"
+                  colorScheme="primary"
+                  onClick={handleClaim}
+                  disabled={status !== 'connected' || faucetIsEmpty}
+                  isLoading={isClaiming}
+                  loadingText={t('claimButton')}
+                  spinnerPlacement="end"
+                  whiteSpace="normal"
+                  textAlign="left"
+                  flexShrink={0}
+                >
+                  {t('claimButton')}
+                </Button>
+                {faucetIsEmpty && <Text color="red">{t('emptyFaucetMessage')}</Text>}
+              </HStack>
 
               <Text>
                 {t('issues.questionText')}{' '}

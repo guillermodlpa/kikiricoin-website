@@ -20,7 +20,7 @@
     "KikiriCoin": {
       "title": "¿Qué es KikiriCoin?",
       "description": {
-        "0": "KikiriCoin es un token virtual que puede ser creado (minted) y transferido entre cuentas.",
+        "0": "KikiriCoin es un token virtual que puede ser creado (acuñado) y transferido entre cuentas.",
         "1": "Los balances y operaciones perimitdas con KikiriCoin están gestionadas por un <b>smart contract</b>."
       },
       "imageDescription": "Logo de KikiriCoin"
@@ -109,6 +109,7 @@
       "questionText": "¿Problemas?",
       "reportIssueLink": "Crea una propuesta en GitHub"
     },
+    "emptyFaucetMessage": "El faucet está vacío. Crea una propuesta con el link a continuación para pedir al creator que acuñe nuevos tokens",
     "connectButton": "1. Conectar Cartera",
     "connecting": "1. Conectando",
     "alreadyConnected": "Conectado a",
