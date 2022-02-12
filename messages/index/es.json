@@ -103,6 +103,11 @@
       "errorMessage": "Cripto cartera no encontrada. ¿Tienes MetaMask instalado y activo?",
       "installLink": "Instalar MetaMask"
     },
+    "wrongChain": {
+      "errorMessage": "Tu cartera digital no está conectada a la red blockchain Polygon (mainnet). Desconecta, cambia de red, y reconecta.",
+      "expected": "Esperada",
+      "actual": "Encontrada"
+    },
     "issues": {
       "questionText": "¿Problemas?",
       "reportIssueLink": "Crea una propuesta en GitHub"

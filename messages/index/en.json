@@ -103,6 +103,11 @@
       "errorMessage": "Crypto wallet not found. Do you have MetaMask installed and enabled?",
       "installLink": "Install MetaMask"
     },
+    "wrongChain": {
+      "errorMessage": "Your digital wallet isn't connected to the Polygon Mainnet blockchain. Disconnect, switch chain, and reconnect.",
+      "expected": "Expected",
+      "actual": "Actual"
+    },
     "issues": {
       "questionText": "Having trouble?",
       "reportIssueLink": "Report issue on GitHub"

@@ -33,10 +33,11 @@ import { CheckIcon } from '@chakra-ui/icons';
 import CoinImagesRow from '../ui/CoinImagesRow';
 
 const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
+const expectedChainId = process.env.NEXT_PUBLIC_CHAIN_ID || '';
 
 const Faucet = () => {
   const showErrorToast = useErrorToast();
-  const { connect, status, account } = useMetaMask();
+  const { connect, status, account, chainId } = useMetaMask();
 
   const [accountBalance, setAccountBalance] = useState<string>();
   useEffect(() => {
@@ -137,6 +138,8 @@ const Faucet = () => {
   const t = useTranslations('Faucet');
 
   const faucetIsEmpty = faucetBalance !== undefined && parseInt(faucetBalance, 10) === 0;
+  const chainIdBase10 = chainId ? `${parseInt(chainId, 16)}` : null;
+  const isExpectedChain = chainIdBase10 && chainIdBase10 === expectedChainId;
 
   // useEffect(() => {
   //   window.setClaimSuccessModalIsOpen = setClaimSuccessModalIsOpen;
@@ -178,6 +181,29 @@ const Faucet = () => {
               </Alert>
             )}
 
+            {status === 'connected' && !isExpectedChain && (
+              <Alert status="error">
+                <AlertIcon />
+                <AlertDescription>
+                  <Text>{t('wrongChain.errorMessage')}</Text>
+                  <Text>
+                    {t('wrongChain.expected')}
+                    {`: `}
+                    <DecoratedLink isExternal href={`https://chainlist.org/?search=${expectedChainId}`}>
+                      {expectedChainId}
+                    </DecoratedLink>
+                  </Text>
+                  <Text>
+                    {t('wrongChain.actual')}
+                    {`: `}
+                    <DecoratedLink isExternal href={`https://chainlist.org/?search=${chainIdBase10}`}>
+                      {chainIdBase10}
+                    </DecoratedLink>
+                  </Text>
+                </AlertDescription>
+              </Alert>
+            )}
+
             <Stack direction="column" spacing={4} align="flex-start" pt={4}>
               <HStack>
                 <Button
@@ -213,7 +239,7 @@ const Faucet = () => {
                 size="md"
                 colorScheme="secondary"
                 onClick={handleImportToken}
-                disabled={status !== 'connected'}
+                disabled={status !== 'connected' || !isExpectedChain}
                 whiteSpace="normal"
                 textAlign="left"
               >
@@ -226,7 +252,7 @@ const Faucet = () => {
                   size="md"
                   colorScheme="primary"
                   onClick={!isClaiming ? handleClaim : () => {}}
-                  disabled={status !== 'connected' || faucetIsEmpty}
+                  disabled={status !== 'connected' || faucetIsEmpty || !isExpectedChain}
                   isLoading={isClaiming}
                   loadingText={t('claiming')}
                   spinnerPlacement="end"
