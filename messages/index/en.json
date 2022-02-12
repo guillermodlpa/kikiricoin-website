@@ -13,6 +13,7 @@
   "Stats": {
     "totalSupply": "Current Total Supply",
     "deploymentDate": "Deployment Date",
+    "dateLocale": "en",
     "maxCap": "Maximum Supply Cap",
     "transferCount": "KikiriCoin Transfers"
   },

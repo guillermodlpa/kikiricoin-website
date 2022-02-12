@@ -21,6 +21,8 @@ const StatBox = ({ title, data }: StatBoxProps) => (
   </StyledStat>
 );
 
+const deploymentDate = new Date('2022-02-11');
+
 const Stats = () => {
   const showErrorToast = useErrorToast();
 
@@ -65,7 +67,10 @@ const Stats = () => {
               />
             </FadeAnimation>
             <FadeAnimation origin="right">
-              <StatBox title={t('deploymentDate')} data={'To do'} />
+              <StatBox
+                title={t('deploymentDate')}
+                data={deploymentDate.toLocaleDateString(t('dateLocale'), { dateStyle: 'medium' })}
+              />
             </FadeAnimation>
             <FadeAnimation origin="left">
               <StatBox
