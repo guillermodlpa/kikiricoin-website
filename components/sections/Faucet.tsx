@@ -91,7 +91,20 @@ const Faucet = () => {
       return;
     }
     setIsClaiming(true);
-    claimTokensFromFaucet(account)
+
+    let timeout: NodeJS.Timeout | undefined;
+    const delayBeforeOptimisticConfirmation = 30000;
+
+    // If the claiming finishes first, the confirmation will be real. Otherwise it'll be optimistic
+    Promise.race([
+      claimTokensFromFaucet(account),
+      new Promise<void>((resolve) => {
+        timeout = setTimeout(() => {
+          console.log('Claim transaction takes too long. Optimistically showing confirmation.');
+          resolve();
+        }, delayBeforeOptimisticConfirmation);
+      }),
+    ])
       .then(() => {
         setClaimSuccessModalIsOpen(true);
       })
@@ -100,6 +113,9 @@ const Faucet = () => {
       })
       .then(() => {
         setIsClaiming(false);
+        if (timeout) {
+          clearTimeout(timeout);
+        }
       });
   };
 
@@ -209,10 +225,10 @@ const Faucet = () => {
                   variant="solid"
                   size="md"
                   colorScheme="primary"
-                  onClick={handleClaim}
+                  onClick={!isClaiming ? handleClaim : () => {}}
                   disabled={status !== 'connected' || faucetIsEmpty}
                   isLoading={isClaiming}
-                  loadingText={t('claimButton')}
+                  loadingText={t('claiming')}
                   spinnerPlacement="end"
                   whiteSpace="normal"
                   textAlign="left"

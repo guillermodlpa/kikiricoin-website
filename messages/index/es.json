@@ -113,6 +113,7 @@
     "alreadyConnected": "Conectado a",
     "importTokenButton": "2. Importar token KikiriCoin a MetaMask",
     "claimButton": "3. Obtener KikiriCoin",
+    "claiming": "3. Obteniendo KikiriCoin",
     "totalTimesUsed": "Veces Usado en Total",
     "tokensAvailable": "Tokens KikiriCoin Disponibles",
     "tokensInWallet": "Tokens KikiriCoin en su Cartera",
