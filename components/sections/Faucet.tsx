@@ -12,17 +12,14 @@ import {
   StatLabel,
   ListItem,
   OrderedList,
-  useBreakpointValue,
   Alert,
   AlertIcon,
   AlertDescription,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import NextImage from 'next/image';
 import { useMetaMask } from 'metamask-react';
 import { useTranslations } from 'next-intl';
 
-import coinImage from '../images/1f413-coin-color-adjusted.png';
 import { fromWei } from '../../util/conversions';
 import importTokenToWallet from '../../util/importTokenToWallet';
 import { claimTokensFromFaucet, getTokenBalance, getFaucetClaimEventsCount } from '../../util/web3api';
@@ -33,25 +30,9 @@ import useErrorToast from '../ui/useErrorToast';
 import IncreasingInteger from '../ui/IncreasingInteger';
 import StyledStat from '../ui/StyledStat';
 import { CheckIcon } from '@chakra-ui/icons';
+import CoinImagesRow from '../ui/CoinImagesRow';
 
 const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
-
-const FaucetCoinHeaderImages = () => {
-  const count = useBreakpointValue([2, 3, 4]);
-  return (
-    <Stack direction="row" justifyContent="center" w="100%" overflow={'hidden'} flexShrink={0} mb={12}>
-      {Array(count)
-        .fill('')
-        .map((_, i) => (
-          <Box key={i}>
-            <FadeAnimation origin="bottom">
-              <NextImage width={`75px`} height={`75px`} src={coinImage} alt="KikiriCoin logo" />
-            </FadeAnimation>
-          </Box>
-        ))}
-    </Stack>
-  );
-};
 
 const Faucet = () => {
   const showErrorToast = useErrorToast();
@@ -155,7 +136,7 @@ const Faucet = () => {
           pb={16}
         >
           <Stack flexGrow={1}>
-            <FaucetCoinHeaderImages />
+            <CoinImagesRow />
 
             <Heading as="h2" size="xl" fontWeight="bold" mb={4}>
               {t('title')}
