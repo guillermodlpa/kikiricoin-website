@@ -118,29 +118,7 @@
     "claiming": "3. Claiming 10 KikiriCoin",
     "totalTimesUsed": "Total Times Used",
     "tokensAvailable": "KikiriCoin Tokens Available",
-    "tokensInWallet": "KikiriCoin Tokens in your Wallet",
-    "detailedInstructionsTitle": "Detailed Instructions",
-    "detailedInstructionsList": {
-      "0": {
-        "text": "If you do not have a crypto wallet, download and install MetaMask.",
-        "link": "MetaMask Official Site"
-      },
-      "1": {
-        "text": "When you set up your crypto wallet, be sure to keep your private key safe. The private key is a code that allows you to access your wallet from anywhere. If anybody else, like a hacker, discovers your private key, they'd have full control to take your tokens."
-      },
-      "2": {
-        "text": "Once you have MetaMask installed and configured with an account, you'll need to fund it with MATIC token. The claim operation should require less than 0.001 MATIC (~0.02€)."
-      },
-      "3": {
-        "text": "Click \"1. Connect Wallet\" to enable this website to interact with MetaMask."
-      },
-      "4": {
-        "text": "Import the custom token to it by clicking \"2. Import KikiriCoin token to MetaMask\". After confirming it, MetaMask should display your KikiriCoin token. It should be 0 at the beginning."
-      },
-      "5": {
-        "text": "Click \"3. Claim KikiriCoin\", review the transaction that MetaMask displays, and confirm it. If you have sufficient MATIC to trigger the transaction, you'll be able to sign it and shortly after you'll see a confirmation."
-      }
-    }
+    "tokensInWallet": "KikiriCoin Tokens in your Wallet"
   },
   "SourceCode": {
     "sourceCodeTitle": "Source Code",

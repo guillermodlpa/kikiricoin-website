@@ -233,13 +233,6 @@ const Faucet = () => {
                 </Button>
                 {faucetIsEmpty && <Text color="red">{t('emptyFaucetMessage')}</Text>}
               </HStack>
-
-              <Text>
-                {t('issues.questionText')}{' '}
-                <DecoratedLink isExternal href="https://github.com/guillermodlpa/kikiricoin-website/issues">
-                  {t('issues.reportIssueLink')}
-                </DecoratedLink>
-              </Text>
             </Stack>
           </Stack>
         </Flex>
@@ -279,37 +272,12 @@ const Faucet = () => {
           </SimpleGrid>
         </FadeAnimation>
 
-        <Heading as="h3" size="md" mb={4}>
-          {t('detailedInstructionsTitle')}
-        </Heading>
-        <OrderedList pl={6}>
-          <ListItem fontSize="sm" mb={2}>
-            {t('detailedInstructionsList.0.text')}{' '}
-            <DecoratedLink href="https://metamask.io/" color="primary" isExternal>
-              {t('detailedInstructionsList.0.link')}
-            </DecoratedLink>
-          </ListItem>
-
-          <ListItem fontSize="sm" mb={2}>
-            {t('detailedInstructionsList.1.text')}
-          </ListItem>
-
-          <ListItem fontSize="sm" mb={2}>
-            {t('detailedInstructionsList.2.text')}
-          </ListItem>
-
-          <ListItem fontSize="sm" mb={2}>
-            {t('detailedInstructionsList.3.text')}
-          </ListItem>
-
-          <ListItem fontSize="sm" mb={2}>
-            {t('detailedInstructionsList.4.text')}
-          </ListItem>
-
-          <ListItem fontSize="sm" mb={2}>
-            {t('detailedInstructionsList.5.text')}
-          </ListItem>
-        </OrderedList>
+        <Text>
+          {t('issues.questionText')}{' '}
+          <DecoratedLink isExternal href="https://github.com/guillermodlpa/kikiricoin-website/issues">
+            {t('issues.reportIssueLink')}
+          </DecoratedLink>
+        </Text>
       </Container>
 
       <ClaimSuccessModal isOpen={claimSuccessModalIsOpen} onClose={handleCloseClaimSuccessModalAndReloadCounts} />

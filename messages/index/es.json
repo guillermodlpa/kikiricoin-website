@@ -118,29 +118,7 @@
     "claiming": "3. Obteniendo 10 KikiriCoin",
     "totalTimesUsed": "Veces Usado en Total",
     "tokensAvailable": "Tokens KikiriCoin Disponibles",
-    "tokensInWallet": "Tokens KikiriCoin en su Cartera",
-    "detailedInstructionsTitle": "Instrucciones Detalladas",
-    "detailedInstructionsList": {
-      "0": {
-        "text": "Si no tienes una cartera cripto, descarga e instala MetaMask.",
-        "link": "Página web oficial de MetaMask"
-      },
-      "1": {
-        "text": "Cuando configure su cartera, asegúrese de mantener su clave privada segura. La clave privada es un código que le permite acceder a su cuenta desde cualquier lugar. Si otra persona, como un hacker, descrubre su clave privada, tendría control total para tomar sus tokens."
-      },
-      "2": {
-        "text": "Una vez haya configurado una cuenta en MetaMask, tendrá que añadir tokens MATIC. La operación de obtener KikiriCoin debería requerir menos de 0.001 MATIC (~0.02€)."
-      },
-      "3": {
-        "text": "Haga click en \"1. Conectar Cartera\" para permitir a esta página web interactuar con MetaMask."
-      },
-      "4": {
-        "text": "Importe el token haciendo click en \"2. Importar token KikiriCoin a MetaMask\". Tras confirmarlo en MetaMask, el balance de KikiriCoins debería mostrarse, y debería ser 0 al principiio."
-      },
-      "5": {
-        "text": "Haga click en \"3. Obtener KikiriCoin\", revise la transacción que MetaMask muestra, y acéptela. Si tiene suficiente MATIC para ejecutar la transacción, podrá firmarla y al poco tiempo ver una alerta de confirmación."
-      }
-    }
+    "tokensInWallet": "Tokens KikiriCoin en su Cartera"
   },
   "SourceCode": {
     "sourceCodeTitle": "Código Fuente",
