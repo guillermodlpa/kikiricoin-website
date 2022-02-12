@@ -30,7 +30,7 @@
       "title": "¿Qué es un smart contract?",
       "description": {
         "0": "Un breve programa de ordenador que se ejecuta en una red de blockchain. Los smart contracts que se depliegan en Ethereum, Polygon, y otras redes, están escritos utilizando el lenguaje de programación Solidity.",
-        "1": "El token está implementado utilizando la interfaz ERC-20. Éste estandar hace a KikiriCoin compatible con cualquier sistema que gestione tokens de Ethereum."
+        "1": "El token está implementado utilizando la interfaz ERC-20. Este estándar hace a KikiriCoin compatible con cualquier sistema que gestione tokens de Ethereum."
       },
       "imageDescription": "Logo de Ethereum"
     },
@@ -38,7 +38,7 @@
       "title": "¿Cómo interactúa esta página web con KikiriCoin?",
       "description": {
         "0": "Esta página web utiliza Web3.js, un cliente de JavaScript para interactuar con redes blockchain a través de Alchemy",
-        "1": "Alchemy es un servicio que permite connectarse a nodos de la red blockchain. Gracias a ello, no tenemos que mantener nuestra propia infraestructura de nodos."
+        "1": "Alchemy es un servicio que permite conectarse a nodos de la red blockchain. Gracias a ello, no tenemos que mantener nuestra propia infraestructura de nodos."
       },
       "imageDescription": "Web3.Logo de js",
       "links": {
