@@ -16,7 +16,7 @@ import {
   AlertIcon,
   AlertDescription,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useMetaMask } from 'metamask-react';
 import { useTranslations } from 'next-intl';
 
@@ -40,37 +40,8 @@ const Faucet = () => {
   const { connect, status, account, chainId } = useMetaMask();
 
   const [accountBalance, setAccountBalance] = useState<string>();
-  useEffect(() => {
-    if (account) {
-      getTokenBalance(account)
-        .then((balance) => setAccountBalance(balance))
-        .catch((error) => {
-          showErrorToast('accountError', error);
-        });
-    } else {
-      setAccountBalance(undefined);
-    }
-  }, [account, showErrorToast]);
-
   const [faucetBalance, setFaucetBalance] = useState<string>();
-  useEffect(() => {
-    getTokenBalance(faucetAddress)
-      .then((balance) => setFaucetBalance(balance))
-      .catch((error) => {
-        showErrorToast('faucetBalanceError', error);
-      });
-  }, [showErrorToast]);
-
   const [faucetClaimCount, setFaucetClaimCount] = useState<number>();
-  useEffect(() => {
-    getFaucetClaimEventsCount()
-      .then((count) => {
-        setFaucetClaimCount(count);
-      })
-      .catch((error) => {
-        showErrorToast('faucetClaimCount', error);
-      });
-  }, [showErrorToast]);
 
   const handleImportToken = () => {
     importTokenToWallet().catch((error) => {
@@ -83,6 +54,24 @@ const Faucet = () => {
       showErrorToast('connectError', error);
     });
   };
+
+  const refreshFaucetStats = useCallback(() => {
+    Promise.all([
+      getFaucetClaimEventsCount().then((count) => {
+        setFaucetClaimCount(count);
+      }),
+      getTokenBalance(faucetAddress).then((balance) => setFaucetBalance(balance)),
+      account
+        ? getTokenBalance(account).then((balance) => setAccountBalance(balance))
+        : Promise.resolve().then(() => setAccountBalance(undefined)),
+    ]).catch((error) => {
+      showErrorToast('refreshStatsError', error);
+    });
+  }, [showErrorToast, account]);
+
+  useEffect(() => {
+    refreshFaucetStats();
+  }, [refreshFaucetStats]);
 
   const [claimSuccessModalIsOpen, setClaimSuccessModalIsOpen] = useState(false);
   const [isClaiming, setIsClaiming] = useState(false);
@@ -104,25 +93,16 @@ const Faucet = () => {
         setIsClaiming(false);
         showErrorToast('claimError', error);
       },
+      receipt: () => {
+        refreshFaucetStats();
+      },
     });
   };
 
   const handleCloseClaimSuccessModalAndReloadCounts = () => {
     setClaimSuccessModalIsOpen(false);
-    if (account) {
-      Promise.all([
-        getFaucetClaimEventsCount().then((count) => {
-          setFaucetClaimCount(count);
-        }),
-        getTokenBalance(faucetAddress).then((balance) => setFaucetBalance(balance)),
-        getTokenBalance(account).then((balance) => setAccountBalance(balance)),
-      ]).catch((error) => {
-        showErrorToast('refreshStatsError', error);
-      });
-    }
+    refreshFaucetStats();
   };
-
-  const t = useTranslations('Faucet');
 
   const faucetIsEmpty = faucetBalance !== undefined && parseInt(faucetBalance, 10) === 0;
   const chainIdBase10 = chainId ? `${parseInt(chainId, 16)}` : null;
@@ -131,6 +111,8 @@ const Faucet = () => {
   // useEffect(() => {
   //   window.setClaimSuccessModalIsOpen = setClaimSuccessModalIsOpen;
   // }, []);
+
+  const t = useTranslations('Faucet');
 
   return (
     <Box as="section" backgroundColor="gray.50" py={24}>

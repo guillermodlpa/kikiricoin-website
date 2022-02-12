@@ -83,13 +83,10 @@
     "totalSupplyError": "Error fetching total supply",
     "maxCapError": "Error fetching max cap",
     "transactionCountError": "Error fetching transaction count",
-    "accountError": "Error fetching connected account balance",
-    "faucetBalanceError": "Error fetching faucet account balance",
-    "faucetClaimCount": "Error fetching faucet claim count",
     "importTokenError": "Error importing token to account",
     "connectError": "Error connecting to account",
     "claimError": "Error claiming",
-    "refreshStatsError": "Error refreshing counts"
+    "refreshStatsError": "Error loading faucet counts"
   },
   "Faucet": {
     "title": "Faucet",
@@ -112,7 +109,7 @@
       "questionText": "Having trouble?",
       "reportIssueLink": "Report issue on GitHub"
     },
-    "emptyFaucetMessage": "The faucet is empty. Report an issue with the link below to ask the owner for minting new tokens.",
+    "emptyFaucetMessage": "The faucet is now empty. Report an issue with the link below to ask the owner for minting new tokens.",
     "connectButton": "1. Connect Wallet",
     "connecting": "1. Connecting",
     "alreadyConnected": "Already connected to",

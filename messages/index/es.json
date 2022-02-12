@@ -83,9 +83,6 @@
     "totalSupplyError": "Error cargando suministro total",
     "maxCapError": "Error cargando límite de suministro",
     "transactionCountError": "Error cargando número de transacciones",
-    "accountError": "Error cargando balance de cuenta conectada",
-    "faucetBalanceError": "Error cargando balance de cuenta faucet",
-    "faucetClaimCount": "Error cargando veces que se ha utilizado el faucet",
     "importTokenError": "Error importando token",
     "connectError": "Error conectando a cuenta",
     "claimError": "Error solicitando",
@@ -112,7 +109,7 @@
       "questionText": "¿Problemas?",
       "reportIssueLink": "Crea una propuesta en GitHub"
     },
-    "emptyFaucetMessage": "El faucet está vacío. Crea una propuesta con el link a continuación para pedir al creator que acuñe nuevos tokens",
+    "emptyFaucetMessage": "El faucet ahora está vacío. Crea una propuesta con el link a continuación para pedir al creator que acuñe nuevos tokens",
     "connectButton": "1. Conectar Cartera",
     "connecting": "1. Conectando",
     "alreadyConnected": "Conectado a",
