@@ -22,14 +22,14 @@
       "title": "¿Qué es KikiriCoin?",
       "description": {
         "0": "KikiriCoin es un token virtual que puede ser creado (acuñado) y transferido entre cuentas.",
-        "1": "Los balances y operaciones perimitdas con KikiriCoin están gestionadas por un <b>smart contract</b>."
+        "1": "Los balances y operaciones permitidas de KikiriCoin están gestionados por un <b>smart contract</b>."
       },
       "imageDescription": "Logo de KikiriCoin"
     },
     "SmartContract": {
       "title": "¿Qué es un smart contract?",
       "description": {
-        "0": "Un breve programa de ordenador que se ejecuta en una red de blockchain. Los smart contracts que se depliegan en Ethereum, Polugon, y otras muchas redes, están escritos utilizando el lenguaje de programación Solidity.",
+        "0": "Un breve programa de ordenador que se ejecuta en una red de blockchain. Los smart contracts que se depliegan en Ethereum, Polygon, y otras redes, están escritos utilizando el lenguaje de programación Solidity.",
         "1": "El token está implementado utilizando la interfaz ERC-20. Éste estandar hace a KikiriCoin compatible con cualquier sistema que gestione tokens de Ethereum."
       },
       "imageDescription": "Logo de Ethereum"
