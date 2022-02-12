@@ -135,12 +135,7 @@ const FeaturesSplit = () => {
             <Text>{t.rich('MATIC.description.1', richTextConfig)}</Text>
           </>
         ),
-        links: [
-          {
-            href: 'https://medium.com/@nifty.pixels/getting-matic-on-the-polygon-network-with-crypto-com-48374d4d78d5',
-            label: t('MATIC.links.0'),
-          },
-        ],
+        links: [],
         image: maticTokenLogo,
         imageDescription: t('MATIC.imageDescription'),
       },

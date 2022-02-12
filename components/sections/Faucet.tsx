@@ -303,14 +303,7 @@ const Faucet = () => {
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>
-            {t('detailedInstructionsList.2.text')}{' '}
-            <DecoratedLink
-              href="https://medium.com/@nifty.pixels/getting-matic-on-the-polygon-network-with-crypto-com-48374d4d78d5"
-              color="primary"
-              isExternal
-            >
-              {t('detailedInstructionsList.2.link')}
-            </DecoratedLink>
+            {t('detailedInstructionsList.2.text')}
           </ListItem>
 
           <ListItem fontSize="sm" mb={2}>

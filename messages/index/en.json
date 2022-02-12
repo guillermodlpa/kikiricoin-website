@@ -75,10 +75,7 @@
         "0": "MATIC is the native cryptocurrency to the Polygon network. If a user wants to execute a transaction on Polygon, like to get some KikiriCoins, they'll need to have some MATIC token in their account.",
         "1": "<b>In order to claim KIKI tokens, a user first needs to fund their crypto account with MATIC.</b> The claim operation should require less than 0.001 MATIC (~0.02€)."
       },
-      "imageDescription": "MATIC logo",
-      "links": {
-        "0": "Tutorial: Getting MATIC on the Polygon network with Crypto.com"
-      }
+      "imageDescription": "MATIC logo"
     }
   },
   "Error": {
@@ -129,8 +126,7 @@
         "text": "When you set up your crypto wallet, be sure to keep your private key safe. The private key is a code that allows you to access your wallet from anywhere. If anybody else, like a hacker, discovers your private key, they'd have full control to take your tokens."
       },
       "2": {
-        "text": "Once you have MetaMask installed and configured with an account, you'll need to fund it with MATIC token. The claim operation should require less than 0.001 MATIC (~0.02€).",
-        "link": "Tutorial: Getting MATIC on the Polygon network with Crypto.com"
+        "text": "Once you have MetaMask installed and configured with an account, you'll need to fund it with MATIC token. The claim operation should require less than 0.001 MATIC (~0.02€)."
       },
       "3": {
         "text": "Click \"1. Connect Wallet\" to enable this website to interact with MetaMask."

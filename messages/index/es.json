@@ -75,10 +75,7 @@
         "0": "MATIC es la criptomoneda nativa a la red Polygon. Si un usuario quiere ejecutar una transacción en Polygon, como para conseguir unos KikiriCoins, necesita tener un poco de  MATIC token en su cuenta.",
         "1": "<b>Para poder conseguir KikiCoins, un usuario necesita primero añadir MATIC a su cuenta.</b> La operación de solicitar KikiriCoins debería requerir menos de 0.001 MATIC (~0.02€)."
       },
-      "imageDescription": "Logo de MATIC",
-      "links": {
-        "0": "Tutorial: Getting MATIC on the Polygon network with Crypto.com"
-      }
+      "imageDescription": "Logo de MATIC"
     }
   },
   "Error": {
@@ -129,8 +126,7 @@
         "text": "Cuando configure su cartera, asegúrese de mantener su clave privada segura. La clave privada es un código que le permite acceder a su cuenta desde cualquier lugar. Si otra persona, como un hacker, descrubre su clave privada, tendría control total para tomar sus tokens."
       },
       "2": {
-        "text": "Una vez haya configurado una cuenta en MetaMask, tendrá que añadir tokens MATIC. La operación de obtener KikiriCoin debería requerir menos de 0.001 MATIC (~0.02€).",
-        "link": "Tutorial: Getting MATIC on the Polygon network with Crypto.com"
+        "text": "Una vez haya configurado una cuenta en MetaMask, tendrá que añadir tokens MATIC. La operación de obtener KikiriCoin debería requerir menos de 0.001 MATIC (~0.02€)."
       },
       "3": {
         "text": "Haga click en \"1. Conectar Cartera\" para permitir a esta página web interactuar con MetaMask."
