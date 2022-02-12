@@ -91,33 +91,20 @@ const Faucet = () => {
       showErrorToast('claimError', new Error('No account connected'));
       return;
     }
-    setIsClaiming(true);
 
-    let timeout: NodeJS.Timeout | undefined;
-    const delayBeforeOptimisticConfirmation = 30000;
-
-    // If the claiming finishes first, the confirmation will be real. Otherwise it'll be optimistic
-    Promise.race([
-      claimTokensFromFaucet(account),
-      new Promise<void>((resolve) => {
-        timeout = setTimeout(() => {
-          console.log('Claim transaction takes too long. Optimistically showing confirmation.');
-          resolve();
-        }, delayBeforeOptimisticConfirmation);
-      }),
-    ])
-      .then(() => {
-        setClaimSuccessModalIsOpen(true);
-      })
-      .catch((error) => {
-        showErrorToast('claimError', error);
-      })
-      .then(() => {
+    claimTokensFromFaucet(account, {
+      sending: () => {
+        setIsClaiming(true);
+      },
+      transactionHash: () => {
         setIsClaiming(false);
-        if (timeout) {
-          clearTimeout(timeout);
-        }
-      });
+        setClaimSuccessModalIsOpen(true);
+      },
+      error: (error) => {
+        setIsClaiming(false);
+        showErrorToast('claimError', error);
+      },
+    });
   };
 
   const handleCloseClaimSuccessModalAndReloadCounts = () => {

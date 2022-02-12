@@ -38,15 +38,43 @@ const getFaucetContract = singleton<Contract>(() => {
   return new web3.eth.Contract(KikiriFaucetABI as AbiItem[], process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS);
 });
 
-export const claimTokensFromFaucet = async (address: string) => {
+// see https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html#methods-mymethod-send
+type SendCallbacks = {
+  sending?: (payload: Object) => void;
+  sent?: (payload: Object) => void;
+  transactionHash?: (hash: string) => void;
+  receipt?: (receipt: Object) => void;
+  confirmation?: (confirmation: number, receipt: Object, latestBlockHash: string) => void;
+  error?: (error: Error, receipt: Object | undefined) => void;
+};
+
+export const claimTokensFromFaucet = async (address: string, callbacks: SendCallbacks) => {
   if (!address) {
     return Promise.reject(new Error('No address'));
   }
-  return getFaucetContract()
+  getFaucetContract()
     .methods.claim()
     .send({ from: address })
-    .then(() => {
-      console.log('%cWeb3', 'background: orange; color: white', `claim`);
+    .on('sending', callbacks.sending || (() => {}))
+    .on('sent', (payload: Object) => {
+      console.log('%cWeb3', 'background: orange; color: white', `claim.sent`);
+      (callbacks.sent || (() => {}))(payload);
+    })
+    .on('transactionHash', (hash: string) => {
+      console.log('%cWeb3', 'background: orange; color: white', `claim.transactionHash`);
+      (callbacks.transactionHash || (() => {}))(hash);
+    })
+    .on('receipt', (receipt: Object) => {
+      console.log('%cWeb3', 'background: orange; color: white', `claim.receipt`);
+      (callbacks.receipt || (() => {}))(receipt);
+    })
+    .on('confirmation', (confirmation: number, receipt: Object, latestBlockHash: string) => {
+      console.log('%cWeb3', 'background: orange; color: white', `claim.confirmation`);
+      (callbacks.confirmation || (() => {}))(confirmation, receipt, latestBlockHash);
+    })
+    .on('error', (error: Error, receipt: Object | undefined) => {
+      console.log('%cWeb3', 'background: orange; color: white', `claim.error`);
+      (callbacks.error || (() => {}))(error, receipt);
     });
 };
 

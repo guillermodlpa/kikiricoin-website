@@ -117,8 +117,8 @@
     "connecting": "1. Connecting",
     "alreadyConnected": "Already connected to",
     "importTokenButton": "2. Import KikiriCoin token to MetaMask",
-    "claimButton": "3. Claim KikiriCoin",
-    "claiming": "3. Claiming KikiriCoin",
+    "claimButton": "3. Claim 10 KikiriCoin",
+    "claiming": "3. Claiming 10 KikiriCoin",
     "totalTimesUsed": "Total Times Used",
     "tokensAvailable": "KikiriCoin Tokens Available",
     "tokensInWallet": "KikiriCoin Tokens in your Wallet",
@@ -184,7 +184,7 @@
   "ClaimSuccessModal": {
     "title": "Claimed!",
     "description": {
-      "0": "10 KikiriCoins will be added to your account. The transaction can take 1-2 minutes.",
+      "0": "Transaction submitted. 10 KikiriCoins will be added to your account soon. The transaction can take 1-2 minutes.",
       "1": "Thank you!"
     },
     "imageDescription": "Logo"
