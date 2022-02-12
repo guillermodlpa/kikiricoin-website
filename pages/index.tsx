@@ -10,6 +10,7 @@ import Faucet from '../components/sections/Faucet';
 import SourceCode from '../components/sections/SourceCode';
 import LearningResources from '../components/sections/LearningResources';
 import Footer from '../components/sections/Footer';
+import FloatingMenuBar from '../components/ui/FloatingMenuBar';
 
 const Home: NextPage = () => {
   return (
@@ -19,7 +20,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <LanguageMenu />
+        <FloatingMenuBar>
+          <LanguageMenu />
+        </FloatingMenuBar>
         <Hero />
         <Stats />
         <FeaturesSplit />
