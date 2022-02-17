@@ -29,7 +29,7 @@
     "SmartContract": {
       "title": "¿Qué es un smart contract?",
       "description": {
-        "0": "Un breve programa de ordenador que se ejecuta en una red de blockchain. Los smart contracts que se depliegan en Ethereum, Polygon, y otras redes, están escritos utilizando el lenguaje de programación Solidity.",
+        "0": "Un breve programa de ordenador que se ejecuta en una red de blockchain. Los smart contracts desplegados en Ethereum, Polygon, y otras redes, están escritos utilizando el lenguaje de programación Solidity.",
         "1": "El token está implementado utilizando la interfaz ERC-20. Este estándar hace a KikiriCoin compatible con cualquier sistema que gestione tokens de Ethereum."
       },
       "imageDescription": "Logo de Ethereum"
@@ -60,7 +60,7 @@
       "title": "¿Dónde está KikiriCoin desplegado?",
       "description": {
         "0": "El smart contract de KikiriCoin está desplegado en la <b>red blockchain Polygon</b>. Polygon es una solución a los problemas de escalabilidad de Ethereum, permitiendo transacciones más rápidas y baratas que en Ethereum.",
-        "1": "Polygon utiliza la cryptomoneda <b>MATIC</b> para cobrar los costes de transacción y recompensar a los <i>transaction validators</i> en todo el mundo.",
+        "1": "Polygon utiliza la criptomoneda <b>MATIC</b> para cobrar los costes de transacción y recompensar a los <i>transaction validators</i> en todo el mundo.",
         "2": "MetaMask también se puede conectar a la red Polygon, y así mostrar balances de cuenta y ejecutar transacciones."
       },
       "imageDescription": "Logo de MATIC",
@@ -70,10 +70,10 @@
       }
     },
     "MATIC": {
-      "title": "¿Qué es MATIC y cómo obtener?",
+      "title": "¿Qué es MATIC token y cómo obtener?",
       "description": {
         "0": "MATIC es la criptomoneda nativa a la red Polygon. Si un usuario quiere ejecutar una transacción en Polygon, como para conseguir unos KikiriCoins, necesita tener un poco de  MATIC token en su cuenta.",
-        "1": "<b>Para poder conseguir KikiCoins, un usuario necesita primero añadir MATIC a su cuenta.</b> La operación de solicitar KikiriCoins debería requerir menos de 0.001 MATIC (~0.02€)."
+        "1": "<b>Para poder conseguir KikiriCoins, un usuario necesita primero añadir MATIC a su cuenta.</b> La operación de solicitar KikiriCoins debería requerir menos de 0.001 MATIC (~0.02€)."
       },
       "imageDescription": "Logo de MATIC"
     }
@@ -92,8 +92,8 @@
     "title": "Faucet",
     "description": {
       "0": "Un faucet es un dispensador de token. Es una manera habitual de distribuir tokens.",
-      "1": "Para utilizarlo, tendrá que conectar tu cartera e iniciar una transacción para reclamar los tokens. Los botones a continuación se encargarán de ello.",
-      "2": "Como cualquier otra transación en la red Polygon, require una pequeña cantidad de token MATIC. Cuando hagas click en Claim, MetaMask mostrará un coste estimado de la transacción y pedirá su confirmación",
+      "1": "Para utilizarlo, tendrás que conectar tu cartera e iniciar una transacción para reclamar los tokens. Los botones a continuación se encargarán de ello.",
+      "2": "Como cualquier otra transacción en la red Polygon, se requiere una pequeña cantidad de token MATIC. Cuando hagas click en Claim, MetaMask mostrará un coste estimado de la transacción y pedirá su confirmación",
       "3": "Este faucet permite solicitar tokens cada 5 minutos. Si intentas pedir de nuevo sin esperar, recibirás un error."
     },
     "metamaskMissing": {
@@ -132,7 +132,7 @@
     "title": "Materiales de Aprendizaje",
     "CryptoZombies": {
       "title": "CryptoZombies Courses (Inglés)",
-      "description": "Así empecé blockchain development. Los módulos son claros, muy educativos, y divertidos. La versión de Solidity que usan está un poco desactualizada (0.5), pero la gran mayoría de los contenidos son relevantes con Solidity 0.8",
+      "description": "Así empecé el desarrollo blockchain. Los módulos son claros, muy educativos, y divertidos. La versión de Solidity que usan está un poco desactualizada (0.5), pero la gran mayoría de los contenidos son relevantes con Solidity 0.8",
       "imageDescription": "Crypto Zombie"
     },
     "TokenDevelopmentGuide": {
@@ -147,7 +147,7 @@
     },
     "WhiteboardCrypto": {
       "title": "Whiteboard Crypto - YouTube channel for crypto education using analogies, stories, and examples (Inglés)",
-      "description": "Cuando tengo que aprender un concepto nuevo, antes de ponerme a leer artículos técnics, empiezo con Whiteboard Crypto. Este canal me ya ayudado mucho a entender conceptos complicados del mundo crypto.",
+      "description": "Cuando tengo que aprender un concepto nuevo, antes de leer artículos técnicos, empiezo con Whiteboard Crypto. Este canal me ha ayudado mucho a entender conceptos complicados del mundo cripto.",
       "imageDescription": "Icono de Whiteboard Crypto"
     }
   },

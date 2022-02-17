@@ -21,7 +21,7 @@
     "KikiriCoin": {
       "title": "What is KikiriCoin?",
       "description": {
-        "0": "KikiriCoin is a virtual token that can be created (minted) and transfered between crypto accounts.",
+        "0": "KikiriCoin is a virtual token that can be created (minted) and transferred between crypto accounts.",
         "1": "KikiriCoin's allowed operations and balances are managed by a <b>smart contract</b>."
       },
       "imageDescription": "KikiriCoin logo"
@@ -29,7 +29,7 @@
     "SmartContract": {
       "title": "What is a smart contract?",
       "description": {
-        "0": "A short computer program that is executed a blockchain network. Smart contracts deployed on Ethereum, Polygon, and many other networks are developed with the programming language Solidity.",
+        "0": "A short computer program that is executed in a blockchain network. Smart contracts deployed on Ethereum, Polygon, and many other networks are developed with the programming language Solidity.",
         "1": "The token is implemented using the ERC-20 interface. This standard makes KikiriCoin compatible with any system that supports Ethereum tokens."
       },
       "imageDescription": "Ethereum logo"
@@ -59,7 +59,7 @@
     "PolygonNetwork": {
       "title": "Where is KikiriCoin deployed?",
       "description": {
-        "0": "KikiriCoin's smart contract is deployed on the <b>Polygon blockain network</b>. Polygon is a scaling solution for Ethereum that provides faster and cheaper transactions on Ethereum.",
+        "0": "KikiriCoin's smart contract is deployed on the <b>Polygon blockchain network</b>. Polygon is a scaling solution for Ethereum that provides faster and cheaper transactions on Ethereum.",
         "1": "Polygon uses the cryptocurrency <b>MATIC</b> to charge users for executing transactions and reward transaction validators around the world.",
         "2": "MetaMask can also connect to the Polygon network, and therefore show account balances and sign transactions."
       },
@@ -70,7 +70,7 @@
       }
     },
     "MATIC": {
-      "title": "What is MATIC and how do I get it?",
+      "title": "What is MATIC, and how do I get it?",
       "description": {
         "0": "MATIC is the native cryptocurrency to the Polygon network. If a user wants to execute a transaction on Polygon, like to get some KikiriCoins, they'll need to have some MATIC token in their account.",
         "1": "<b>In order to claim KIKI tokens, a user first needs to fund their crypto account with MATIC.</b> The claim operation should require less than 0.001 MATIC (~0.02€)."
@@ -94,7 +94,7 @@
       "0": "A faucet is a dispenser of token. It's a common approach to distribute new tokens.",
       "1": "In order to use it, you'll need to connect your wallet and initiate a transaction to claim the tokens. The buttons below will handle it.",
       "2": "Like any other transaction in the Polygon network, it will require a small amount of MATIC token. When you press Claim, MetaMask will display the estimated transaction cost and ask for confirmation.",
-      "3": "This faucet allows you to request tokens every 5 minutes. You'll receive an error if you try again without waiting."
+      "3": "This faucet allows you to request tokens every 5 minutes. You'll receive an error notification if you try again without waiting."
     },
     "metamaskMissing": {
       "errorMessage": "Crypto wallet not found. Do you have MetaMask installed and enabled?",
