@@ -43,9 +43,7 @@ const ResourceCard = ({ title, description, link, Image, imageAlt }: ResourceCar
     )}
     <Box flexGrow={1}>
       <Text fontWeight="medium">
-        <DecoratedLink href={link} isExternal>
-          {title}
-        </DecoratedLink>
+        <DecoratedLink href={link}>{title}</DecoratedLink>
       </Text>
       <Text fontSize="sm">{description}</Text>
     </Box>

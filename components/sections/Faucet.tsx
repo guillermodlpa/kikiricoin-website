@@ -143,9 +143,7 @@ const Faucet = () => {
                 <AlertIcon />
                 <AlertDescription>
                   {t('metamaskMissing.errorMessage')}{' '}
-                  <DecoratedLink isExternal href="https://metamask.io/">
-                    {t('metamaskMissing.installLink')}
-                  </DecoratedLink>
+                  <DecoratedLink href="https://metamask.io/">{t('metamaskMissing.installLink')}</DecoratedLink>
                 </AlertDescription>
               </Alert>
             )}
@@ -158,14 +156,14 @@ const Faucet = () => {
                   <Text>
                     {t('wrongChain.expected')}
                     {`: `}
-                    <DecoratedLink isExternal href={`https://chainlist.org/?search=${expectedChainId}`}>
+                    <DecoratedLink href={`https://chainlist.org/?search=${expectedChainId}`}>
                       {expectedChainId}
                     </DecoratedLink>
                   </Text>
                   <Text>
                     {t('wrongChain.actual')}
                     {`: `}
-                    <DecoratedLink isExternal href={`https://chainlist.org/?search=${chainIdBase10}`}>
+                    <DecoratedLink href={`https://chainlist.org/?search=${chainIdBase10}`}>
                       {chainIdBase10}
                     </DecoratedLink>
                   </Text>
@@ -195,7 +193,7 @@ const Faucet = () => {
                 {account && status === 'connected' && (
                   <Text>
                     {t('alreadyConnected')}{' '}
-                    <DecoratedLink href={`https://polygonscan.com/address/${account}`} color="primary" isExternal>
+                    <DecoratedLink href={`https://polygonscan.com/address/${account}`} color="primary">
                       {account.substring(0, 4)}...
                       {account.substring(account.length - 4)}
                     </DecoratedLink>
@@ -255,7 +253,7 @@ const Faucet = () => {
               <StatLabel>
                 {t('tokensInWallet')}{' '}
                 {account && (
-                  <DecoratedLink href={`https://polygonscan.com/address/${account}`} color="primary" isExternal>
+                  <DecoratedLink href={`https://polygonscan.com/address/${account}`} color="primary">
                     {account.substring(0, 4)}...
                     {account.substring(account.length - 4)}
                   </DecoratedLink>
@@ -274,7 +272,7 @@ const Faucet = () => {
 
         <Text>
           {t('issues.questionText')}{' '}
-          <DecoratedLink isExternal href="https://github.com/guillermodlpa/kikiricoin-website/issues">
+          <DecoratedLink href="https://github.com/guillermodlpa/kikiricoin-website/issues">
             {t('issues.reportIssueLink')}
           </DecoratedLink>
         </Text>

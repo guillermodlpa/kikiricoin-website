@@ -1,18 +1,20 @@
 import { Link, LinkProps } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
-import { Children } from 'react';
+
+const isExternalLink = (href: string) => typeof window !== 'undefined' && !href.startsWith(window.location.origin);
 
 const DecoratedLink = (props: LinkProps) => {
-  const children = props.isExternal ? (
-    <>
-      {props.children} <ExternalLinkIcon mb="0.3em" role="presentation" />
-    </>
-  ) : (
-    Children
-  );
+  const isExternal = Boolean(props.href && isExternalLink(props.href));
+
   return (
-    <Link color="primary" {...props}>
-      {children}
+    <Link color="primary" isExternal={isExternal} {...props}>
+      {isExternal ? (
+        <>
+          {props.children} <ExternalLinkIcon mb="0.3em" role="presentation" />
+        </>
+      ) : (
+        props.children
+      )}
     </Link>
   );
 };

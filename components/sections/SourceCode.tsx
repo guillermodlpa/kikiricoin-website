@@ -19,13 +19,13 @@ const SourceCode = () => {
         <UnorderedList mb={16}>
           <ListItem>
             {`${t('smartContractsRepo')}: `}
-            <DecoratedLink href={`https://github.com/guillermodlpa/kikiricoin`} isExternal>
+            <DecoratedLink href={`https://github.com/guillermodlpa/kikiricoin`}>
               https://github.com/guillermodlpa/kikiricoin
             </DecoratedLink>
           </ListItem>
           <ListItem>
             {`${t('websiteRepo')}: `}
-            <DecoratedLink href={`https://github.com/guillermodlpa/kikiricoin-website`} isExternal>
+            <DecoratedLink href={`https://github.com/guillermodlpa/kikiricoin-website`}>
               https://github.com/guillermodlpa/kikiricoin-website
             </DecoratedLink>
           </ListItem>
@@ -38,15 +38,11 @@ const SourceCode = () => {
         <UnorderedList>
           <ListItem>
             {`${t('tokenSmartContract')}: `}
-            <DecoratedLink href={`${scanUrl}/${tokenAddress}`} isExternal>
-              {tokenAddress}
-            </DecoratedLink>
+            <DecoratedLink href={`${scanUrl}/${tokenAddress}`}>{tokenAddress}</DecoratedLink>
           </ListItem>
           <ListItem>
             {`${t('faucetSmartContract')}: `}
-            <DecoratedLink href={`${scanUrl}/${faucetAddress}`} isExternal>
-              {faucetAddress}
-            </DecoratedLink>
+            <DecoratedLink href={`${scanUrl}/${faucetAddress}`}>{faucetAddress}</DecoratedLink>
           </ListItem>
         </UnorderedList>
       </Container>

@@ -41,7 +41,7 @@ const Feature = ({ title, description, image, imagePosition, imageDescription, l
         {isValidElement(description) && description}
         {(links || []).map(({ href, label }) => (
           <Text key={href}>
-            <DecoratedLink href={href} color="primary" isExternal>
+            <DecoratedLink href={href} color="primary">
               {label}
             </DecoratedLink>
           </Text>
@@ -141,7 +141,6 @@ const FeaturesSplit = () => {
                   ...richTextConfig,
                   a: (children: React.ReactNode) => (
                     <DecoratedLink
-                      isExternal
                       href={'https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/'}
                     >
                       {children}

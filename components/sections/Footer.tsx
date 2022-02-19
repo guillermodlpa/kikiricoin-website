@@ -10,14 +10,12 @@ const Footer = () => {
       <Center>
         <UnorderedList listStyleType="none" spacing={4} textAlign={'center'}>
           <ListItem>
-            <DecoratedLink href="https://guillermodelapuente.com" isExternal>
-              {t('authorWebsiteLink')}
-            </DecoratedLink>
+            <DecoratedLink href="https://guillermodelapuente.com">{t('authorWebsiteLink')}</DecoratedLink>
           </ListItem>
 
           <ListItem>
             {t('logoAttributionText')}{' '}
-            <DecoratedLink href="https://emojipedia.org/google/android-9.0/rooster/" isExternal>
+            <DecoratedLink href="https://emojipedia.org/google/android-9.0/rooster/">
               {t('logoAttributionLink')}
             </DecoratedLink>
           </ListItem>
