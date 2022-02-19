@@ -21,7 +21,7 @@ type ResourceCardProps = {
 const MAX_TH_HEIGHT = 144;
 const MAX_TH_WIDTH = 90;
 
-const ResourceCard = ({ title, description, link, Image, imageAlt }: ResourceCardProps) => (
+const ResourceCard: React.FC<ResourceCardProps> = ({ title, description, link, Image, imageAlt }) => (
   <Flex
     shadow="md"
     borderWidth="1px"
@@ -50,7 +50,7 @@ const ResourceCard = ({ title, description, link, Image, imageAlt }: ResourceCar
   </Flex>
 );
 
-const LearningResources = () => {
+const LearningResources: React.FC = () => {
   const t = useTranslations('LearningResources');
 
   const learningResources = useMemo(

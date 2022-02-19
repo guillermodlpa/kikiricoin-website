@@ -6,7 +6,7 @@ import CoinLogo from '../images/1f413-coin-color-adjusted.png';
 import FadeAnimation from '../ui/FadeAnimation';
 import richTextConfig from '../../util/nextIntlRichTextConfig';
 
-const Hero = () => {
+const Hero: React.FC = () => {
   const t = useTranslations('Hero');
   return (
     <Box as="section" py={24} position="relative">

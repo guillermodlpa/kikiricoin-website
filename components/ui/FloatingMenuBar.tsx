@@ -1,7 +1,7 @@
 import { Box, useTheme } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
-const FloatingMenuBar = ({ children }: { children: React.ReactNode }) => {
+const FloatingMenuBar: React.FC = ({ children }) => {
   const theme = useTheme();
 
   // We delay rendering to not render this menu on server side

@@ -35,7 +35,7 @@ import CoinImagesRow from '../ui/CoinImagesRow';
 const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
 const expectedChainId = process.env.NEXT_PUBLIC_CHAIN_ID || '';
 
-const Faucet = () => {
+const Faucet: React.FC = () => {
   const showErrorToast = useErrorToast();
   const { connect, status, account, chainId } = useMetaMask();
 

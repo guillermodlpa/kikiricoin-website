@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 
 import DecoratedLink from '../ui/DecoratedLink';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   const t = useTranslations('Footer');
   return (
     <Box as="footer" px={8} py={8}>

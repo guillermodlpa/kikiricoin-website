@@ -3,7 +3,7 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 const isExternalLink = (href: string) => typeof window !== 'undefined' && !href.startsWith(window.location.origin);
 
-const DecoratedLink = (props: LinkProps) => {
+const DecoratedLink: React.FC<LinkProps> = (props) => {
   const isExternal = Boolean(props.href && isExternalLink(props.href));
 
   return (

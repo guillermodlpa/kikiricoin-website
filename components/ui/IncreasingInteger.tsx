@@ -16,15 +16,11 @@ function easeOutExpo(time: number, beginningValue: number, changeInValue: number
 const minTimeout = 10;
 const maxTimeout = 75;
 
-const IncreasingInteger = ({
-  value,
-  initialValue = 0,
-  maxDuration = 1500,
-}: {
+const IncreasingInteger: React.FC<{
   value: number;
   initialValue?: number;
   maxDuration?: number;
-}) => {
+}> = ({ value, initialValue = 0, maxDuration = 1500 }) => {
   const [displayValue, setDisplayValue] = useState(initialValue);
   const [startingValue, setStartingValue] = useState(initialValue);
 

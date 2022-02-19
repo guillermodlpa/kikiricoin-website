@@ -14,7 +14,7 @@ type StatBoxProps = {
   data: string | JSX.Element;
 };
 
-const StatBox = ({ title, data }: StatBoxProps) => (
+const StatBox: React.FC<StatBoxProps> = ({ title, data }) => (
   <StyledStat>
     <StatLabel>{title}</StatLabel>
     <StatNumber fontSize="4xl">{data}</StatNumber>
@@ -23,7 +23,7 @@ const StatBox = ({ title, data }: StatBoxProps) => (
 
 const deploymentDate = new Date('2022-02-11');
 
-const Stats = () => {
+const Stats: React.FC = () => {
   const showErrorToast = useErrorToast();
 
   const [totalSupply, setTotalSupply] = useState<string>();

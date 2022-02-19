@@ -26,7 +26,7 @@ type StatBoxProps = {
   links: Array<{ href: string; label: string }> | undefined;
 };
 
-const Feature = ({ title, description, image, imagePosition, imageDescription, links }: StatBoxProps) => (
+const Feature: React.FC<StatBoxProps> = ({ title, description, image, imagePosition, imageDescription, links }) => (
   <FadeAnimation origin={imagePosition}>
     <Flex direction={['column', imagePosition === Position.Right ? 'row' : 'row-reverse']} alignItems="center">
       <Stack
@@ -55,7 +55,7 @@ const Feature = ({ title, description, image, imagePosition, imageDescription, l
   </FadeAnimation>
 );
 
-const FeaturesSplit = () => {
+const FeaturesSplit: React.FC = () => {
   const t = useTranslations('FeaturesSplit');
 
   const content = useMemo(

@@ -7,7 +7,7 @@ const scanUrl = process.env.NEXT_PUBLIC_SCAN_ADDRESS_URL || '';
 const tokenAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_TOKEN_ADDRESS || '';
 const faucetAddress = process.env.NEXT_PUBLIC_KIKIRICOIN_FAUCET_ADDRESS || '';
 
-const SourceCode = () => {
+const SourceCode: React.FC = () => {
   const t = useTranslations('SourceCode');
   return (
     <Box as="section" py={24} id="source-code">

@@ -16,13 +16,7 @@ const offsetY = {
   bottom: 25,
 };
 
-const FadeAnimation = ({
-  children,
-  origin,
-}: {
-  children: React.ReactNode;
-  origin: 'right' | 'left' | 'bottom' | 'top';
-}) => {
+const FadeAnimation: React.FC<{ origin: 'right' | 'left' | 'bottom' | 'top' }> = ({ children, origin }) => {
   const ref = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
   const onScreen = useOnScreenPersistent(ref);

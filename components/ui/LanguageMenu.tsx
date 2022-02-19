@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
 
-const LanguageMenu = () => {
+const LanguageMenu: React.FC = () => {
   const t = useTranslations('LanguagesMenu');
   const selectedLocale = useRouter().locale;
 

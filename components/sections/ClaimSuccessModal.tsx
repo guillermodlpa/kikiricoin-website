@@ -31,7 +31,7 @@ const spin = keyframes`
   to {transform: rotateY(360deg) translate(0, ${VERTICAL_SEPARATION - COIN_SIZE}px);}
 `;
 
-const DroppingCoin = ({ top, left }: { top: number; left: number }) => (
+const DroppingCoin: React.FC<{ top: number; left: number }> = ({ top, left }) => (
   <Box
     position="fixed"
     top={top}
@@ -46,7 +46,7 @@ const DroppingCoin = ({ top, left }: { top: number; left: number }) => (
   </Box>
 );
 
-const DroppingCoinsOverlay = memo(function DroppingCoinsOverlayRoot() {
+const DroppingCoinsOverlay: React.FC = memo(function DroppingCoinsOverlayRoot() {
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const DroppingCoinsOverlay = memo(function DroppingCoinsOverlayRoot() {
   );
 });
 
-const ClaimSuccessModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+const ClaimSuccessModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   const t = useTranslations('ClaimSuccessModal');
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
