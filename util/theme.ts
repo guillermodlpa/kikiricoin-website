@@ -49,6 +49,9 @@ export default extendTheme({
       a: {
         color: '#964941',
       },
+      html: {
+        scrollBehavior: 'smooth',
+      },
     },
   },
   fonts: {
