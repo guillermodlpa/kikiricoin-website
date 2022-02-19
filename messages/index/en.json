@@ -70,11 +70,17 @@
       }
     },
     "MATIC": {
-      "title": "What is MATIC, and how do I get it?",
+      "title": "How to get MATIC?",
       "description": {
-        "0": "MATIC is the native cryptocurrency to the Polygon network. If a user wants to execute a transaction on Polygon, like to get some KikiriCoins, they'll need to have some MATIC token in their account.",
-        "1": "<b>In order to claim KIKI tokens, a user first needs to fund their crypto account with MATIC.</b> The claim operation should require less than 0.001 MATIC (~0.02€)."
+        "0": "When a user wants to execute a transaction on Polygon, like to get some KikiriCoins, they'll need to have some MATIC token in their account.",
+        "1": "The easiest and fastest way to get it is using <b>MoonPay</b>. Instructions:"
       },
+      "getMaticInstructions": [
+        "Set up the MetaMask extension.",
+        "<a>Add the Polygon network to MetaMask.</a>",
+        "Use MoonPay to purchase \"<b>MATIC - Polygon (Polygon)</b>\" directly to your MetaMask account."
+      ],
+      "getMaticNote": "It should take only a few minutes to do it. Unfortunately, the minimum purchase is $30 plus fee.",
       "imageDescription": "MATIC logo"
     }
   },
@@ -93,7 +99,7 @@
     "description": {
       "0": "A faucet is a dispenser of token. It's a common approach to distribute new tokens.",
       "1": "In order to use it, you'll need to connect your wallet and initiate a transaction to claim the tokens. The buttons below will handle it.",
-      "2": "Like any other transaction in the Polygon network, it will require a small amount of MATIC token. When you press Claim, MetaMask will display the estimated transaction cost and ask for confirmation.",
+      "2": "Like any other transaction in the Polygon network, it will require a small amount of MATIC token. When you press Claim, MetaMask will display the estimated transaction cost and ask for confirmation. The claim operation should require less than 0.001 MATIC (~0.02€).",
       "3": "This faucet allows you to request tokens every 5 minutes. You'll receive an error notification if you try again without waiting."
     },
     "metamaskMissing": {

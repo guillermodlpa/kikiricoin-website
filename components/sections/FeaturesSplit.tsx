@@ -1,5 +1,5 @@
 import { isValidElement, useMemo } from 'react';
-import { Box, Flex, Container, Stack, Heading, Text, VStack } from '@chakra-ui/react';
+import { Box, Flex, Container, Stack, Heading, Text, VStack, OrderedList, ListItem } from '@chakra-ui/react';
 import NextImage from 'next/image';
 import { useTranslations } from 'next-intl';
 
@@ -133,9 +133,28 @@ const FeaturesSplit = () => {
           <>
             <Text>{t('MATIC.description.0')}</Text>
             <Text>{t.rich('MATIC.description.1', richTextConfig)}</Text>
+
+            <OrderedList listStylePosition="inside" spacing={1}>
+              <ListItem>{t('MATIC.getMaticInstructions.0')}</ListItem>
+              <ListItem>
+                {t.rich('MATIC.getMaticInstructions.1', {
+                  ...richTextConfig,
+                  a: (children: React.ReactNode) => (
+                    <DecoratedLink
+                      isExternal
+                      href={'https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/'}
+                    >
+                      {children}
+                    </DecoratedLink>
+                  ),
+                })}
+              </ListItem>
+              <ListItem>{t.rich('MATIC.getMaticInstructions.2', richTextConfig)}</ListItem>
+            </OrderedList>
+            <Text>{t('MATIC.getMaticNote')}</Text>
           </>
         ),
-        links: [],
+        links: [{ href: 'https://www.moonpay.com/', label: 'MoonPay' }],
         image: maticTokenLogo,
         imageDescription: t('MATIC.imageDescription'),
       },
