@@ -1,7 +1,7 @@
 # KikiriCoin Website
 
 <p align="center">
-    <img alt="KikiriCoin Logo" src="./docs/kikiricoin-logo.png">
+    <img alt="KikiriCoin Logo" src="./docs/kikiricoin-logo_150x150.png">
 </p>
 <p align="center">
     Website for presenting the KikiriCoin token and interact with its faucet smart contract.
