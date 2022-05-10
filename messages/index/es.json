@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "locale": "es_ES",
+    "description": "KikiriCoin (KIKI) es un token ERC-20 desplegado en la Polygon blockchain network. Su implementación es código abierto y tiene por objetivo ser instructiva y divertida."
+  },
   "LanguagesMenu": {
     "buttonLabel": "Idioma"
   },

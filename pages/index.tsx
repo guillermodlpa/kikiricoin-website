@@ -11,12 +11,19 @@ import SourceCode from '../components/sections/SourceCode';
 import LearningResources from '../components/sections/LearningResources';
 import Footer from '../components/sections/Footer';
 import FloatingMenuBar from '../components/ui/FloatingMenuBar';
+import { useTranslations } from 'next-intl';
 
 const Home: NextPage = () => {
+  const t = useTranslations('meta');
   return (
     <>
       <Head>
         <title>KikiriCoin</title>
+        <meta name="description" content={t('description')} />
+        <meta name="author" content="Guillermo de la Puente" />
+
+        <meta property="og:image" content="https://kikiricoin.guillermodlpa.com/website-screenshot.png" />
+        <meta property="og:locale" content={t('locale')} />
       </Head>
 
       <main>
