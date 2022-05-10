@@ -20,7 +20,7 @@
 
 ## Technologies
 
-The KikiriCoin website is a [NextJS](https://nextjs.org/) application. It uses some libraries for convenience, like [VGLoic/metamask-react](https://github.com/VGLoic/metamask-react). To interact with the Polygon blockchain, we use [Alchemy](https://www.alchemy.com/).
+The KikiriCoin website is a [NextJS](https://nextjs.org/) application. The UI library is [Charka UI](https://chakra-ui.com/). It uses some libraries for convenience, like [VGLoic/metamask-react](https://github.com/VGLoic/metamask-react). To interact with the Polygon blockchain, we use [Alchemy](https://www.alchemy.com/).
 
 ## Development Instructions
 
@@ -33,3 +33,5 @@ npm install
 # Run development server and serve at http://localhost:3000
 npm run dev
 ```
+
+Note that you'll need to populate the `.env.local` file, copying `.env` and populating the blockchain URL of an Alchemy project of yours. For the contract addresses, if you wish to use mine, you can point the env vars to the addresses found in https://kikiricoin.guillermodlpa.com/
