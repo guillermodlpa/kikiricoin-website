@@ -18,6 +18,15 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           <link rel="icon" type="image/x-icon" href="/1f413-coin-color-adjusted.ico" />
+
+          {process.env.NODE_ENV === 'production' && (
+            <script
+              async
+              defer
+              data-website-id="69244851-f1e4-4941-95b0-f56ce0b194ef"
+              src="https://umami-pvn48eb4t-guillermodlpa.vercel.app/umami.js"
+            ></script>
+          )}
         </Head>
         <body>
           <Main />
